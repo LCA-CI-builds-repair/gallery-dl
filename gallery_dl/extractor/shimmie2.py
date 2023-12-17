@@ -38,7 +38,7 @@ class Shimmie2Extractor(BaseExtractor):
 
         if self.category == "rule34hentai":
             self.posts = self._posts_giantessbooru
-		
+
     def items(self):
         data = self.metadata()
 
@@ -242,6 +242,7 @@ class Shimmie2TagExtractor(Shimmie2Extractor):
             if not extr(">Next<", ">"):
                 if not extr("/{}'>{}<".format(pnum, pnum), ">"):
                     return
+
 
 class Shimmie2PostExtractor(Shimmie2Extractor):
     """Extractor for single shimmie2 posts"""
