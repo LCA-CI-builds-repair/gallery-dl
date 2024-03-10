@@ -16,13 +16,14 @@ BASE_PATTERN = (
     r"([\w-]+\.(?:hatenablog\.com|hatenablog\.jp"
     r"|hatenadiary\.com|hateblo\.jp)))"
 )
-QUERY_RE = r"(?:\?([^#]*))?(?:#.*)?$"
+QUERY_RE = r"(?:(?:\?([^#]*))?(?:#.*)?$)"
 
 
 class HatenaBlogExtractor(Extractor):
     """Base class for HatenaBlog extractors"""
     category = "hatenablog"
     directory_fmt = ("{category}", "{domain}")
+    count = 10 # Added this line to set the default count of items to extract
     filename_fmt = "{category}_{domain}_{entry}_{num:>02}.{extension}"
     archive_fmt = "{filename}"
 

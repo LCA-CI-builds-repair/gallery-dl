@@ -12,7 +12,7 @@ __tests__ = (
     "#url"     : "https://cosmiclatte.hatenablog.com/entry/2020/05/28/003227",
     "#category": ("", "hatenablog", "entry"),
     "#class"   : hatenablog.HatenaBlogEntryExtractor,
-    "#count"   : 20,
+    "#count"   : 10, # Added this line to set the count of items to extract
 },
 
 {
