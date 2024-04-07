@@ -76,7 +76,7 @@ class _500pxExtractor(Extractor):
             if pid in photos:
                 result.append(photos[pid])
             elif "images" in fallbacks[pid]:
-                result.append(fallbacks[pid])
+                result.append(fallbacks[pid].strip())
             else:
                 self.log.warning("Unable to fetch photo %s", pid)
         
