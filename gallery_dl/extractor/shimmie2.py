@@ -220,13 +220,24 @@ class Shimmie2TagExtractor(Shimmie2Extractor):
                     pid = extr("href='/post/view/", "?")
 
                 if not pid:
-                    break
 
-                tags, dimensions, size, ext = extr(
-                                                   "title=\"", "\"").split(" // ")
-                width, _, height = dimensions.partition("x")
-                md5 = extr("/_thumbs/", "/")
+    def extr(text, delimiter):
+        return text.split(delimiter)[1]
 
+    def get_shimmie_info(url):
+        response = requests.get(url)
+        content = response.content.decode('utf-8')
+        soup = BeautifulSoup(content, 'html.parser')
+
+        tags = soup.find_all('p', {'class': 'tags'})[0]
+        dimensions = soup.find_all('span', {'class': 'dimensions'})[0].text
+        size = soup.find_all('span', {'class': 'size'})[0].text
+        ext = soup.find_all('span', {'class': 'extension'})[0].text
+
+        width, _, height = dimensions.partition("x")
+        md5 = soup.find_all('span', {'class': 'md5'})[0].text
+
+        return {"tags": tags, "dimensions": dimensions, "size": size, "ext": ext, "width": width, "height": height, "md5": md5}
                 yield {
                     "file_url": file_url_fmt(
                         self.root, md5, pid, text.quote(tags),
