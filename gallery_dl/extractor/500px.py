@@ -83,6 +83,13 @@ class _500pxExtractor(Extractor):
         return result
 
     def _request_api(self, url, params):
+        try:
+            response = requests.get(url, params=params)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            self.log.error("Failed to make API request: %s", str(e))
+            return None
         headers = {
             "Origin": self.root,
             "x-csrf-token": self.cookies.get(
