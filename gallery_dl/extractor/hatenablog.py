@@ -16,7 +16,7 @@ BASE_PATTERN = (
     r"([\w-]+\.(?:hatenablog\.com|hatenablog\.jp"
     r"|hatenadiary\.com|hateblo\.jp)))"
 )
-QUERY_RE = r"(?:\?([^#]*))?(?:#.*)?$"
+QUERY_RE = r"(?:\\?([^#]*))?(?:#.*)?$"
 
 
 class HatenaBlogExtractor(Extractor):
