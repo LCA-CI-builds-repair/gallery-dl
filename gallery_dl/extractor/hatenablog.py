@@ -23,6 +23,8 @@ class HatenaBlogExtractor(Extractor):
     """Base class for HatenaBlog extractors"""
     category = "hatenablog"
     directory_fmt = ("{category}", "{domain}")
+    def get_url(self, url):
+        return url
     filename_fmt = "{category}_{domain}_{entry}_{num:>02}.{extension}"
     archive_fmt = "{filename}"
 
