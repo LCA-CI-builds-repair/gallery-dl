@@ -23,6 +23,79 @@ class HatenaBlogExtractor(Extractor):
     """Base class for HatenaBlog extractors"""
     category = "hatenablog"
     directory_fmt = ("{category}", "{domain}")
+
+    def extract(self, video_url, video, *args, **kwargs):
+        """
+        Extract video and metadata from HatenaBlog.
+
+        Args:
+            video_url (str): Video URL.
+            video (Video): Video object.
+            *args: Additional arguments.
+            **kwargs: Additional keyword arguments.
+
+        Returns:
+            dict: Metadata dictionary.
+        """
+        soup = self.soup(video_url)
+
+        # Extract video ID
+        video_id = None
+        for div in soup.select("div#entry-body div#entry-id"):
+            video_id = div.get_text(strip=True)
+            break
+        if not video_id:
+            raise ExtractorError("Cannot find video ID")
+
+        # Extract video metadata
+        metadata = {}
+        for div in soup.select("div#entry-body div#entry-content"):
+            for elem in div.select("p"):
+                if elem.text == "カテゴリー":
+                    metadata["category"] = elem.next_sibling.strip()
+                elif elem.text == "タグ":
+                    metadata["tags"] = [tag.strip() for tag in elem.next_sibling.split(",")]
+                elif elem.text == "日付":
+                    metadata["date"] = datetime.strptime(elem.next_sibling.strip(), "%Y/%m/%d %H:%M:%S")
+                elif elem.text == "作成者":
+                    metadata["author"] = elem.next_sibling.strip()
+                elif elem.text == "ビュー":
+                    metadata["views"] = int(elem.next_sibling.strip().replace(",", ""))
+                elif elem.text == "評価":
+                    metadata["rating"] = float(elem.next_sibling.strip())
+
+        # Extract video URL
+        video_url = None
+        for link in soup.select("div#entry-body div#entry-id a"):
+            if "href" in link.attrs and link["href"].endswith(video_id):
+                video_url = link["href"]
+                break
+        if not video_url:
+            raise ExtractorError("Cannot find video URL")
+
+        # Extract thumbnail URL
+        thumbnail_url = None
+        for img in soup.select("div#entry-body div#entry-content img"):
+            if "src" in img.attrs and "thumb" in img["src"]:
+                thumbnail_url = img["src"]
+                break
+        if not thumbnail_url:
+            raise ExtractorError("Cannot find thumbnail URL")
+
+        # Extract description
+        description = ""
+        for elem in soup.select("div#entry-body div#entry-content"):
+            if elem.text == "記事本文":
+                description = elem.next_sibling.strip()
+                break
+
+        # Save metadata to video object
+        video.metadata = metadata
+        video.url = video_url
+        video.thumbnail_url = thumbnail_url
+        video.description = description
+
+        return metadata
     filename_fmt = "{category}_{domain}_{entry}_{num:>02}.{extension}"
     archive_fmt = "{filename}"
 
