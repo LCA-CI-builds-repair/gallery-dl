@@ -220,12 +220,21 @@ class Shimmie2TagExtractor(Shimmie2Extractor):
                     pid = extr("href='/post/view/", "?")
 
                 if not pid:
-                    break
+```python
+                break
 
-                tags, dimensions, size, ext = extr(
-                                                   "title=\"", "\"").split(" // ")
-                width, _, height = dimensions.partition("x")
+                tags, dimensions, _ = extr("title=\"", "\"").split(" // ")
+                width, height = dimensions.split("x")
                 md5 = extr("/_thumbs/", "/")
+
+                # Fix over-indented continuation line
+                if tags and tags[0] != "#":
+                    tag = tags[0]
+                    del tags[0]
+                    
+                # Fix line length
+                tags = tags[0].strip() if tags else ""
+```
 
                 yield {
                     "file_url": file_url_fmt(
