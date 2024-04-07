@@ -59,6 +59,7 @@ modules = [
     "hentai2read",
     "hentaicosplays",
     "hentaifoundry",
+    "xebaxugrunpx",
     "hentaifox",
     "hentaihand",
     "hentaihere",
