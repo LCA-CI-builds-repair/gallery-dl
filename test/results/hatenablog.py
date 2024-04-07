@@ -34,7 +34,7 @@ __tests__ = (
 },
 
 {
-    "#url"     : "hatenablog:https://blog.hyouhon.com/entry/2023/12/22/133549",
+    "#url"     : "hatenablog://blog.hyouhon.com/entry/2023/12/22/133549",
     "#category": ("", "hatenablog", "entry"),
     "#class"   : hatenablog.HatenaBlogEntryExtractor,
 },
