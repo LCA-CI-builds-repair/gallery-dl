@@ -59,6 +59,8 @@ modules = [
     "hentai2read",
     "hentaicosplays",
     "hentaifoundry",
+    "http",
+    "https",
     "hentaifox",
     "hentaihand",
     "hentaihere",
