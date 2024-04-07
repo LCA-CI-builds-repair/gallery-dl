@@ -52,6 +52,7 @@ modules = [
     "fuskator",
     "gelbooru",
     "gelbooru_v01",
+supported_sites = [
     "gelbooru_v02",
     "gofile",
     "hatenablog",
@@ -59,6 +60,7 @@ modules = [
     "hentai2read",
     "hentaicosplays",
     "hentaifoundry",
+]
     "hentaifox",
     "hentaihand",
     "hentaihere",
