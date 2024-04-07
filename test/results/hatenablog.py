@@ -19,6 +19,7 @@ __tests__ = (
     "#url"     : "https://moko0908.hatenablog.jp/entry/2023/12/31/083846",
     "#category": ("", "hatenablog", "entry"),
     "#class"   : hatenablog.HatenaBlogEntryExtractor,
+    "#count"   : 1,
 },
 
 {
