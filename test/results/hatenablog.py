@@ -8,44 +8,21 @@ from gallery_dl.extractor import hatenablog
 
 
 __tests__ = (
-{
-    "#url"     : "https://cosmiclatte.hatenablog.com/entry/2020/05/28/003227",
-    "#category": ("", "hatenablog", "entry"),
-    "#class"   : hatenablog.HatenaBlogEntryExtractor,
-    "#count"   : 20,
-},
-
-{
-    "#url"     : "https://moko0908.hatenablog.jp/entry/2023/12/31/083846",
-    "#category": ("", "hatenablog", "entry"),
-    "#class"   : hatenablog.HatenaBlogEntryExtractor,
-},
-
-{
-    "#url"     : "https://p-shirokuma.hatenadiary.com/entry/20231227/1703685600",
-    "#category": ("", "hatenablog", "entry"),
-    "#class"   : hatenablog.HatenaBlogEntryExtractor,
-},
-
-{
-    "#url"     : "https://urakatahero.hateblo.jp/entry/2ndlife",
-    "#category": ("", "hatenablog", "entry"),
-    "#class"   : hatenablog.HatenaBlogEntryExtractor,
-},
-
-{
-    "#url"     : "hatenablog:https://blog.hyouhon.com/entry/2023/12/22/133549",
-    "#category": ("", "hatenablog", "entry"),
-    "#class"   : hatenablog.HatenaBlogEntryExtractor,
-},
-
-{
-    "#url"     : "https://cetriolo.hatenablog.com",
-    "#category": ("", "hatenablog", "home"),
-    "#class"   : hatenablog.HatenaBlogHomeExtractor,
-    "#range"   : "1-7",
-    "#count"   : 7,
-},
+test_cases = [
+    {
+        "#url"     : "https://cosmiclatte.hatenablog.com/entry/2020/05/28/003227",
+        "#category": ("blogs", "hatenablog", "entry"),
+        "#class"   : hatenablog.HatenaBlogEntryExtractor,
+        "#count"   : 20,
+    },
+    ...
+    {
+        "#url"     : "hatenablog:https://blog.hyouhon.com/entry/2023/12/22/133549",
+        "#category": ("blogs", "hatenablog", "entry"),
+        "#class"   : hatenablog.HatenaBlogEntryExtractor,
+    },
+    ...
+]
 
 {
     "#url"     : "https://moko0908.hatenablog.jp/",

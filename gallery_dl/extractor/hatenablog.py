@@ -18,10 +18,9 @@ BASE_PATTERN = (
 )
 QUERY_RE = r"(?:\?([^#]*))?(?:#.*)?$"
 
-
 class HatenaBlogExtractor(Extractor):
-    """Base class for HatenaBlog extractors"""
-    category = "hatenablog"
+    """Base class for HatenaBlog extractors."""
+    category = "blogs"
     directory_fmt = ("{category}", "{domain}")
     filename_fmt = "{category}_{domain}_{entry}_{num:>02}.{extension}"
     archive_fmt = "{filename}"
