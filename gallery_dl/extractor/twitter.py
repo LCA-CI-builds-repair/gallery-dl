@@ -32,9 +32,18 @@ class TwitterExtractor(Extractor):
 
     def __init__(self, match):
         Extractor.__init__(self, match)
-        self.user = match.group(1)
-
-    def _init(self):
+        self.user = match.    def user_tweets_and_replies(self, screen_name):
+        endpoint = "/graphql/-AY51QoFpVf-w7TxjQ6lpw/UserTweetsAndReplies"
+        variables = {
+            "userId": self._user_id_by_screen_name(screen_name),
+            "count": 100,
+            "includePromotedContent": False,
+            "withCommunity": True,
+            "withVoice": True,
+            "withV2Timeline": True,
+            "withQuickPromoteEligibilityTweetFields": True,
+        }
+        return self._pagination_tweets(endpoint, variables)t(self):
         self.textonly = self.config("text-tweets", False)
         self.retweets = self.config("retweets", False)
         self.replies = self.config("replies", True)
