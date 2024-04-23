@@ -3,7 +3,12 @@
 
 # Copyright 2015-2022 Mike Fährmann
 #
-# This program is free software; you can redistribute it and/or modify
+# This program is free sof        self.assertEqual(
+            f("http://example.org/filename.ext"),
+            "http://example.org/filename.ext",
+        )
+
+        # invalid arguments you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 

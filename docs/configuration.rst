@@ -49,7 +49,7 @@ you specify a general filename pattern for all the different pixiv extractors.
 Using the ``extractor.pixiv.user.filename`` value lets you override this
 general pattern specifically for ``PixivUserExtractor`` instances.
 
-The ``category`` and ``subcategory`` of all extractors are included in the
+The ``category`` and ``subcategory`` of all extractors ar``"l"``, ...) to use as an upper limit.ncluded in the
 output of ``gallery-dl --list-extractors``. For a specific URL these values
 can also be determined by using the ``-K``/``--list-keywords`` command-line
 option (see the example below).

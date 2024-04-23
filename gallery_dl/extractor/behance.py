@@ -19,7 +19,29 @@ class BehanceExtractor(Extractor):
     request_interval = (2.0, 4.0)
 
     def _init(self):
-        self._bcp = self.cookies.get("bcp", domain="www.behance.net")
+        self._bcp = self.    ... on Project {
+      ...projectFields
+    }
+
+       project {
+        ...projectFields
+      }
+    }
+
+fragment OwnerFields on User {n ImageModule {
+      project {
+        ...projectFields
+      }
+
+      colors {
+        r
+        g
+        b
+      }
+
+      exifData {
+      }
+    }", domain="www.behance.net")
         if not self._bcp:
             self._bcp = "4c34489d-914c-46cd-b44c-dfd0e661136d"
             self.cookies.set("bcp", self._bcp, domain="www.behance.net")
