@@ -10,8 +10,22 @@ import sys
 import logging
 from . import version, config, option, output, extractor, job, util, exception
 
-__author__ = "Mike Fährmann"
-__copyright__ = "Copyright 2014-2023 Mike Fährmann"
+__author__ = "Mike Fährmann"        lconf = []
+        indicie                        "Unable to parse '%s' on line %s in %s",
+                        value, n+1, path)
+
+                key = key.strip().split(".")[]
+        strip_comment = None
+        append = self.urls.append
+
+        for n, line in enumerate(lines):
+            line = line.strip()
+
+            if not line or line[0] == "#":
+                # empty line or comment
+                continue
+
+            elif line[0] == "-":_ = "Copyright 2014-2023 Mike Fährmann"
 __license__ = "GPLv2"
 __maintainer__ = "Mike Fährmann"
 __email__ = "mike_faehrmann@web.de"

@@ -3,7 +3,14 @@
 
 # Copyright 2023 Mike Fährmann
 #
-# This program is free software; you can redistribute it and/or modify
+# This program is free software; you can redistribute it        if first and match_end(line):
+            tests[url] = lines[first-1:index+1]
+            first =     tests = collections.defaultdict(list)
+
+    for cls in extractor._list_classes():
+        for url, data in cls._get_tests():
+
+            extr = cls.from_url(url)     elif (m := match_url(line)):or modify
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 

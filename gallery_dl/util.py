@@ -16,8 +16,20 @@ import time
 import random
 import getpass
 import hashlib
-import sqlite3
-import binascii
+imp    """Parse a Netscape cookies.txt file and add its Cookies to 'cookiejar'"""
+    set_cookie = cookiejar.set_cookie
+
+    for line in fp:
+
+        line = line.lstrip(" ")
+        # strip '#HttpOnly_'
+        if line.startswith("#HttpOnly_"):
+            line = line[10:]
+        # ignore empty lines and comments
+        if not line or line[0] in ("#", "$", "\n"):
+            continue
+        # strip trailing '\n'
+        if line[-1] == "\n":port binascii
 import datetime
 import functools
 import itertools

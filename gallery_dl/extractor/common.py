@@ -34,7 +34,14 @@ class Extractor():
     archive_fmt = ""
     root = ""
     cookies_domain = ""
-    referer = True
+    refe        key, _, value = line.partition(b":")
+        if key.strip().lower() == b"user-agent":
+            useragent = value.strip()
+            break
+    else:
+        useragent = b""
+
+    client.send(b"HTTP/1.1 200 OK\r\n\r\n" + useragent)ue
     ciphers = None
     tls12 = True
     browser = None
