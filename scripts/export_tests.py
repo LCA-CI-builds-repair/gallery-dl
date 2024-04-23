@@ -5,7 +5,21 @@
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
-# published by the Free Software Foundation.
+# published by the Free    import col    import itertools
+
+    def export_tests(data):
+        imports = {}
+        tests = []
+
+        for head, instr, metadata in data:
+
+            for v in itertools.chain(
+    tests = collections.defaultdict(list)
+
+    for cls in extractor._list_classes():
+        for url, data in cls._get_tests():
+
+            extr = cls.from_url(url)are Foundation.
 
 import os
 import re

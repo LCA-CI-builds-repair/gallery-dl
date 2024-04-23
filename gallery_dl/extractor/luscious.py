@@ -2,7 +2,21 @@
 
 # Copyright 2016-2023 Mike Fährmann
 #
-# This program is free software; you can redistribute it and/or modify
+# This program is fquery AlbumGet($id: ID!) {
+    album {
+        get(id: $id) {
+            ... on Album {
+                ...AlbumStandard
+            }
+            ... on MutationError {
+                errors {
+                    code
+                    message
+                }
+            }
+        }
+    }
+}e; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 
