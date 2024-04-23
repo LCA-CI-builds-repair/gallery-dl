@@ -3,8 +3,49 @@
 
 # Copyright 2018-2022 Mike Fährmann
 #
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License version 2 as
+# This program is free software; you can redistribute it and/or        self.assertTrue(success, "downloading '{}' failed".format(url))
+
+        # test content
+        mode = "r" + ("b" if isinstance(output, bytes) else "")
+        with pathfmt.open(mode) as file:
+            content = file.read()
+        self.assertEqual(content, output)
+
+        # test filename extension
+        self.assertEqual(
+            pathfmt.extension,
+            expected_extension,
+            content[0:16],
+        )
+        self.assertEqual(
+            os.path.splitext(pathfmt.realpath)[1][1:],
+            expected_extension,
+        )
+
+
+class TestHTTPDownloader(TestDownloaderBase):
+
+    @classmethod
+    def setUpClass(cls):
+        TestDownloaderBase.setUpClass()
+        cls.downloader = downloader.find("http")(cls.job)
+
+    def test_download_success(self):
+        # Add test logic for successful download
+        pass
+
+    def test_content(self):
+        # Add test logic for content comparison
+        pass
+
+    def test_filename_extension(self):
+        # Add test logic for checking filename extension
+        pass
+
+
+port = 8088
+cls.address = "http://127.0.0.1:{}".format(port)
+server = http.server.HTTPServer(("", port), HttpRequestHandler)f the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 
 import os

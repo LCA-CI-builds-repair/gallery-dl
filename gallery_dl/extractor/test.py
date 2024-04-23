@@ -1,8 +1,25 @@
 # -*- coding: utf-8 -*-
 
-# Copyright 2016-2023 Mike Fährmann
-#
-# This program is free software; you can redistribute it and/or modify
+# Copyright 2016-2023 Mike Fährmann        test
+        for extr in extractors
+        for index, test in enumerate(extr._get_tests())
+        if str(index) in self.indices
+    ]
+
+    if not tests:
+        raise exception.NotFoundError("test")
+
+    for test in tests:
+        yield Message.Queue, test[0], {}
+
+    @staticmethod
+    def __contains__(self, _):
+        return False
+
+    @staticmethod
+    def _split(value):
+        if value and value != "*":
+            return value.split(",") free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 

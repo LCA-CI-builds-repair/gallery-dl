@@ -3,7 +3,28 @@
 
 # Copyright 2015-2023 Mike Fährmann
 #
-# This program is free software; you can redistribute it and/or modify
+# This program is# test '_extractor' entries
+for url, kwdict in zip(tjob.url_list, tjob.kwdict_list):
+    if "_extractor" in kwdict:
+        extr = kwdict["_extractor"].from_url(url)
+        if extr is None and not kwdict.get("#extractor", True):
+            continue
+        self.assertIsInstance(extr, kwdict["_extractor"])
+        self.assertEqual(extr.url, url)
+    else:
+        # test 'extension' entries
+        for kwdict in tjob.kwdict_list:
+            self.assertIn("extension", kwdict, msg="Missing 'extension' key in kwdict_list")
+
+# test extraction results
+if "#sha1_url" in result:
+    self.assertEqual(
+        result["#sha1_url"],
+        tjob.url_hash.hexdigest(),
+        msg="Incorrect '#sha1_url' value"
+    )
+else:
+    self.fail("#sha1_url not found in result") can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 

@@ -36,7 +36,21 @@
 ### Extractors
 #### Additions
 - [deviantart] add `intermediary` option ([#4955](https://github.com/mikf/gallery-dl/issues/4955))
-- [inkbunny] add `unread` extractor ([#4934](https://github.com/mikf/gallery-dl/issues/4934))
+- [inkbunny] add `unread` extractor ([#4934](https://github.co## Changelog
+
+### Added:
+- New extractors:
+  - fallenangels (famatg.com)
+
+### Fixed:
+- URL and data extraction for:
+  - nhentai
+  - mangamint
+  - twitter
+  - imagetwist
+
+### Other Changes:
+- Disabled InsecureConnectionWarning when no certificates are availablellery-dl/issues/4934))
 - [mastodon] support non-numeric status IDs ([#4936](https://github.com/mikf/gallery-dl/issues/4936))
 - [myhentaigallery] recognize `/g/` URLs ([#4920](https://github.com/mikf/gallery-dl/issues/4920))
 - [postmill] add support ([#4917](https://github.com/mikf/gallery-dl/issues/4917), [#4919](https://github.com/mikf/gallery-dl/issues/4919))
