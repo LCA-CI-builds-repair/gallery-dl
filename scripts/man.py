@@ -5,9 +5,17 @@
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
-# published by the Free Software Foundation.
-
-"""Generate man pages"""
+# published by the Free Software Foundatio                name = line.strip()
+                opt_desc[name] = ""
+            else:
+                line = line.strip()
+                if line.startswith("* ") or line.startswith("- "):
+                    # list item
+                    line = ".br\n" + line
+                elif line.startswith("| "):
+                    # line block
+                    line = line[2:] + "\n.br"
+                opt_desc[name] += line + "\n"ate man pages"""
 
 import re
 import datetime
