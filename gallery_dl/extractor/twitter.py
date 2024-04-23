@@ -25,8 +25,34 @@ class TwitterExtractor(Extractor):
     directory_fmt = ("{category}", "{user[name]}")
     filename_fmt = "{tweet_id}_{num}.{extension}"
     archive_fmt = "{tweet_id}_{retweet_id}_{num}"
-    cookies_domain = ".twitter.com"
-    cookies_names = ("auth_token",)
+    cookies_domain        return (self._make_tweet(user, url, id_str),)
+
+
+class TwitterImageExtractor(Extractor):
+    category = "twitter"
+    subcategory = "image"
+    pattern = r"https?://pbs\.twimg\.com/media/([\w-]+)(?:\?format=|\.)(\w+)"
+    example = "https://pbs.twimg.com/media/ABCDE?format=jpg&name=orig"
+
+    def __init__(self, match):
+        Extractor.__init__(self, match)
+        self.id, self.fmt = match.groups()
+        TwitterExtractor._init_sizes(self)
+
+    def items(self):
+        base = "https://pbs.twimg.com/media/{}?format={}&name=".format(
+            self.id, self.fmt)
+
+        data = {
+            "filename": self.id,
+            "extension": self.fmt,
+            "_fallback": TwitterExtractor._image_fallback(self, base),
+        }
+
+        yield Message.Directory, data
+        yield Message.Url, base + self._size_image, data
+
+class TwitterAPI():_names = ("auth_token",)
     root = "https://twitter.com"
     browser = "firefox"
 

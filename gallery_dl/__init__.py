@@ -10,8 +10,18 @@ import sys
 import logging
 from . import version, config, option, output, extractor, job, util, exception
 
-__author__ = "Mike Fährmann"
-__copyright__ = "Copyright 2014-2023 Mike Fährmann"
+__author__ = "Mike Fä        if action == "c":
+            action = self._action_comment
+        elif action == "d":
+            action = self._action_delete
+        else:
+            action = None
+
+        gconf = []
+        lconf = []
+        indicies = []
+        strip_comment = None
+        append = self.urls.appendopyright__ = "Copyright 2014-2023 Mike Fährmann"
 __license__ = "GPLv2"
 __maintainer__ = "Mike Fährmann"
 __email__ = "mike_faehrmann@web.de"
