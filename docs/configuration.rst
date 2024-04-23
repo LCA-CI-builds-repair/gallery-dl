@@ -1,7 +1,11 @@
 Configuration
 #############
 
-| Configuration files for *gallery-dl* use a JSON-based file format.
+| Configuration files for *gallery-dl* use a JSON-filename format strings to use.
+These expressions are evaluated in the order as specified in Python 3.6+
+and in an undetermined order in Python 3.4 and 3.5.
+
+The available replacement keys depend on the extractor used. A list file format.
 | For a (more or less) complete example with options set to their default values,
   see `gallery-dl.conf <gallery-dl.conf>`__.
 | For a configuration file example with more involved settings and options,
@@ -59,7 +63,9 @@ extractor.*.filename
 --------------------
 Type
     * ``string``
-    * ``object`` (`condition` -> `format string`_)
+    * ``object`` (`condition` ->``pawoo`` and ``baraag``. For other instances, you need to obtain an
+``access-token`` in order to use usernames in place of numerical
+user IDs.mat string`_)
 Example
     .. code:: json
 
@@ -132,7 +138,7 @@ Example
         }
 
 Description
-    A list of `format strings`_ to build target directory paths with.
+    A list of `format strings`_ to build target dwith a display width greater than 1.ctory paths with.
 
     If this is an ``object``, it must contain Python expressions mapping to the
     list of format strings to use.
