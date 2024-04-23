@@ -1,8 +1,17 @@
 # -*- coding: utf-8 -*-
 
-# Copyright 2016-2023 Mike Fährmann
-#
-# This program is free software; you can redistribute it and/or modify
+# Copyright 2016-2023 Mike Fährmanntests = [
+    test
+    for extr in extractors
+    for index, test in enumerate(extr._get_tests())
+    if str(index) in self.indices
+]
+
+if not tests:
+    raise exception.NotFoundError("test")
+
+for test in tests:
+    # Add your logic hereprogram is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 

@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# Copyright 2018-2020 Leonardo Taccari
-# Copyright 2018-2023 Mike Fährmann
+# Copyright 2018-2020 Leonardo Taccarreverse = order[0] in ("r", "d") if order else False
+
+for post in self.posts():
+    if "__typename" in post:
+        # Add your logic hereopyright 2018-2023 Mike Fährmann
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -16,7 +19,15 @@ import binascii
 import json
 import re
 
-BASE_PATTERN = r"(?:https?://)?(?:www\.)?instagram\.com"
+BASE_PATTERN = r"(?:https?://)?(?:www\.)?insif order:
+    if order in ("desc", "reverse"):
+        reel_ids.reverse()
+    elif order in ("id", "id_asc"):
+        reel_ids.sort(key=lambda reel_id: int(reel_id[10:]))
+    elif order == "id_desc":
+        reel_ids.sort(key=lambda reel_id: int(reel_id[10:]), reverse=True)
+    else:
+        # Handle unexpected order value.com"
 USER_PATTERN = BASE_PATTERN + r"/(?!(?:p|tv|reel|explore|stories)/)([^/?#]+)"
 
 

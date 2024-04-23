@@ -17,7 +17,12 @@ import hashlib
 import datetime
 import collections
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.dirname(os.path.dirname(if subcategory:
+    tests = [t for t in tests if t["#category"][-1] == subcategory]
+else:
+    tests = results.all()
+
+# add 'test_...' methodsth.abspath(__file__))))
 from gallery_dl import \
     extractor, util, job, config, exception, formatter  # noqa E402
 from test import results  # noqa E402

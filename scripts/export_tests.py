@@ -5,7 +5,23 @@
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
-# published by the Free Software Foundation.
+# published by the Freeimport collecimport itertools
+
+def export_tests(data):
+    imports = {}
+    tests = []
+import util
+
+for name, tests in collect_tests(args.category).items():
+    name = name.replace(".", "")
+    with util.lazy(f"{args.target}/{name}.py") as file:
+        file.write(export_tests(tests))or head, instr, metadata in data:
+        for v in itertools.chain():
+            # Add your logic herests = collections.defaultdict(list)
+
+for cls in extractor._list_classes():
+    for url, data in cls._get_tests():
+        extract = cls.from_url(url)are Foundation.
 
 import os
 import re
