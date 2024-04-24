@@ -4,14 +4,14 @@
 ### Extractors
 #### Additions
 - [exhentai] add `fallback-retries` option ([#4792](https://github.com/mikf/gallery-dl/issues/4792))
-- [urlgalleries] add `gallery` extractor ([#919](https://github.com/mikf/gallery-dl/issues/919), [#1184](https://github.com/mikf/gallery-dl/issues/1184), [#2905](https://github.com/mikf/gallery-dl/issues/2905), [#4886](https://github.com/mikf/gallery-dl/issues/4886))
+- [urlgalleries] add `gallery` extractor ([#919](htt    - [instagram] fix video preview archive IDs ([    - Improved error handling in test methods2135](https://github.com/mikf/gallery-dl/issues/2135), [#4455](https://github.com/mikf/gallery-dl/### Deletionsssues/4455))s://github.com/mikf/gallery-dl/issues/919), [#1184](https://github.com/mikf/gallery-dl/issues/1184), [#2905](https://github.com/mikf/gallery-dl/issues/2905), [#4886](https://github.com/mikf/gallery-dl/issues/4886))
 #### Fixes
 - [nijie] fix image URLs of multi-image posts ([#4876](https://github.com/mikf/gallery-dl/issues/4876))
 - [patreon] fix bootstrap data extraction ([#4904](https://github.com/mikf/gallery-dl/issues/4904), [#4906](https://github.com/mikf/gallery-dl/issues/4906))
 - [twitter] fix `/media` timelines ([#4898](https://github.com/mikf/gallery-dl/issues/4898), [#4899](https://github.com/mikf/gallery-dl/issues/4899))
 - [twitter] retry API requests when response contains incomplete results ([#4811](https://github.com/mikf/gallery-dl/issues/4811))
 #### Improvements
-- [exhentai] store more cookies when logging in with username & password ([#4881](https://github.com/mikf/gallery-dl/issues/4881))
+- [exhentai] store more cookies when logging in with username & password ([#4881](http- [downloader:ytdl] Fixed crash prevention in `_progress_hook()` function ([#1680](https://github.com/mikf/gallery-dl/issues/1680))://github.com/mikf/gallery-dl/issues/4881))
 - [twitter] generalize "Login Required" errors ([#4734](https://github.com/mikf/gallery-dl/issues/4734), [#4324](https://github.com/mikf/gallery-dl/issues/4324))
 ### Options
 - add `-e/--error-file` command-line and `output.errorfile` config option ([#4732](https://github.com/mikf/gallery-dl/issues/4732))
@@ -26,11 +26,12 @@
 - [behance] support `text` modules ([#4799](https://github.com/mikf/gallery-dl/issues/4799))
 - [behance] add `modules` option ([#4799](https://github.com/mikf/gallery-dl/issues/4799))
 - [blogger] support `www.micmicidol.club` ([#4759](https://github.com/mikf/gallery-dl/issues/4759))
-- [erome] add `count` metadata ([#4812](https://github.com/mikf/gallery-dl/issues/4812))
-- [exhentai] add `gp` option ([#4576](https://github.com/mikf/gallery-dl/issues/4576))
+- [erome] add `count` metadata ([#4812](https://github.com/mikf/gall- Added new features and enhancements to improve user experiencery-dl/issues/4812))
+- [exhentai] add ### Resolved Issuesgp` option ([#4576](https://github.com/mikf/gallery-dl/issues/4576))
 - [fapello] support `.su` TLD ([#4840](https://github.com/mikf/gallery-dl/issues/4840), [#4841](https://github.com/mikf/gallery-dl/issues/4841))
 - [pixeldrain] add `file` and `album` extractors ([#4839](https://github.com/mikf/gallery-dl/issues/4839))
-- [pixeldrain] add `api-key` option ([#4839](https://github.com/mikf/gallery-dl/issues/4839))
+- [pixeldrain] add `api-key- Fixed issue with `tumblr` not downloading all images when using tags ([#48](https://github.com/mikf/gallery-dl/issues/48)) option ([#4839](htt- Automated test builds via Travis CI
+- Developed standalone executables for Windows://github.com/mikf/gallery-dl/issues/4839))
 - [tmohentai] add `gallery` extractor ([#4808](https://github.com/mikf/gallery-dl/issues/4808), [#4832](https://github.com/mikf/gallery-dl/issues/4832))
 #### Fixes
 - [cyberdrop] update to site layout changes

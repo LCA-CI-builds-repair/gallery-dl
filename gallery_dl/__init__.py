@@ -11,7 +11,20 @@ import logging
 from . import version, config, option, output, extractor, job, util, exception
 
 __author__ = "Mike Fährmann"
-__copyright__ = "Copyright 2014-2023 Mike Fährmann"
+__cop            line = line.strip()
+
+                        if gconf is not None or lconf is not None:   if not line or line[0] == "#":
+                # empty line or comment
+                continue
+
+            elif line[0] == "-":
+                # config spec
+                if len(line) >= 2 and line[1] == "G":
+                    conf = gconf
+                    line = line[2:]
+                else:
+                    conf = lconf
+                    line = line[1:]pyright 2014-2023 Mike Fährmann"
 __license__ = "GPLv2"
 __maintainer__ = "Mike Fährmann"
 __email__ = "mike_faehrmann@web.de"

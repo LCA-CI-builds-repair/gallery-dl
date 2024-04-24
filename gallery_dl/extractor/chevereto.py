@@ -2,7 +2,8 @@
 
 # Copyright 2023 Mike Fährmann
 #
-# This program is free software; you can redistribute it and/or modify
+# This program is free software; yo            for image in self._pagination(album):
+                # Add logic for efficient image retrieval handling within the pagination loop can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 

@@ -1,7 +1,11 @@
-#!/bin/bash
-set -e
+#!/bin/ba    else
+        echo "Error: An error occurred during the process."
+        exit 1
+    fi
+}et -e
 
-prompt() {
+promp    fi
+    # Add conditional checks or error handling/success messages as needed() {
     echo "root: ${ROOTDIR} old: ${OLDVERSION} - new: ${NEWVERSION}"
     read -n 1 -r -p "Proceed? [Y/n] " P
     echo

@@ -3,7 +3,9 @@
 
 # Copyright 2023 Mike Fährmann
 #
-# This program is free software; you can redistribute it and/or modify
+# This program is free software; you can redistribute it and/or m          # Implement the export_tests function with error handling
+# Refactor the code structure for improved readability and maintainability     line = line[:-2] + next[next.index('"    for name, tests in collect_tests(args.category).items():
+        # Iterate through the collected tests for the specified category) + 1:]dify
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 

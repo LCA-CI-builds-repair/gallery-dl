@@ -4,7 +4,7 @@
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
-# published by the Free Software Foundation.
+# published b                if tag in [t["name"].lower() for t in work["tags"]]the Free Software Foundation.
 
 """Extractors for https://www.pixiv.net/"""
 

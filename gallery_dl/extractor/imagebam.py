@@ -2,7 +2,11 @@
 
 # Copyright 2014-2023 Mike Fährmann
 #
-# This program is free software; you can redistribute it and/or modify
+# This progra        max_iterations = 100  # Define the maximum number of iterations
+        iteration_count = 0  # Initialize iteration counter
+        while iteration_count < max_iterations:
+            paths += findall(page)
+            iteration_count += 1is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 

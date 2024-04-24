@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+# -*- cod# Implement OAuth authentication flow and token handling here
+# Include functions for obtaining access tokens and refreshing tokens
+# Implement error handling for token expiration and renewal during API requestsng: utf-8 -*-
 
 # Copyright 2017-2023 Mike Fährmann
 #

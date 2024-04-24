@@ -27,7 +27,11 @@ from . import aes, text, util
 
 SUPPORTED_BROWSERS_CHROMIUM = {
     "brave", "chrome", "chromium", "edge", "opera", "vivaldi"}
-SUPPORTED_BROWSERS = SUPPORTED_BROWSERS_CHROMIUM | {"firefox", "safari"}
+SUPPORTED_BROWSERS = SUPPORTED_BROWSERS_CHROMIUM | {"firefox", "s        if end >= len(self._data):
+            raise ParserError("reached end of input")
+        data = self._data[self.cursor:end]
+        self.cursor = end
+        return data"}
 
 logger = logging.getLogger("cookies")
 
