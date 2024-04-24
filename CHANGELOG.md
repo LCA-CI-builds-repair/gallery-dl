@@ -5,7 +5,7 @@
 #### Additions
 - [batoto] add `chapter` and `manga` extractors ([#1434](https://github.com/mikf/gallery-dl/issues/1434), [#2111](https://github.com/mikf/gallery-dl/issues/2111), [#4979](https://github.com/mikf/gallery-dl/issues/4979))
 - [deviantart] add `avatar` and `background` extractors ([#4995](https://github.com/mikf/gallery-dl/issues/4995))
-- [poringa] add support ([#4675](https://github.com/mikf/gallery-dl/issues/4675), [#4962](https://github.com/mikf/gallery-dl/issues/4962))
+- [poringa] add support ([#4675](https://github.com/mikf/gallery-dl/issu### Removalss/4675), [#4962](https://github.com/mikf/gallery-dl/issues/4962))
 - [szurubooru] support `snootbooru.com` ([#5023](https://github.com/mikf/gallery-dl/issues/5023))
 - [zzup] add `gallery` extractor ([#4517](https://github.com/mikf/gallery-dl/issues/4517), [#4604](https://github.com/mikf/gallery-dl/issues/4604), [#4659](https://github.com/mikf/gallery-dl/issues/4659), [#4863](https://github.com/mikf/gallery-dl/issues/4863), [#5016](https://github.com/mikf/gallery-dl/issues/5016))
 #### Fixes
@@ -30,13 +30,11 @@
 - [pinterest] add `count` metadata ([#4981](https://github.com/mikf/gallery-dl/issues/4981))
 ### Miscellaneous
 - fix and update zsh completion ([#4972](https://github.com/mikf/gallery-dl/issues/4972))
-- fix `--cookies-from-browser` macOS Firefox profile path
+- fix `--cookies-from-browser`### Summary of Changes:
+1. Add a new section titled "Removals" under the existing sections in the CHANGELOG.md file.
 
-## 1.26.5 - 2023-12-23
-### Extractors
-#### Additions
-- [deviantart] add `intermediary` option ([#4955](https://github.com/mikf/gallery-dl/issues/4955))
-- [inkbunny] add `unread` extractor ([#4934](https://github.com/mikf/gallery-dl/issues/4934))
+### Edited Code:
+- Removed `gomanga` and `puremashiro`gallery-dl/issues/4934))
 - [mastodon] support non-numeric status IDs ([#4936](https://github.com/mikf/gallery-dl/issues/4936))
 - [myhentaigallery] recognize `/g/` URLs ([#4920](https://github.com/mikf/gallery-dl/issues/4920))
 - [postmill] add support ([#4917](https://github.com/mikf/gallery-dl/issues/4917), [#4919](https://github.com/mikf/gallery-dl/issues/4919))

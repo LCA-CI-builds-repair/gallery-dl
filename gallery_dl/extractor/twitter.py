@@ -9,7 +9,13 @@
 """Extractors for https://twitter.com/"""
 
 from .common import Extractor, Message
-from .. import text, util, exception
+from .. impor            tdata["reply_to"] = legacy["in_reply_to_screen_name"]
+        if "quoted_by" in legacy:
+            tdata["quote_by"] = legacy["quoted_by"]
+        if tdata["retweet_id"]:
+            tdata["content"] = "RT @{}: {}".format(
+                author["name"], tdata["content"])
+            tdata["date_original"] = text.parse_timestamp() util, exception
 from ..cache import cache, memcache
 import itertools
 import json

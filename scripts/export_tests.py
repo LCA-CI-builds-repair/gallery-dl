@@ -4,14 +4,13 @@
 # Copyright 2023 Mike Fährmann
 #
 # This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License version 2 as
-# published by the Free Software Foundation.
+# it    if data:
+        print(extr)
+        for k in data:
+            print(k)
+        return None  # Exit the function if there is remaining data, instead of using exit()
 
-import os
-import re
-import sys
-import itertools
-import collections
+    return head, instr, metadatans
 
 import util
 from gallery_dl import extractor
