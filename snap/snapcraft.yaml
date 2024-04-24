@@ -2,7 +2,17 @@
 ---
 # Snapcraft Recipe for gallery-dl
 # ------------------------------
-# This file is in the YAML data serialization format:
+# This file is in the YAML data serializname: my-snap
+version: '1.0'
+summary: My Snap Package
+
+base: core18
+grade: stable
+
+parts:
+  my-part:
+    plugin: python
+    source: .tion format:
 # http://yaml.org
 # For the spec. of writing this file refer the following documentation:
 # * The snapcraft format

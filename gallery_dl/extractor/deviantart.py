@@ -2,7 +2,7 @@
 
 # Copyright 2015-2023 Mike Fährmann
 #
-# This program is free software; you can redistribute it and/or modify
+# This program is free software; you can redistribut# Implement error handling to prevent crashing in case the deviation cannot be processed it and/or modify
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 
@@ -44,7 +44,8 @@ class DeviantartExtractor(Extractor):
     def _init(self):
         self.jwt = self.config("jwt", False)
         self.flat = self.config("flat", True)
-        self.extra = self.config("extra", False)
+        self.extra = self.config("extra", Falsfor item in result.get("items", []):
+    if "deviation" in item:
         self.quality = self.config("quality", "100")
         self.original = self.config("original", True)
         self.comments = self.config("comments", False)

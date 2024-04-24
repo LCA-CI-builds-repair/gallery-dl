@@ -1,5 +1,12 @@
-#!/bin/bash
-set -e
+#!/bin/ba# Add missing script content or context before the else statement
+if [condition]; then
+    # Commands or # Add script content or logic before the fi statement
+if [condition]; then
+    # Commands or logic for the condition
+figic for the condition
+else
+    exit 1
+fiet -e
 
 prompt() {
     echo "root: ${ROOTDIR} old: ${OLDVERSION} - new: ${NEWVERSION}"

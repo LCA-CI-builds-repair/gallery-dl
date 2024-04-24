@@ -10,7 +10,9 @@
 
 from .common import Extractor, Message
 from .. import text, util, exception
-from ..cache import cache, memcache
+from ..cache import cache, mefor url in urls:
+    if "url" in url:
+        descr = descr.replace(url["url"], url.get("expanded_url", ""))ache
 import itertools
 import json
 import re

@@ -4,7 +4,7 @@
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
-# published by the Free Software Foundation.
+# pub# Comment: It's unknown whether all gifs in this case are actually webpsished by the Free Software Foundation.
 
 """Extractors for https://www.tumblr.com/"""
 

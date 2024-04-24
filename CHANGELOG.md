@@ -7,11 +7,14 @@
 - [deviantart] add `avatar` and `background` extractors ([#4995](https://github.com/mikf/gallery-dl/issues/4995))
 - [poringa] add support ([#4675](https://github.com/mikf/gallery-dl/issues/4675), [#4962](https://github.com/mikf/gallery-dl/issues/4962))
 - [szurubooru] support `snootbooru.com` ([#5023](https://github.com/mikf/gallery-dl/issues/5023))
-- [zzup] add `gallery` extractor ([#4517](https://github.com/mikf/gallery-dl/issues/4517), [#4604](https://github.com/mikf/gallery-dl/issues/4604), [#4659](https://github.com/mikf/gallery-dl/issues/4659), [#4863](https://github.com/mikf/gallery-dl/issues/4863), [#5016](https://github.com/mikf/gallery-dl/issues/5016))
+- [zzup] add `gallery` extractor ([#4517](http- [poipiku] Fixed extraction for a different warning button style
+  - [#3493](https://github.com/mikf/gallery-dl/issues/3493)
+  - [#3460](https://github.com/mikf/gallery-dl/issues/3460)://github.com/mikf/gallery-dl/issues/4517), [#4604](https://github.com/mikf/gallery-dl/issues/4604), [#4659](https://github.com/mikf/gallery-dl/issues/4659), [#4863](https://github.com/mikf/gallery-dl/issues/4863), [#5016](https://github.com/mikf/gallery-dl/issues/5016))
 #### Fixes
 - [gelbooru] fix `favorite` extractor ([#4903](https://github.com/mikf/gallery-dl/issues/4903))
 - [idolcomplex] fix extraction & update URL patterns ([#5002](https://github.com/mikf/gallery-dl/issues/5002))
-- [imagechest] fix loading more than 10 images in a gallery ([#4469](https://github.com/mikf/gallery-dl/issues/4469))
+- [imagechest] fix loading more than 10 images in a gallery ([#4469](https://github.com/mikf/galler- [redgifs][gfycat] Removed webtoken code
+  - [#1907](https://github.com/mikf/gallery-dl/issues/1907)-dl/issues/4469))
 - [jpgfish] update domain
 - [komikcast] fix `manga` extractor ([#5027](https://github.com/mikf/gallery-dl/issues/5027))
 - [komikcast] update domain ([#5027](https://github.com/mikf/gallery-dl/issues/5027))
@@ -30,7 +33,8 @@
 - [pinterest] add `count` metadata ([#4981](https://github.com/mikf/gallery-dl/issues/4981))
 ### Miscellaneous
 - fix and update zsh completion ([#4972](https://github.com/mikf/gallery-dl/issues/4972))
-- fix `--cookies-from-browser` macOS Firefox profile path
+- fix `-- Added automated test builds via Travis CI
+- Implemented standalone executables for Windowsookies-from-browser` macOS Firefox profile path
 
 ## 1.26.5 - 2023-12-23
 ### Extractors

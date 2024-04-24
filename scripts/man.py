@@ -7,7 +7,8 @@
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 
-"""Generate man pages"""
+"""elif line.startswith("| "):
+    # Handle line block logicnerate man pages"""
 
 import re
 import datetime
