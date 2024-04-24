@@ -4,7 +4,8 @@
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
-# published by the Free Software Foundation.
+# published by the Free Softw                width, _, height = dimensions.partition("x")
+                md5 = extr("/_thumbs/", "/")e Foundation.
 
 """Extractors for Shimmie2 instances"""
 

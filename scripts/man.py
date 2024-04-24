@@ -5,7 +5,32 @@
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
-# published by the Free Software Foundation.
+# publishe    sec_name = None
+    options = None
+    opt_name = None
+    opt_desc = None
+    name = None
+    last = None
+    for line in doc_lines:
+
+        if line[0] == ".":
+            continue
+
+        # start of new section
+        elif re.match(r"^=+$", line):
+            if sec_name and options:
+                sections[sec_name] = options
+            sec_name = last.strip()
+            options = {}
+
+        # start of new option block
+        elif re.match(r"^-+$", line):
+            opt_name = last.strip()
+            opt_desc = {}
+
+        # end of option block
+        elif opt_name and opt_desc and line == "\n" and not last:
+            options[opt_name] = opt_descndation.
 
 """Generate man pages"""
 

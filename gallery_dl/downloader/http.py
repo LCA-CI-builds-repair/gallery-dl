@@ -3,7 +3,43 @@
 # Copyright 2014-2023 Mike Fährmann
 #
 # This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License version 2 as
+# it under the terms of            try:
+                response = self.session.request(
+                    kwdict.get("_http_method", "GET"), url,
+                    stream=True,
+                    headers=headers,
+                    data=kwdict.get("_http_data"),
+                    timeout=self.timeout,
+                    proxies=self.proxies,
+                    verify=self.verify,
+                )
+            except (requests.exceptions.ConnectionError, requests.exceptions.Timeout) as exc:
+                msg = str(exc)
+                continue
+            except Exception as exc:
+                self.log.warning(exc)
+                return False
+
+            # check response
+            code = response.status_coderesponse.status_code
+            if code == 200:  # OK
+                offset = 0
+                size = response.headers.get("Content-Length")
+            elif code == 206:  # Partial Content
+                offset = file_size
+                size = response.headers["Content-Range"].rpartition("/")[2]
+            elif code == 416 and file_size:  # Requested Range Not Satisfiable
+                break
+            else:
+                msg = "'{} {}' for '{}'".format(code, response.reason, url)
+                if code in self.retry_codes or 500 <= code < 600:
+                    continue
+                retry = kwdict.get("_http_retry")
+                if retry and retry(response):
+                    continue
+                self.release_conn(response)
+                self.log.warning(msg)
+                return Falseblic License version 2 as
 # published by the Free Software Foundation.
 
 """Downloader module for http:// and https:// URLs"""

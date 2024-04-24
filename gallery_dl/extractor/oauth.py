@@ -10,7 +10,21 @@
 
 from .common import Extractor, Message
 from .. import text, oauth, util, config, exception
-from ..output import stdout_write
+fr        yield Message.Version, 1
+        from . import pixiv
+
+        code_verifier = util.generate_token(32)
+        digest = hashlib.sha256(code_verifier.encode()).digest()
+        code_challenge = binascii.b2a_base64(
+            digest)[:-2].decode().replace("+", "-").replace("/", "_")
+
+        url = "https://app-api.pixiv.net/web/v1/login"
+        params = {
+            "code_challenge": code_challenge,
+            "code_challenge_method": "S256",
+            "client": "pixiv-android",
+        }
+        code = self.open(url, params, self._input)ort stdout_write
 from ..cache import cache, memcache
 import urllib.parse
 import binascii

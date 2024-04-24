@@ -2,7 +2,23 @@
 
 # Copyright 2015-2023 Mike Fährmann
 #
-# This program is free software; you can redistribute it and/or modify
+# This program is free software; you can redistribut                # prevent crashing in case the deviation really is
+                # deleted
+                self.log.debug(
+                    "Skipping %s (deleted)", deviation["deviationid"])
+                continue
+
+                if "premium_folder_data" in deviation:
+                    data = self._fetch_premium(deviation)
+                    if not data:
+                        continue
+                    deviation.update(data)
+
+                self.prepare(deviation)
+                yield Message.Directory, deviation
+
+                if "content" in deviation:
+                    content = deviation["content"]y
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 

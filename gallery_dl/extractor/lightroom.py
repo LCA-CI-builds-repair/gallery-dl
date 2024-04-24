@@ -1,6 +1,25 @@
 # -*- coding: utf-8 -*-
 
-# This program is free software; you can redistribute it and/or modify
+# This program is free so        album_md = self.metadata(album)
+        base_url = album["base"]
+        next_url = album["links"]["/rels/space_album_images_videos"]["href"]
+        num = 1
+
+        while next_url:
+            url = base_url + next_url
+            page = self.request(url).text
+            # skip 1st line as it's a JS loop
+            data = util.json_loads(page[page.index("\n") + 1:])
+
+            base_url = data["base"]
+            for res in data["resources"]:
+                img_url, img_size = None, 0
+                for key, value in res["asset"]["links"].items():
+                    if not key.startswith("/rels/rendition_type/"):
+                        continue
+                    size = text.parse_int(key.split("/")[-1])
+                    if size > img_size:
+                        img_size = sizestribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 

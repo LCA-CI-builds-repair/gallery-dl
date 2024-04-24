@@ -6,7 +6,21 @@
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 
-"""Extractors for Mastodon instances"""
+""                return response
+            if code == 401:
+                raise exception.StopExtraction(
+                    f"Invalid or missing access token.\n"
+                    f"Run 'gallery-dl oauth:mastodon:{self.extractor.instance}' to obtain one."
+                )
+            if code == 404:
+                raise exception.NotFoundError()
+            if code == 429:
+                self.extractor.wait(until=text.parse_datetime(
+                    response.headers["x-ratelimit-reset"],
+                    "%Y-%m-%dT%H:%M:%S.%fZ",
+                ))
+                continue
+            raise exception.StopExtraction(response.json().get("error")) Mastodon instances"""
 
 from .common import BaseExtractor, Message
 from .. import text, exception

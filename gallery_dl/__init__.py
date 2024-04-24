@@ -10,9 +10,148 @@ import sys
 import logging
 from . import version, config, option, output, extractor, job, util, exception
 
-__author__ = "Mike Fährmann"
-__copyright__ = "Copyright 2014-2023 Mike Fährmann"
-__license__ = "GPLv2"
+__author__ = "Mike Fäclass InputManager():
+
+    def __init__(self):
+        self.urls = []
+        self.files = ()
+        self.log = self.err = None
+
+        self._url = ""
+        self._item = None
+        self._index = 0
+        self._pformat = None
+
+    def add_url(self, url):
+        self.urls.append(url)
+
+    def add_list(self, urls):
+        self.urls += urls
+
+    def add_file(self, path, action=None):
+        """Process an input file.
+
+        Lines starting with '#' and empty lines will be ignored.
+        Lines starting with '-' will be interpreted as a key-value pair
+          separated by an '='. where
+          'key' is a dot-separated option name and
+          'value' is a JSON-parsable string.
+          These configuration options will be applied
+          while processing the next URL only.
+        Lines starting with '-G' are the same as above, except these options
+          will be applied for *all* following URLs, i.e. they are Global.
+        Everything else will be used as a potential URL.
+
+        Example input file:
+
+        # settings global options
+        -G base-directory = "/tmp/"
+        -G skip = false
+
+        # setting local options for the next URL
+        -filename="spaces_are_optional.jpg"
+        -skip    = true
+
+        https://example.org/
+
+        # next URL uses default filename and 'skip' is false.
+        https://example.com/index.htm # comment1
+        https://example.com/404.htm   # comment2
+        """
+        if path == "-" and not action:
+            try:
+                lines = sys.stdin.readlines()
+            except Exception:
+                raise exception.InputFileError("stdin is not readable")
+            path = None
+        else:
+            try:
+                with open(path, encoding="utf-8") as fp:
+                    lines = fp.readlines()
+            except Exception as exc:
+                raise exception.InputFileError(str(exc))
+
+            if self.files:
+                self.files[path] = lines
+            else:
+                self.files = {path: lines}
+
+            if action == "c":
+                action = self._action_comment
+            elif action == "d":
+                action = self._action_deleted":
+                action = self._action_delete
+            else:
+                action = None
+
+            gconf = []
+            lconf = []
+            indicies = []
+            strip_comment = None
+            append = self.urls.append
+
+            for n, line in enumerate(lines):
+                line = line.strip()
+
+                if not line or line[0] == "#":
+                    # empty line or comment
+                    continue
+
+                elif line[0] == "-":
+                    # config spec
+                    if len(line) >= 2 and line[1] == "G":
+                        conf = gconf
+                        line = line[2:]
+                    else:
+                        conf = lconf
+                        line = line[1:]
+                        if action:
+                            indicies.append(n)
+
+                    key, sep, value = line.partition("=")
+                    if not sep:
+                        raise exception.InputFileError(
+                            "Invalid KEY=VALUE pair '%s' on line %s in %s",
+                            line, n+1, path)
+
+                    try:
+                        value = util.json_loads(value.strip())
+                    except ValueError as exc:
+                        self.log.debug("%s: %s", exc.__class__.__name__, exc)
+                        raise exception.InputFileError(
+                            "Unable to parse '%s' on line %s in %s",
+                            value, n+1, path)
+
+                    key = key.strip().split(".")
+                    conf.append((key[:-1], key[-1], value))
+
+                else:
+                    # url
+                    if " #" in line or "\t#" in line:
+                        if strip_comment is None:
+                            import re
+                            strip_comment = re.compile(r"\s+#.*").sub
+                        line = strip_comment("", line)
+                    if gconf or lconf:
+                        url = ExtendedUrl(line, gconf, lconf)
+                        gconf = []
+                        lconf = []
+                    else:
+                        url = line
+
+                    if action:
+                        indicies.append(n)
+                        append((url, path, action, indicies))
+                        indicies = []
+                    else:
+                        append(url)
+
+        def progress(self, pformat=True):
+            if pformat is True:
+                pformat = "[{current}/{total}] {url}\n"
+            else:
+                pformat += "\n"
+            self._pformat = pformat.format_map"GPLv2"
 __maintainer__ = "Mike Fährmann"
 __email__ = "mike_faehrmann@web.de"
 __version__ = version.__version__

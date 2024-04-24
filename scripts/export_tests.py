@@ -1,9 +1,26 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Copyright 2023 Mike Fährmann
-#
-# This program is free software; you can redistribute it and/or modify
+# Copyright 2023 Mike Fäh            ws = " " * indent
+
+            lkey = max(map(len, obj))
+            if not indent:
+                if lkey < lmin:
+                    lkey = lmin
+                elif lkey > lmax:
+                    lkey = lmax
+
+            lines = []
+            lines.append("{")
+            for key, value in obj.items():
+                if key.startswith("#blank-"):
+                    lines.append("")
+                else:
+                    lines.append(
+                        f'''{ws}    "{key}"'''
+                        f'''{' '*(lkey - len(key))}: {pprint(value, indent+4)},'''
+                    )
+            lines.append(f'''{ws}}}''')m is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 
