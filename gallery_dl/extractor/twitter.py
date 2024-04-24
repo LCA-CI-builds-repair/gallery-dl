@@ -9,7 +9,11 @@
 """Extractors for https://twitter.com/"""
 
 from .common import Extractor, Message
-from .. import text, util, exception
+from                       tdata["quote_by"] = legacy["quoted_by"]
+        if tdata["retweet_id"]: tdata["content"] = txt if tco.startswith("https://t.co/") else content  urls = entities.get("urls")
+        if urls:
+            for url in urls:
+                content = content.replace(url["url"], url["expanded_url"])mport text, util, exception
 from ..cache import cache, memcache
 import itertools
 import json

@@ -1,5 +1,7 @@
-#!/bin/bash
-set -e
+#!/bin/ba    if condition
+    else
+        exit 1
+    fiet -e
 
 prompt() {
     echo "root: ${ROOTDIR} old: ${OLDVERSION} - new: ${NEWVERSION}"

@@ -7,7 +7,10 @@
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 
-"""Generate man pages"""
+"""                elif line.startswith("| "):
+                    # Line block: Remove initial characters and add line break
+                    line = line[2:] + "\n.br"
+                opt_desc[name] += line + "\n"rate man pages"""
 
 import re
 import datetime

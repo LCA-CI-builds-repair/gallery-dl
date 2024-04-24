@@ -3,11 +3,11 @@
 ## 1.26.6 - 2024-01-06
 ### Extractors
 #### Additions
-- [batoto] add `chapter` and `manga` extractors ([#1434](https://github.com/mikf/gallery-dl/issues/1434), [#2111](https://github.com/mikf/gallery-dl/issues/2111), [#4979](https://github.com/mikf/gallery-dl/issues/4979))
-- [deviantart] add `avatar` and `background` extractors ([#4995](https://github.com/mikf/gallery-dl/issues/4995))
+- [batoto] add `chapter` and `manga` extractors ([#1434](https://github.com/mikf/gallery-dl/issues/1434), [#2111](https://github.com/mikf/gallery-dl/issues/2111), [#4979](https://github.com/mikf/gallery-dl/issues/    - [instagram] Fix video preview archive IDs ([#2135](https://github.com/mikf/gallery-dl/issues/2135), [#4455](https://github.com/mikf/gallery-dl/issues/4455))979))
+- [deviantart] add `avata### Removals` and `background` extractors ([#4995](https://github.com/mikf/gallery-dl/issues/4995))
 - [poringa] add support ([#4675](https://github.com/mikf/gallery-dl/issues/4675), [#4962](https://github.com/mikf/gallery-dl/issues/4962))
 - [szurubooru] support `snootbooru.com` ([#5023](https://github.com/mikf/gallery-dl/issues/5023))
-- [zzup] add `gallery` extractor ([#4517](https://github.com/mikf/gallery-dl/issues/4517), [#4604](https://github.com/mikf/gallery-dl/issues/4604), [#4659](https://github.com/mikf/gallery-dl/issues/4659), [#4863](https://github.com/mikf/gallery-dl/issues/4863), [#5016](https://github.com/mikf/gallery-dl/issues/5016))
+- [zzup] add `gallery` extractor ([#4517](https://github.com/mikf/gallery-dl/issues/4517), [#4604](https://github.com/mikf/gallery-dl/issues/4604), [#4659](https://github.com/mikf/gallery-dl/issues/4659), [#4863](https://github.com/mikf/gallery-l/issues/4863), [#5016](https://github.com/mikf/gallery-dl/issues/5016))
 #### Fixes
 - [gelbooru] fix `favorite` extractor ([#4903](https://github.com/mikf/gallery-dl/issues/4903))
 - [idolcomplex] fix extraction & update URL patterns ([#5002](https://github.com/mikf/gallery-dl/issues/5002))
@@ -35,7 +35,8 @@
 ## 1.26.5 - 2023-12-23
 ### Extractors
 #### Additions
-- [deviantart] add `intermediary` option ([#4955](https://github.com/mikf/gallery-dl/issues/4955))
+- [dev- Automated test builds via Travis CI
+- Standalone executables for Windowsntart] add `intermediary` option ([#4955](https://github.com/mikf/gallery-dl/issues/4955))
 - [inkbunny] add `unread` extractor ([#4934](https://github.com/mikf/gallery-dl/issues/4934))
 - [mastodon] support non-numeric status IDs ([#4936](https://github.com/mikf/gallery-dl/issues/4936))
 - [myhentaigallery] recognize `/g/` URLs ([#4920](https://github.com/mikf/gallery-dl/issues/4920))

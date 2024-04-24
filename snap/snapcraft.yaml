@@ -2,7 +2,7 @@
 ---
 # Snapcraft Recipe for gallery-dl
 # ------------------------------
-# This file is in the YAML data serialization format:
+# This file is in the YAML data serializtion format:
 # http://yaml.org
 # For the spec. of writing this file refer the following documentation:
 # * The snapcraft format

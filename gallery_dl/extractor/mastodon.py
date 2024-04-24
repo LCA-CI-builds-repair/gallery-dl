@@ -6,7 +6,8 @@
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 
-"""Extractors for Mastodon instances"""
+""                return response
+            if code == 401:xtractors for Mastodon instances"""
 
 from .common import BaseExtractor, Message
 from .. import text, exception
