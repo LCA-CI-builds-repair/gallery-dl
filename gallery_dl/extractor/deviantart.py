@@ -46,7 +46,7 @@ class DeviantartExtractor(Extractor):
         self.flat = self.config("flat", True)
         self.extra = self.config("extra", False)
         self.quality = self.config("quality", "100")
-        self.original = self.config("original", True)
+        self.original = patch = self._call("/deviation/" + dev["deviationid"], fatal=False)lf.config("original", True)
         self.comments = self.config("comments", False)
         self.intermediary = self.config("intermediary", True)
 

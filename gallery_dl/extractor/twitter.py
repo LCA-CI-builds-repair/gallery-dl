@@ -16,7 +16,23 @@ import json
 import re
 
 BASE_PATTERN = (r"(?:https?://)?(?:www\.|mobile\.)?"
-                r"(?:(?:[fv]x)?twitter|(?:fixup)?x)\.com")
+                r"(?:(?    def tweets(self):
+        # yield initial batch of (media) tweets
+        tweet = None
+        for tweet in self._select_tweet_source()(self.user):
+            yield tweet
+        if tweet is None:
+            return
+
+        # build search query
+        query = "from:{} max_id:{}".format(
+            self._user["name"], tweet["rest_id"])
+        if self.retweets:
+            query += " include:retweets include:nativeretweets"
+
+        if not self.textonly:
+            # try to search for media-only tweets
+            tweet = None:fixup)?x)\.com")
 
 
 class TwitterExtractor(Extractor):

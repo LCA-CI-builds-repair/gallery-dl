@@ -4,7 +4,14 @@
 # Copyright 2023 Mike Fährmann
 #
 # This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License version 2 as
+# itimport csv
+
+def export_test_results(test_results, output_file):
+    with open(output_file, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['Test Name', 'Result'])
+        for test_name, result in test_results.items():
+            writer.writerow([test_name, result])under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 
 import os

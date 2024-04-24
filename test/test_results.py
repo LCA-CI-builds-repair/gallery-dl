@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+# temporary issues, etc.
+BROKEN = {
+    "photobucket",
+    "example_issue",
+}oding: utf-8 -*-
 
 # Copyright 2015-2023 Mike Fährmann
 #
@@ -13,8 +17,8 @@ import unittest
 
 import re
 import json
-import hashlib
-import datetime
+import hashlib        # Return the test
+        return testimport datetime
 import collections
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
