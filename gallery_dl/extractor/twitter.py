@@ -19,7 +19,201 @@ BASE_PATTERN = (r"(?:https?://)?(?:www\.|mobile\.)?"
                 r"(?:(?:[fv]x)?twitter|(?:fixup)?x)\.com")
 
 
-class TwitterExtractor(Extractor):
+class Twittclass BaseTwitterExtractor:
+    def __init__(self, user):
+        self.user = user
+        self.api = TwitterAPI()
+
+    def tweets(self):
+      class BaseTwitterExtractor:
+    def __init__(self, user):
+        self.user = user
+        self.api = TwitterAPI()
+
+    def tweetclass TwitterImageExtractclass TwitterAPI:
+    def __init__(self, extractor):
+        self.extractor = class TwitterAPI:
+    def user_media(self, screen_name):
+        endpoint = "/graphql/lo965xQZdN2-eSM1Jc-W_A/UserMedia"
+        variables = {
+            "userId": self.user_id_by_screen_name(screen_name),
+            "count": 100,
+            "includePromotedContent": False,
+            "withClientEventToken": False,
+            "withBirdwatchNotes": False,
+            "withVoice": True,
+            "withV2Timeline": True,
+        }
+        return self.pagination_tweets(endpoint, variables)
+
+    def user_media_legacy(self, screen_name):
+        endpoint = "/graphql/nRybED9kRbN-TOWioHq1ng/UserMedia"
+        variables = {
+            "userId": self.user_id_by_screen_name(screen_name),
+            "count": 100,
+            "includePromotedContent": False,
+            "withSuperFollowsUserFields": True,
+            "withBirdwatchPivots": False,
+            "withSuperFollowsTweetFields": True,
+            "withClientEventToken": False,
+            "withBirdwatchNotes": False,
+            "withVoice": True,
+            "withV2Timeline": False,
+            "__fs_interactive_text": False,
+            "__fs_dont_mention_me_view_api_enabled": False,
+        }
+        return self.pagination_tweets(
+            endpoint, variables, ("user", "result", "timeline", "timeline"),
+            features=False)
+
+    def user_likes(self, screen_name):
+        endpoint = "/graphql/6JET1d0iHsIzW0Zjs3OOwQ/Likes"
+        variables = {
+            "userId": self.user_id_by_screen_name(screen_name),
+            "count": 100,
+            "includePromotedContent": False,
+            "withClientEventToken": False,
+            "withBirdwatchNotes": False,
+            "withVoice": True,
+            "withV2Timeline": True,
+        }
+        return self.pagination_tweets(endpoint, variables)
+
+    def user_bookmarks(self):
+        endpoint = "/graphql/YNtYqNuki6_oiVwx0uP8mQ/Bookmarks"
+        variables = {
+            "count": 100,
+        }
+        features = self.features_pagination.copy()
+        features["graphql_timeline_v2_bookmark_timeline"] = True
+        return self.pagination_tweets(
+            endpoint, variables, ("bookmark_timeline_v2", "timeline"), False,
+            features=features)i"
+        
+        cookies = extractor.cookies
+        cookies_domain = extractor.cookies_domain
+
+        csrf = extractor.config("csrf")
+        if csrf is None or csrf == "cookies":
+            csrf_token = cookies.get("ct0", domain=cookies_domain)
+        else:
+            csrf_token = None
+        if not csrf_token:
+            csrf_token = util.generate_token()
+            cookies.set("ct0", csrf_token, domain=cookies_domain)
+
+        auth_token = cookies.get("auth_token", domain=cookies_domain)
+
+        self.headers = {
+            "Accept": "*/*",
+            "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejR"
+                             "COuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu"
+                             "4FA33AGWWjCpTnA",
+            "x-guest-token": None,
+            "x-twitter-auth-type": "OAuth2Session" if auth_token else None,
+            "x-twitter-client-language": "en",
+            "x-twitter-active-user": "yes",
+            "x-csrf-token": csrf_token,
+            "Referer": "https://twitter.com/",
+        }
+        
+        self._nsfw_warning = True
+        self._json_dumps = json.JSONEncoder(separators=(",", ":")).encode
+
+        self.params = {
+            "include_profile_interstitial_type": "1",
+            "include_blocking": "1",
+            "include_blocked_by": "1",
+            "include_followed_by": "1",
+            "include_want_retweets": "1",
+            "include_mute_edge": "1",
+            "include_can_dm": "1",
+            "include_can_media_tag": "1",
+            "include_ext_has_nft_avatar": "1",
+            "include_ext_is_blue_verified": "1",
+            "include_ext_verified_type": "1",
+            "skip_status": "1",
+            ...
+        }
+        
+        self.features = {
+            ...
+        }
+        
+        self.features_pagination = {
+            ...
+        }
+
+    def call(self, endpoint, params):
+        ...
+
+    def tweet_result_by_rest_id(self, tweet_id):
+        ...
+
+    def tweet_detail(self, tweet_id):
+        ...
+
+    def user_id_by_screen_name(self, screen_name):
+        ...
+
+    def user_tweets(self, screen_name):
+        ...
+
+    def user_tweets_and_replies(self, screen_name):
+        ...rmat=jpg&name=orig"
+
+    def __init__(self, match):
+        TwitterExtractor.__init__(self, match)
+        self.id, self.fmt = match.groups()
+        self.init_sizes()
+
+    def items(self):
+        base = "https://pbs.twimg.com/media/{}?format={}&name=".format(
+            self.id, self.fmt)
+
+        data = {
+            "filename": self.id,
+            "extension": self.fmt,
+            "_fallback": self.image_fallback(base),
+        }
+
+        yield Message.Directory, data
+        yield Message.Url, base + self._size_image, data
+        return self.api.live_event_timeline(self.user)
+
+
+class TwitterTweetExtractor(BaseTwitterExtractor):
+    """Extractor for images from individual tweets"""
+    subcategory = "tweet"
+    pattern = BASE_PATTERN + r"/([^/?#]+|i/web)/status/(\d+)"
+    example = "https://twitter.com/USER/status/12345"
+
+    def __init__(self, match):
+        BaseTwitterExtractor.__init__(self, match)
+        self.tweet_id = match.group(2)
+
+    def tweet_conversations(self):
+        conversations = self.config("conversations")
+        if conversations:
+            self._accessible = (conversations == "accessible")
+            return self._tweets_conversation(self.tweet_id)user_tweets(self.user)
+
+
+class TwitterRepliesExtractor(BaseTwitterExtractor):
+    """Extractor for Tweets from a user's timeline including replies"""
+    subcategory = "replies"
+    pattern = BASE_PATTERN + r"/(?!search)([^/?#]+)/with_replies(?!\w)"
+    example = "https://twitter.com/USER/with_replies"
+
+    def tweets(self):
+        return self.api.user_tweets_with_replies(self.user)
+
+
+class TwitterMediaExtractor(BaseTwitterExtractor):
+    """Extractor for Tweets from a user's Media timeline"""
+    subcategory = "media"
+    pattern = BASE_PATTERN + r"/(?!search)([^/?#]+)/media(?!\w)"
+    example = "https://twitter.com/USER/media"or):
     """Base class for twitter extractors"""
     category = "twitter"
     directory_fmt = ("{category}", "{user[name]}")
