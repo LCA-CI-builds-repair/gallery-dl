@@ -3,7 +3,64 @@
 ## 1.26.6 - 2024-01-06
 ### Extractors
 #### Additions
-- [batoto] add `chapter` and `manga` extractors ([#1434](https://github.com/mikf/gallery-dl/issues/1434), [#2111](https://github.com/mikf/gallery-dl/issues/2111), [#4979](https://github.com/mikf/gallery-dl/issues/4979))
+- [batoto] add `chapter` and - [cyberdrop] Update to site layout changes
+- [exhentai] Handle `Downloading … requires GP` errors ([#4576](https://github.com/mikf/gallery-dl/issues/4576), [#4763](https://github.com- [instagram] Fix private posts with long shortcodes ([#4362](https://github.com/mikf/gallery-dl/issues/4362))
+- [instagram] Fix video preview archive IDs ([#2135](https://github.com/mikf/gall- [pinterest] Fix `pin.it` extractor
+- [ytdl] Fix yt-dlp `--xff/--geo-bypass` tests ([#3989](https://github.com/mikf/gallery-dl/issues/3989))
+#- [twitter] Fix some `original` retweets not downloading ([#3744](https://github.com/mikf/gallery-dl/issues/3744))
+- [ytdl] Fix `--parse-metadata`- [weibo] Fix bug with empty `playback_list` ([#3301](https://github.com/mikf/gallery-dl/issues/3301))
+- [downloader:http] Fix potential `ZeroDivisionError` ([#3328](https://github.com/mikf/gallery-dl/issues/3328))
+### Improvements
+- Add improvements content here[#3663](https://github.com/mikf/gallery-dl/issues/3663))
+- [downloader:ytdl] Prevent exception on empty results
+### Improvements
+- Add improvements content hereemovals
+- [420chan] Remove module
+- [foolfuuka] Remove `archive.alice.al` and `tokyochronos.net`
+- [foolslide] Remove `sensescans.com`
+- [nana] Remove moduleissues/2135), [#4455](https://github.com/mikf/gallery-dl/issues/4455))
+- [instagram] Handle exceptions due to missing media ([#4555](https://github.com/mikf/gallery-dl/issues/4555))
+- [issuu] Fix extraction ([#4420](https://github.com/mikf/gallery-dl/issues/4420))
+- [jpgfish] Update domain to `jpg1.su` ([#4494](https://github.com/mikf/gallery-dl/issues/4494))
+- [kemonoparty] Update `favorite` API endpoint ([#4522](https://github.com/mikf/gallery-dl/issues/4522))
+- [lensd- [instagram] Fix regex for `/saved` URLs ([#1251](https://github.com/mikf/gallery-dl/issues/1251))
+- [mangadex] Update API URLs
+- [mangakakalot] Fix extraction
+- [newgrounds] Fix flash file extraction ([#1257](https://github.com/mikf/gallery-dl/issues/1257))
+- [sankaku] Simplify login process
+- [twitter] Fix retries after hitting rate limit
+### Improvements
+- Add improvements content hereix extraction ([#4352](https://github.com/mikf/gallery-dl/issues/4352))
+- [mangakakalot] Update domain
+- [reddit] Fix `preview.redd.it` URLs ([#4470](https://github.com/mikf/gallery-dl/issues/4470))
+- [patreon] Fix extraction ([#4547](https://github.com/mikf/gallery-dl/issues/4547))
+- [pixiv] Handle errors for private novels ([#4481](https://github.com/mikf/gallery-dl/issues/4481))
+- [pornhub] Fix extraction ([#4301](https://github.com/mikf/gallery-dl/issues/4301))
+- [pururin] Fix extraction ([#4375](https://github.com/mikf/gallery-dl/issues/4375))
+- [subscribestar] Fix preview detection ([#4468](https://github.com/mikf/gallery-dl/issues/4468))
+- [twitter] Fix crash on private user ([#4349](https://github.com/mikf/gallery-dl/issues/4349))
+- [twitter] Fix `TweetWithVisibilityResults` ([#4369](https://github.com/mik- Added new extractors:
+  - fallenangels (famatg.com)
+- Fixed URL- and data-extraction for:
+  - nhentai
+  - mangamint
+  - twitter
+  - imagetwist
+- Disabled InsecureConnectionWarning when no certificates are available
+### Improvements
+- Add improvements content here-dl/issues/4369))
+- [twitter] Fix crash when `sortIndex` is undefined ([#4499](https://github.com/mikf/gallery-dl/issues/4499))issues/4763))
+- [exhentai] Fix empty API URL with `"source": "hitomi"` ([#4829](https://github.com/mikf/gallery-dl/issues/4829))
+- [hentaifoundry] Check for and update expired sessions ([#4694](https://github.com/mikf/gallery-dl/issues/4694))
+- [hiperdex] Fix `manga` metadata
+- [idolcomplex] Update to site layout changes
+- [imagefap] Fix resolution of single images
+- [instagram] Fix exception on empty `video_versions` ([#4795](https://github.com/mikf/gallery-dl/issues/4795))
+- [mangaread] Fix extraction
+- [mastodon] Fix reblogs ([#4580](https://github.com/mikf/gallery-dl/issues/4580))
+- [nitter] Fix video extraction ([#4853](https://github.com/mikf/gallery-dl/issues/4853), [#4855](https://github.com/mikf/gallery-dl/issues/4855))
+- [pornhub] Fix `user` metadata for gifs
+- [tumblr] Fix `day` extractorctors ([#1434](https://github.com/mikf/gallery-dl/issues/1434), [#2111](https://github.com/mikf/gallery-dl/issues/2111), [#4979](https://github.com/mikf/gallery-dl/issues/4979))
 - [deviantart] add `avatar` and `background` extractors ([#4995](https://github.com/mikf/gallery-dl/issues/4995))
 - [poringa] add support ([#4675](https://github.com/mikf/gallery-dl/issues/4675), [#4962](https://github.com/mikf/gallery-dl/issues/4962))
 - [szurubooru] support `snootbooru.com` ([#5023](https://github.com/mikf/gallery-dl/issues/5023))

@@ -8,7 +8,22 @@ import warnings
 
 
 def read(fname):
-    path = os.path.join(os.path.dirname(__file__), fname)
+              "Development Status :: 5 - Production/Stable",
+            "Environment :: Console",
+            "Intended Audience :: End Users/Desktop",
+            "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+            "Operating System :: OS Independent",
+            "Programming Language :: Python",
+            "Programming Language :: Python :: 3",
+            "Programming Language :: Python :: 3 :: Only",
+            "Programming Language :: Python :: 3.4 - 3.10",
+            "Programming Language :: Python :: 3.5",
+            "Programming Language :: Python :: 3.6",
+            "Programming Language :: Python :: 3.7",
+            "Programming Language :: Python :: 3.8",
+            "Programming Language :: Python :: 3.9",
+            "Programming Language :: Python :: 3.10",
+            "Programming Language :: Python :: Implementation :: CPython",oin(os.path.dirname(__file__), fname)
     with open(path, encoding="utf-8") as file:
         return file.read()
 

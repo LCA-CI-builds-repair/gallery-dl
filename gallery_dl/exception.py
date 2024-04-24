@@ -2,7 +2,36 @@
 
 # Copyright 2015-2023 Mike Fährmann
 #
-# This program is free software; you can redistribute it and/or modify
+# This program is free software; you can    """Error when parsing input file"""
+    code = 32
+
+    def __init__(self, message, *args):
+        GalleryDLException.__init__(
+            self, message % args if args else message)
+
+
+class NoExtractorError(GalleryDLException):
+    """No extractor can handle the given URL"""
+    code = 64
+
+
+class StopExtraction(GalleryDLException):
+    """Stop data extraction"""
+
+    def __init__(self, message=None, *args):
+        GalleryDLException.__init__(self)
+        self.message = message % args if args else message
+        self.code = 1 if message else 0
+
+
+class TerminateExtraction(GalleryDLException):
+    """Terminate data extraction"""
+    code = 0
+
+
+class RestartExtraction(GalleryDLException):
+    """Restart data extraction"""
+    code = 0
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 

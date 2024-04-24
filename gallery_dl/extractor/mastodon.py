@@ -6,7 +6,32 @@
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 
-"""Extractors for Mastodon instances"""
+""                return response
+            if code == 401:
+                raise exception.StopExtraction(
+                    "Invalid or missing access token.\n"
+                    "Run 'gallery-dl oauth:mastodon:%s' to obtain one." % self.extractor.instance)
+            if code == 404:
+                raise exception.NotFoundError()
+            if code == 429:
+                self.extractor.wait(until=text.parse_datetime(
+                    response.headers["x-ratelimit-reset"],
+                    "%Y-%m-%dT%H:%M:%S.%fZ",
+                ))
+                continue
+            raise exception.StopExtraction(response.json().get("error"))
+
+    def _pagination(self, endpoint, params):
+        url = endpoint
+        while url:
+            response = self._call(url, params)
+            yield from response.json()
+
+            url = response.links.get("next")
+            if not url:
+                return
+            url = url["url"]
+            params = Nonestances"""
 
 from .common import BaseExtractor, Message
 from .. import text, exception
