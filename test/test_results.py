@@ -3,8 +3,63 @@
 
 # Copyright 2015-2023 Mike Fährmann
 #
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License version 2 as
+# This program is free software; you can redistribute it                        continue
+                    self.assertIsInstance(extr, kwdict["_extractor"])
+                    self.assertEqual(extr.url, url)
+        else:
+            # Test 'extension' entries
+            for kwdict in tjob.kwdict_list:
+                self.assertIn("            basecategory = category[1:].lower()
+            tests = [t for t in results.all()
+                     if t["#category"][0].lower() == basecategory]
+        else:
+            tests = results.category(category)
+
+        if subcategory:
+            tests = [t for t in tests if t["#category"][-1] == subcategory]
+    else:
+        tests = results.all()
+
+    # Add 'test_...' methods
+    enum = collections.defaultdict(int)
+    for result in tests:
+        name = "{0}_{1}".format(*result["#category"])
+        enum[name] += 1
+
+        method = _generate_method(result)
+        method.__doc__ = result["#url"]
+        method.__name__ = "test_{0}_{1}_{2}".format(*result["#category"], enum[name])
+        setattr(TestExtractorResults, method.__name__, method)
+
+
+generate_tests()
+if __name__ == "__main__":
+    load_test_config()
+    unittest.main(warnings="ignore")tension")
+
+        # Test extraction results
+        if "#sha1_url" in result:
+            self.assertEqual(
+                result["#sha1_url"],
+                tjob.url_hash.hexdigest(),
+                msg="#sha1_url")
+
+        if "#sha1_content" in result:
+            expected = result["#sha1_content"]
+            digest = tjob.content_hash.hexdigest()
+            if isinstance(expected, str):
+                self.assertEqual(expected, digest, msg="#sha1_content")
+            else:  # Iterable
+                self.assertIn(digest, expected, msg="#sha1_content")
+
+        if "#sha1_metadata" in result:
+            self.assertEqual(
+                result["#sha1_metadata"],
+                tjob.kwdict_hash.hexdigest(),
+                "#sha1_metadata")
+
+        if "#count" in result:
+            count = result["#count"]erms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 
 import os

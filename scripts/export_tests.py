@@ -3,8 +3,50 @@
 
 # Copyright 2023 Mike Fährmann
 #
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License version 2 as
+# This program is free software; you can redistribute it and/import re
+import sys
+
+def extract_tests_from_source(lines):
+    tests = {}
+    def match_url(line):
+        return re.match(r"\s*def test_(\w+)\(\):", line)
+    
+    def extract_tests_from_source(lines):
+        tests = {}
+        index = 0
+        while index < len(lines):
+            m = match_url(lines[index])
+            if m:
+                offset = index
+                while not m[2]:
+                    offset += 1
+                    next = lines[offset]
+                    line = line[:-2] + next[next.index('"')+1:]
+                    m = match_url(line)
+                url = m[1]
+                if m[2] in (",)", "),"):
+                    tests[url] = lines[index-1:index+1]
+                    first = 0
+                else:
+                    first = index
+            index += 1
+        return tests
+
+    def get_test_source(extr, *, cache={}):
+        try:
+            tests = cache[extr.__module__]
+        except KeyError:
+            path = sys.modules[extr.__module__].__file__
+            with open(path) as fp:
+                lines = fp.readlines()
+            tests = cache[extr.__module__] = extract_tests_from_source(lines)
+        return tests.get(extr.url) or ("", tests[extr.url])
+
+    def comment_from_source(source):
+        match = re.match(r"\s+#\s*(.+)", source[0])
+        return match[1] if match else ""
+
+    return testsof the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 
 import os

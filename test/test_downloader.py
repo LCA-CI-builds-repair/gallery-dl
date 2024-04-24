@@ -3,8 +3,21 @@
 
 # Copyright 2018-2022 Mike Fährmann
 #
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License version 2 as
+# This program is free software; you can redistribute it and/orimport os
+import http.server
+import threading
+
+class TestHTTPDownloader(TestDownloaderBase):
+
+    @classmethod
+    def setUpClass(cls):
+        TestDownloaderBase.setUpClass()
+        cls.downloader = downloader.find("http")(cls.job)
+
+        port = 8088
+        cls.address = "http://127.0.0.1:{}".format(port)
+        server = http.server.HTTPServer(("", port), HttpRequestHandler)
+        threading.Thread(target=server.serve_forever, daemon=True).start() the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 
 import os

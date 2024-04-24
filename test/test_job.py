@@ -1,9 +1,66 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Copyright 2021-2023 Mike Fährmann
-#
-# This program is free software; you can redistribute it and/or modify
+# Copyright 2021-import job
+
+class TestJob(unittest.TestCase):
+    jobclass = job.KeywordJob
+
+    def test_default(self):
+        self.maxDiff = None
+        extr = TestExtractor.from_url("test:self")
+        self.assertEqual(self._capture_stdout(extr), """\
+Keywords for directory names:
+-----------------------------
+author['id']
+  123
+author['name']
+  test
+author['self']
+  <circular reference>
+category
+  test_category
+subcategory
+  test_subcategory
+user['id']
+  123
+user['name']
+  test
+user['self']
+  <circular reference>
+
+Keywords for filenames and --filter:
+------------------------------------
+author['id']
+  123
+author['name']
+  test
+author['self']
+  <circular reference>
+category
+  test_category
+extension
+  jpg
+filename
+  1
+num
+  1
+subcategory
+  test_subcategory
+tags[N]
+  0 foo
+  1 bar
+  2 テスト
+user['id']
+  123
+user['name']
+  test
+user['self']
+  <circular reference>
+""")
+
+class TestUrlJob(TestJob):
+    jobclass = job.UrlJobcan redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 
