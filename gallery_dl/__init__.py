@@ -10,9 +10,73 @@ import sys
 import logging
 from . import version, config, option, output, extractor, job, util, exception
 
-__author__ = "Mike Fährmann"
-__copyright__ = "Copyright 2014-2023 Mike Fährmann"
-__license__ = "GPLv2"
+__author__ = "Mike Fä        action = self._action_comment
+        elif action == "d":
+            action = self._action_delete
+        else:
+            action = None
+
+        gconf = []
+        lconf = []
+        indicies = []
+        strip_comment = None
+        append = self.urls.append
+
+        for n, line in enumerate(lines):
+            line = line.strip()
+
+            if not line or line[0] == "#":
+                # empty line or comment
+                continue
+
+            elif line[0] == "-":
+                # config spec
+                if len(line) >= 2 and line[1] == "G":
+                    conf = gconf
+                    line = line[2:]
+                else:
+                    conf = lconf
+                    line = line[1:]
+                    if action:
+                        indicies.append(n)
+
+                key, sep, value = line.partition("=")
+                if not sep:
+                    raise exception.InputFileError(
+                        "Invalid KEY=VALUE pair '%s' on line %s in %s",
+                        line, n+1, path)
+
+                try:
+                    value = util.json_loads(value.strip())
+                except ValueError as exc:
+                    self.log.debug("%s: %s", exc.__class__.__name__, exc)
+                    raise exception.InputFileError(
+                        "Unable to parse '%s' on line %s in %s",
+                        value, n+1, path)
+
+                key = key.strip().split(".")
+                conf.append((key[:-1], key[-1], value))
+
+            else:
+                # url
+                if " #" in line or "\t#" in line:
+                    if strip_comment is None:
+                        import re
+                        strip_comment = re.compile(r"\s+#.*").sub
+                    line = strip_comment("", line)
+                if gconf or lconf:
+                    url = ExtendedUrl(line, gconf, lconf)
+                    gconf = []
+                    lconf = []
+                else:
+                    url = line
+
+                if action:
+                    indicies.append(n)
+                    append((url, path, action, indicies))
+                    indicies = []
+                else:
+                    append(url)se__ = "GPLv2"
 __maintainer__ = "Mike Fährmann"
 __email__ = "mike_faehrmann@web.de"
 __version__ = version.__version__

@@ -2,7 +2,9 @@
 ---
 # Snapcraft Recipe for gallery-dl
 # ------------------------------
-# This file is in the YAML data serialization format:
+# This file is in the YAML data serial      # Satisfy FFmpeg's libpulsecommon dependency
+      environment:
+        LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pulseaudiotion format:
 # http://yaml.org
 # For the spec. of writing this file refer the following documentation:
 # * The snapcraft format

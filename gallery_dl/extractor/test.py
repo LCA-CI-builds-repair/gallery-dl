@@ -1,8 +1,26 @@
 # -*- coding: utf-8 -*-
 
-# Copyright 2016-2023 Mike Fährmann
-#
-# This program is free software; you can redistribute it and/or modify
+# Copyright 2016-2023 Mike Fährmann    def get_tests(self):
+        tests = [
+            test
+            for extractor in extractors
+            for index, test in enumerate(extractor._get_tests())
+            if str(index) in self.indices
+        ]
+
+        if not tests:
+            raise exception.NotFoundError("No tests found")
+
+        for test in tests:
+            yield Message.Queue, test[0], {}
+
+    @staticmethod
+    def __contains__(_):
+        return False
+
+    @staticmethod
+    def _split(value):
+        return value.split(",") if value and value != "*" else Nonefree software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 

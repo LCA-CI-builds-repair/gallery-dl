@@ -21,7 +21,20 @@
 - [rule34us] add fallback for `video-cdn1` videos ([#4985](https://github.com/mikf/gallery-dl/issues/4985))
 - [weibo] fix AttributeError in `user` extractor ([#5022](https://github.com/mikf/gallery-dl/issues/5022))
 #### Improvements
-- [gelbooru] show error for invalid API responses ([#4903](https://github.com/mikf/gallery-dl/issues/4903))
+- [gelbooru] show error for invalid A### Additions
+- [furaffinity] add `artist_url` metadata field ([#821](https://github.com/mikf/gallery-dl/issues/821))
+- [redgifs] add `user` and `search` extractors ([#724](https://github.com/mikf/gallery-dl/issues/724))
+
+### Changes
+- [deviantart] extend `extra` option; also search journals for sta.sh links ([#712](https://github.com/mikf/gallery-dl/issues/712))
+- [twitter] rewrite; use new interface ([#806](https://github.com/mikf/gallery-dl/iss### Additions
+- Support for
+  - `slickpic` - [Slickpic](https://www.slickpic.com/) ([#249](https://github.com/mikf/gallery-dl/issues/249))
+  - `xhamster` - [Xhamster](https://xhamster.com/)     ([#281](https://github.com/mikf/gallery-dl/issues/281))
+  - `pornhub`  - [Pornhub](https://www.pornhub.com/)  ([#282](https://github.com/mikf/gallery-dl/issues/282))
+  - `8muses`   - [8muses](https://www.8muses.com/)   ([#305](https://github.com/mikf/gallery-dl/issues/305))
+- `extra` option for `deviantart` to download Sta.sh content linked in description texts ([#302](https://github.com/mikf/gallery-dl/issues/302))
+### Changes, [#740](https://github.com/mikf/gallery-dl/issues/740))ponses ([#4903](https://github.com/mikf/gallery-dl/issues/4903))
 - [rule34] recognize URLs with `www` subdomain ([#4984](https://github.com/mikf/gallery-dl/issues/4984))
 - [twitter] raise error for invalid `strategy` values ([#4953](https://github.com/mikf/gallery-dl/issues/4953))
 #### Metadata

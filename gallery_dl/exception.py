@@ -2,8 +2,16 @@
 
 # Copyright 2015-2023 Mike Fährmann
 #
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License version 2 as
+# This program is free software; you canclass StopExtraction(GalleryDLException):
+    """Stop data extraction"""
+
+    def __init__(self, message=None, *args):
+        if message:
+            self.message = message % args if args else message
+            self.code = 1
+        else:
+            self.message = None
+            self.code = 0# it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 
 """Exception classes used by gallery-dl

@@ -70,7 +70,12 @@ Example
         {
             "extension == 'mp4'": "{id}_video.{extension}",
             "'nature' in title" : "{id}_{title}.{extension}",
-            ""                  : "{id}_default.{extension}"
+            ""                 extractor.[moebooru].pool.metadata
+----------------------------------
+Type
+    ``bool``
+Default
+    ``False``d}_default.{extension}"
         }
 
 Description

@@ -26,8 +26,69 @@ class TwitterExtractor(Extractor):
     filename_fmt = "{tweet_id}_{num}.{extension}"
     archive_fmt = "{tweet_id}_{retweet_id}_{num}"
     cookies_domain = ".twitter.com"
-    cookies_names = ("auth_token",)
-    root = "https://twitter.com"
+    cookies_names = ("auth_token",        self.headers = {
+            "Accept": "*/*",
+            "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejR"
+                             def _get_tweets(self, endpoint, va        endpoint = "/graphql/nRybED9kRbN-TOW        endpoint = "/graphql/ZBbXrl37E6za5ml-DIpmgg/ListLatestTweetsTimeline"
+        variables = {
+            "listId": list_id,
+            "count": 100,
+        }
+        return self._pagination_tweets(endpoint, variables)g/UserMedia"
+        variables = {
+            "userId": self._user_id_by_screen_name(screen_name),
+            "count": 100,
+            "includePromotedContent": False,
+            "withSuperFollowsUserFields": True,
+            "withBirdwatchPivots": False,
+            "withSuperFollowsTweetFields": True,
+            "withClientEventToken": False,
+            "withBirdwatchNotes": False,
+            "withVoice": True,
+            "withV2Timeline": False,
+            "__fs_interactive_text": False,
+            "__fs_dont_mention_me_view_api_enabled": False,
+        }
+        return self._pagination_tweets(endpoint, variables)  return self._pagination_tweets(endpoint, variables)
+
+    def user_tweets(self, screen_name):
+        variables = {
+            "userId": self._user_id_by_screen_name(screen_name),
+            "count": 100,
+            "includePromotedContent": False,
+            "withVoice": True,
+            "withV2Timeline": True,
+        }
+        return self._get_tweets("/graphql/-AY51QoFpVf-w7TxjQ6lpw/UserTweets", variables)
+
+    def user_tweets_and_replies(self, screen_name):
+        variables = {
+            "userId": self._user_id_by_screen_name(screen_name),
+            "count": 100,
+            "includePromotedContent": False,
+            "withCommunity": True,
+            "withVoice": True,
+            "withV2Timeline": True,
+        }
+        return self._get_tweets("/graphql/urrCZMyyIh1FkSFi2cdPUA/UserTweetsAndReplies", variables)s%3D1Zv7ttfk8LF81IUq16cHjhLTvJu"
+                             "4FA33AGWWjCpTnA",
+            "x-guest-token": None,
+            "x-twitter-auth-type": "OAuth2Session" if auth_token else None,
+            "x-twitter-client-language": "en",
+            "x-twitter-active-user": "yes",
+            "x-csrf-token": csrf_token if csrf_token else None,
+            "Referer": "https://twitter.com/",
+        }
+        self.params = {
+            "include_profile_interstitial_type": "1",
+            "include_blocking": "1",
+            "include_blocked_by": "1",
+            "include_followed_by": "1",
+            "include_want_retweets": "1",
+            "include_mute_edge": "1",
+            "include_can_dm": "1",
+            "include_can_media_tag": "1",
+        }//twitter.com"
     browser = "firefox"
 
     def __init__(self, match):
