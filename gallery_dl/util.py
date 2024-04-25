@@ -389,7 +389,6 @@ def cookiestxt_load(fp, cookiejar):
     set_cookie = cookiejar.set_cookie
 
     for line in fp:
-
         line = line.lstrip(" ")
         # strip '#HttpOnly_'
         if line.startswith("#HttpOnly_"):

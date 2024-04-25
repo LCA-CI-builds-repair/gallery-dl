@@ -392,7 +392,7 @@ class InputManager():
                 # empty line or comment
                 continue
 
-            elif line[0] == "-":
+            elif line[0] == "-"
                 # config spec
                 if len(line) >= 2 and line[1] == "G":
                     conf = gconf
