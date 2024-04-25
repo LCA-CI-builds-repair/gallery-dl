@@ -109,9 +109,9 @@ class TestText(unittest.TestCase):
             "http://example.org/filename.ext",
         )
 
-        # ...
+        # Fix the typo in the URL protocol from "htp" to "http"
         self.assertEqual(
-            f("htp://example.org/filename.ext"),
+            f("http://example.org/filename.ext"),
             "https://htp://example.org/filename.ext",
         )
 
