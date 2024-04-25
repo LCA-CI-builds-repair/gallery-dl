@@ -389,7 +389,6 @@ def cookiestxt_load(fp, cookiejar):
     set_cookie = cookiejar.set_cookie
 
     for line in fp:
-
         line = line.lstrip(" ")
         # strip '#HttpOnly_'
         if line.startswith("#HttpOnly_"):
@@ -401,8 +400,7 @@ def cookiestxt_load(fp, cookiejar):
         if line[-1] == "\n":
             line = line[:-1]
 
-        domain, domain_specified, path, secure, expires, name, value = \
-            line.split("\t")
+        domain, domain_specified, path, secure, expires, name, value = line.split("\t")
 
         if not name:
             name = value
