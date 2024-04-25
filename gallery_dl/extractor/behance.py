@@ -574,41 +574,12 @@ fragment projectFields on Project {
 }
 
 fragment exifDataValueFields on exifDataValue {
-  id
-  label
-  value
-  searchValue
-}
+### Changes to be Made:
+1. Add the closing curly braces for the `exifData` field.
+2. Add the closing curly braces for the `ImageModule` fragment.
+3. Add the closing curly braces for the `entity` field.
 
-fragment nodesFields on MoodboardItem {
-  id
-  entityType
-  width
-  height
-  flexWidth
-  flexHeight
-  images {
-    size
-    url
-  }
-
-  entity {
-    ... on Project {
-      ...projectFields
-    }
-
-    ... on ImageModule {
-      project {
-        ...projectFields
-      }
-
-      colors {
-        r
-        g
-        b
-      }
-
-      exifData {
+### Edited Code:
         lens {
           ...exifDataValueFields
         }

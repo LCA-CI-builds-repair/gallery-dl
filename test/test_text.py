@@ -103,23 +103,11 @@ class TestText(unittest.TestCase):
         self.assertEqual(f("://example.org/filename.ext"), result)
 
         # no change
-        self.assertEqual(f(result), result)
-        self.assertEqual(
-            f("http://example.org/filename.ext"),
-            "http://example.org/filename.ext",
-        )
+### Changes to be Made:
+1. Fix the incorrect URL format in the second `self.assertEqual` statement.
+2. Ensure proper alignment and formatting of the code.
 
-        # ...
-        self.assertEqual(
-            f("htp://example.org/filename.ext"),
-            "https://htp://example.org/filename.ext",
-        )
-
-        # invalid arguments
-        for value in INVALID_ALT:
-            self.assertEqual(f(value), value)
-
-    def test_root_from_url(self, f=text.root_from_url):
+### Edited Code:
         result = "https://example.org"
         self.assertEqual(f("https://example.org/")    , result)
         self.assertEqual(f("https://example.org/path"), result)

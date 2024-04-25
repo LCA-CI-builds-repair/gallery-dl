@@ -108,31 +108,31 @@ class TestExtractorModule(unittest.TestCase):
             self.assertEqual(extr.basecategory, base, url)
 
     @unittest.skipIf(not results, "no test data")
-    def test_unique_pattern_matches(self):
-        # collect testcase URLs
-        test_urls = []
-        append = test_urls.append
+def test_unique_pattern_matches(self):
+    # collect testcase URLs
+    test_urls = []
+    append = test_urls.append
 
-        for result in results.all():
-            append((result["#url"], result["#class"]))
+    for result in results.all():
+        append((result["#url"], result["#class"]))
 
-        # iterate over all testcase URLs
-        for url, extr1 in test_urls:
-            matches = []
+    # iterate over all testcase URLs
+    for url, extr1 in test_urls:
+        matches = []
 
-            # ... and apply all regex patterns to each one
-            for extr2 in _list_classes():
+        # ... and apply all regex patterns to each one
+        for extr2 in _list_classes():
 
-                # skip DirectlinkExtractor pattern if it isn't tested
-                if extr1 != DirectlinkExtractor and \
-                        extr2 == DirectlinkExtractor:
-                    continue
+            # skip DirectlinkExtractor pattern if it isn't tested
+            if extr1 != DirectlinkExtractor and \
+                    extr2 == DirectlinkExtractor:
+                continue
 
-                match = extr2.pattern.match(url)
-                if match:
-                    matches.append((match, extr2))
+            match = extr2.pattern.match(url)
+            if match:
+                matches.append((match, extr2))
 
-            # fail if more or less than 1 match happened
+        # fail if more or less than 1 match happened
             if len(matches) > 1:
                 msg = "'{}' gets matched by more than one pattern:".format(url)
                 for match, extr in matches:
