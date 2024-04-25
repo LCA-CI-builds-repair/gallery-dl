@@ -115,7 +115,6 @@ apps:
     completer: share/bash-completion/completions/gallery-dl
     environment:
       LANG: C.UTF-8
-      LC_ALL: C.UTF-8
+### Changes to be Made:
 
-      # Satisfy FFmpeg's libpulsecommon dependency
-      LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pulseaudio
+The code snippet provided sets the environment variables `LC_ALL` and `LD_LIBRARY_PATH` in the snapcraft.yaml file. These environment variables seem to be correctly defined and do not require any changes.

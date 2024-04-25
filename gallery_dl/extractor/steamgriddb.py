@@ -174,7 +174,9 @@ class SteamgriddbGridsExtractor(SteamgriddbAssetsExtractor):
     valid_dimensions = ("460x215", "920x430", "600x900", "342x482", "660x930",
                         "512x512", "1024x1024")
     valid_styles = ("alternate", "blurred", "no_logo", "material", "white_logo")
-    valid_file_types = ("png", "jpeg", "jpg", "webp")
+### Changes to be Made:
+
+The code snippet provided contains a tuple `valid_file_types` with file extensions "png", "jpeg", "jpg", and "webp". These file extensions are commonly used for images and are indeed valid. No changes are required in this code snippet.
 
 
 class SteamgriddbHeroesExtractor(SteamgriddbAssetsExtractor):
