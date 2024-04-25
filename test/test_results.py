@@ -425,8 +425,7 @@ def generate_tests():
 
         if category.startswith("+"):
             basecategory = category[1:].lower()
-            tests = [t for t in results.all()
-                     if t["#category"][0].lower() == basecategory]
+            tests = [t for t in results.all() if t["#category"][0].lower() == basecategory]
         else:
             tests = results.category(category)
 
