@@ -389,7 +389,6 @@ def cookiestxt_load(fp, cookiejar):
     set_cookie = cookiejar.set_cookie
 
     for line in fp:
-
         line = line.lstrip(" ")
         # strip '#HttpOnly_'
         if line.startswith("#HttpOnly_"):
@@ -454,6 +453,7 @@ def code_to_language(code, default=None):
 
 
 def language_to_code(lang, default=None):
+def language_to_code(lang, default=None):
     """Map a language name to its ISO 639-1 code"""
     if lang is None:
         return default
@@ -462,8 +462,6 @@ def language_to_code(lang, default=None):
         if language == lang:
             return code
     return default
-
-
 CODES = {
     "ar": "Arabic",
     "bg": "Bulgarian",

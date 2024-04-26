@@ -30,7 +30,6 @@ else:
 
 
 suite = unittest.TestSuite()
-
 for test in TESTS:
     try:
         module = __import__(test)

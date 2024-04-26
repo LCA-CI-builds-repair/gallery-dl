@@ -154,8 +154,6 @@ def extract_tests_from_source(lines):
                 first = index
 
     return tests
-
-
 def get_test_source(extr, *, cache={}):
     try:
         tests = cache[extr.__module__]
@@ -225,6 +223,8 @@ def build_test(extr, data):
         instr["#sha1_content"] = content
 
     if data:
+
+    if data:
         print(extr)
         for k in data:
             print(k)
@@ -268,8 +268,6 @@ def export_tests(data):
         ):
             if not isinstance(v, type) or v.__module__ == "builtins":
                 continue
-
-            module, _, name = v.__module__.rpartition(".")
             if name[0].isdecimal():
                 stmt = f'''\
 {module.partition(".")[0]} = __import__("{v.__module__}")
@@ -317,6 +315,8 @@ def main():
 
     args = parser.parse_args()
 
+    args = parser.parse_args()
+
     if not args.target:
         args.target = os.path.join(
             os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
@@ -331,7 +331,5 @@ def main():
         name = name.replace(".", "")
         with util.lazy(f"{args.target}/{name}.py") as file:
             file.write(export_tests(tests))
-
-
 if __name__ == "__main__":
     main()
