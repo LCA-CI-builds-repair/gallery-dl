@@ -316,6 +316,7 @@ class PinterestAPI():
 
     def __init__(self, extractor):
         csrf_token = util.generate_token()
+        # Add the rest of the implementation for the Pinterest class here
 
         self.extractor = extractor
         self.root = extractor.root

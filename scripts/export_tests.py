@@ -252,7 +252,7 @@ def collect_tests(whitelist=None):
             test = build_test(extr, data)
             tests[extr.category].append(test)
 
-    return tests
+        return tests
 
 
 def export_tests(data):

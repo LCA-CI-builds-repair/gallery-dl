@@ -403,12 +403,12 @@ class DeviantartExtractor(Extractor):
         )
 
     def _extract_comments(self, target_id, target_type="deviation"):
-        results = None
+        results = []
         comment_ids = [None]
 
         while comment_ids:
-            comments = self.api.comments(
-                target_id, target_type, comment_ids.pop())
+            comment_id = comment_ids.pop()
+            comments = self.api.comments(target_id, target_type, comment_id)
 
             if results:
                 results.extend(comments)

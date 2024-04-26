@@ -257,6 +257,10 @@ def build_parser():
     )
     output.add_argument(
         "-g", "--get-urls",
+        dest="get_urls",
+        action="store_true",
+        help="Get URLs from the input",
+    )
         dest="list_urls", action="count",
         help="Print URLs instead of downloading",
     )
