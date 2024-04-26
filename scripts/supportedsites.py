@@ -438,17 +438,17 @@ def build_extractor_list():
     domains = {}
 
     for extr in extractor._list_classes():
-        category = extr.category
-        if category in IGNORE_LIST:
+        category_name = extr.category
+        if category_name in IGNORE_LIST:
             continue
-        if category:
-            default[category].append(extr.subcategory)
-            if category not in domains:
-                domains[category] = domain(extr)
+        if category_name:
+            default[category_name].append(extr.subcategory)
+            if category_name not in domains:
+                domains[category_name] = domain(extr)
         else:
-            base = categories[extr.basecategory]
-            for category, root in extr.instances:
-                base[category].append(extr.subcategory)
+            base_category = categories[extr.basecategory]
+            for category_instance, root_instance in extr.instances:
+                base_category[category_instance].append(extr.subcategory)
                 if category not in domains:
                     if not root:
                         if category in URL_MAP:

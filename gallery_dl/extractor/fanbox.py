@@ -86,7 +86,7 @@ class FanboxExtractor(Extractor):
                 append_img = images.append
                 for block in content_body["blocks"]:
                     if "text" in block:
-                        append(block["text"])
+                        append_img(block["text"])
                     if "links" in block:
                         for link in block["links"]:
                             append(link["url"])
