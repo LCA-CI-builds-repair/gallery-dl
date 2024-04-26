@@ -381,7 +381,7 @@ class InputManager():
 
         gconf = []
         lconf = []
-        indicies = []
+        indices = []  # Corrected variable name from "indicies" to "indices"
         strip_comment = None
         append = self.urls.append
 

@@ -647,6 +647,8 @@ def hash(value):
         d = {1: 123, 2: "123", 3: "foo", 4: {11: 321, 12: "321", 13: "bar"}}
         util.transform_dict(d, text.parse_int)
         self.assertEqual(
+            d, {1: 123, 2: 123, 3: "foo", 4: {11: 321, 12: 321, 13: "bar"}}
+        )
             d, {1: 123, 2: 123, 3: 0, 4: {11: 321, 12: 321, 13: 0}})
 
     def test_filter_dict(self):

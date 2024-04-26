@@ -221,11 +221,12 @@ class DeviantartExtractor(Extractor):
             deviation["index_base36"] = base36_from_id(deviation["index"])
 
         if self.user:
-            deviation["username"] = self.user
-            deviation["_username"] = self.user.lower()
-        else:
-            deviation["username"] = deviation["author"]["username"]
-            deviation["_username"] = deviation["username"].lower()
+            if "author" in deviation:
+                deviation["username"] = deviation["author"]["username"]
+                deviation["_username"] = deviation["username"].lower()
+            else:
+                deviation["username"] = self.user
+                deviation["_username"] = self.user.lower()
 
         deviation["da_category"] = deviation["category"]
         deviation["published_time"] = text.parse_int(

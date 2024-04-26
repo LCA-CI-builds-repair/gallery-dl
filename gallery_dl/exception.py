@@ -125,9 +125,9 @@ class StopExtraction(GalleryDLException):
 
 class TerminateExtraction(GalleryDLException):
     """Terminate data extraction"""
-    code = 0
+    code = 1
 
 
 class RestartExtraction(GalleryDLException):
     """Restart data extraction"""
-    code = 0
+    code = 2
