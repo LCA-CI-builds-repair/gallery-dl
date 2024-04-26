@@ -459,16 +459,16 @@ class DeviantartExtractor(Extractor):
         has_access = ("premium_folder_data" not in dev) or folder["has_access"]
 
         if not has_access and folder["type"] == "watchers" and \
-                self.config("auto-watch"):
-            if self.unwatch is not None:
-                self.unwatch.append(username)
-            if self.api.user_friends_watch(username):
-                has_access = True
-                self.log.info(
-                    "Watching %s for premium folder access", username)
-            else:
-                self.log.warning(
-                    "Error when trying to watch %s. "
+                if self.config("auto-watch"):
+                    if self.unwatch is not None:
+                        self.unwatch.append(username)
+                    if self.api.user_friends_watch(username):
+                        has_access = True
+                        self.log.info(
+                            "Watching %s for premium folder access", username)
+                    else:
+                        self.log.warning(
+                            "Error when trying to watch %s. "
                     "Try again with a new refresh-token", username)
 
         if has_access:
@@ -483,8 +483,8 @@ class DeviantartExtractor(Extractor):
             cache[dev["deviationid"]] = dev if has_access else None
 
         return cache[deviation["deviationid"]]
-
     def _unwatch_premium(self):
+        # Add code logic here to implement unwatching premium content
         for username in self.unwatch:
             self.log.info("Unwatching %s", username)
             self.api.user_friends_unwatch(username)
@@ -495,7 +495,7 @@ class DeviantartExtractor(Extractor):
             deviation_uuid = eclipse_api.deviation_extended_fetch(
                 deviation["deviationId"],
                 deviation["author"]["username"],
-                "journal" if deviation["isJournal"] else "art",
+                "journal" if deviation["isJournal"] else "art"
             )["deviation"]["extended"]["deviationUuid"]
             yield self.api.deviation(deviation_uuid)
 
@@ -525,28 +525,36 @@ class DeviantartUserExtractor(DeviantartExtractor):
 
 
 ###############################################################################
-# OAuth #######################################################################
-
-class DeviantartGalleryExtractor(DeviantartExtractor):
-    """Extractor for all deviations from an artist's gallery"""
-    subcategory = "gallery"
-    archive_fmt = "g_{_username}_{index}.{extension}"
-    pattern = BASE_PATTERN + r"/gallery(?:/all|/?\?catpath=)?/?$"
+class DeviantartGalleryExtractor:
+    def __init__(self, username, gallery_name):
+        self.username = username
+        self.gallery_name = gallery_name
+        self.images = []
     example = "https://www.deviantart.com/USER/gallery/"
 
     def deviations(self):
+    def deviations(self):
         if self.flat and not self.group:
-            return self.api.gallery_all(self.user, self.offset)
-        folders = self.api.gallery_folders(self.user)
+            # Add code logic here to handle deviations based on conditions
         return self._folder_urls(folders, "gallery", DeviantartFolderExtractor)
 
 
 class DeviantartAvatarExtractor(DeviantartExtractor):
-    """Extractor for an artist's avatar"""
-    subcategory = "avatar"
-    archive_fmt = "a_{_username}_{index}"
-    pattern = BASE_PATTERN + r"/avatar"
-    example = "https://www.deviantart.com/USER/avatar/"
+class DeviantartAvatarExtractor:
+    def __init__(self, username, avatar_url):
+        """
+        A class to extract and store DeviantArt user avatars.
+
+        Args:
+        username (str): The username of the DeviantArt user.
+        avatar_url (str): The URL of the avatar image.
+
+        Attributes:
+        username (str): The username of the DeviantArt user.
+        avatar_url (str): The URL of the avatar image.
+        """
+        self.username = username
+        self.avatar_url = avatar_url
 
     def deviations(self):
         name = self.user.lower()
@@ -555,13 +563,14 @@ class DeviantartAvatarExtractor(DeviantartExtractor):
             return ()
 
         user = profile["user"]
-        icon = user["usericon"]
-        index = icon.rpartition("?")[2]
+        if isinstance(formats, str):
+            formats = formats.replace(" ", "").split(",")
 
-        formats = self.config("formats")
-        if not formats:
-            url = icon.replace("/avatars/", "/avatars-big/", 1)
-            return (self._make_deviation(url, user, index, ""),)
+        results = []
+        for fmt in formats:
+            fmt, _, ext = fmt.rpartition(".")
+            if fmt:
+                # Add logic here to handle non-empty fmt
 
         if isinstance(formats, str):
             formats = formats.replace(" ", "").split(",")
@@ -761,10 +770,11 @@ class DeviantartStatusExtractor(DeviantartExtractor):
                 yield from self.status(item["status"].copy())
         # assume is_deleted == true means necessary fields are missing
         if status["is_deleted"]:
-            self.log.warning(
-                "Skipping status %s (deleted)", status.get("statusid"))
-            return
-        yield status
+        try:
+            path = deviation["url"].split("/")
+            deviation["index"] = text.parse_int(path[-1] or path[-2])
+        except KeyError:
+            # Add error handling or appropriate action for KeyError
 
     def prepare(self, deviation):
         if "deviationid" in deviation:

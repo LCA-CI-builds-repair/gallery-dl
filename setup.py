@@ -86,7 +86,7 @@ def build_py2exe():
 
 
 def build_setuptools():
-    from setuptools import setup
+from setuptools import setup
 
     setup(
         name="gallery_dl",

@@ -437,7 +437,7 @@ def generate_tests():
     # add 'test_...' methods
     enum = collections.defaultdict(int)
     for result in tests:
-        name = "{1}_{2}".format(*result["#category"])
+        name = "{0}_{1}".format(*result["#category"])
         enum[name] += 1
 
         method = _generate_method(result)
