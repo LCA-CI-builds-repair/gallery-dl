@@ -154,8 +154,6 @@ def extract_tests_from_source(lines):
                 first = index
 
     return tests
-
-
 def get_test_source(extr, *, cache={}):
     try:
         tests = cache[extr.__module__]
@@ -225,21 +223,6 @@ def build_test(extr, data):
         instr["#sha1_content"] = content
 
     if data:
-        print(extr)
-        for k in data:
-            print(k)
-        exit()
-
-    return head, instr, metadata
-
-
-def collect_patterns():
-    return {
-        cls.pattern.pattern: cls
-        for cls in extractor._list_classes()
-    }
-
-
 def collect_tests(whitelist=None):
     tests = collections.defaultdict(list)
 
@@ -268,8 +251,6 @@ def export_tests(data):
         ):
             if not isinstance(v, type) or v.__module__ == "builtins":
                 continue
-
-            module, _, name = v.__module__.rpartition(".")
             if name[0].isdecimal():
                 stmt = f'''\
 {module.partition(".")[0]} = __import__("{v.__module__}")

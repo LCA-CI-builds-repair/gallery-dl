@@ -132,7 +132,7 @@ class TestPredicate(unittest.TestCase):
         self.assertFalse(pred(url, {"a": 3}))
 
         with self.assertRaises(SyntaxError):
-            util.FilterPredicate("(")
+        util.FilterPredicate("(")
 
         with self.assertRaises(exception.FilterError):
             util.FilterPredicate("a > 1")(url, {"a": None})

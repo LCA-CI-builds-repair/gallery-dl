@@ -374,7 +374,6 @@ def remove_directory(path):
     except OSError:
         pass
 
-
 def set_mtime(path, mtime):
     try:
         if isinstance(mtime, str):
@@ -382,7 +381,6 @@ def set_mtime(path, mtime):
         os.utime(path, (time.time(), mtime))
     except Exception:
         pass
-
 
 def cookiestxt_load(fp, cookiejar):
     """Parse a Netscape cookies.txt file and add its Cookies to 'cookiejar'"""
@@ -401,8 +399,7 @@ def cookiestxt_load(fp, cookiejar):
         if line[-1] == "\n":
             line = line[:-1]
 
-        domain, domain_specified, path, secure, expires, name, value = \
-            line.split("\t")
+        domain, domain_specified, path, secure, expires, name, value = line.split("\t")
 
         if not name:
             name = value

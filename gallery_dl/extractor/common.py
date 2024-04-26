@@ -819,7 +819,6 @@ def _browser_useragent():
     server.listen(1)
 
     webbrowser.open("http://127.0.0.1:6414/user-agent")
-
     client = server.accept()[0]
     server.close()
 
@@ -839,8 +838,6 @@ def _browser_useragent():
 
 _adapter_cache = {}
 _browser_cookies = {}
-
-
 HTTP_HEADERS = {
     "firefox": (
         ("User-Agent", "Mozilla/5.0 ({}; "

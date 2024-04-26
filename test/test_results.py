@@ -444,8 +444,6 @@ def generate_tests():
         method = _generate_method(result)
         method.__name__ = "test_{}_{}".format(name, enum[name])
         setattr(TestExtractorResults, method.__name__, method)
-
-
 generate_tests()
 if __name__ == "__main__":
     unittest.main(warnings="ignore")
