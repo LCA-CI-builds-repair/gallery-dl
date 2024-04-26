@@ -459,29 +459,24 @@ class DeviantartExtractor(Extractor):
         has_access = ("premium_folder_data" not in dev) or folder["has_access"]
 
         if not has_access and folder["type"] == "watchers" and \
-                self.config("auto-watch"):
+        if self.config("auto-watch"):
+            has_access = False
             if self.unwatch is not None:
                 self.unwatch.append(username)
             if self.api.user_friends_watch(username):
                 has_access = True
-                self.log.info(
-                    "Watching %s for premium folder access", username)
+                self.log.info("Watching %s for premium folder access", username)
             else:
-                self.log.warning(
-                    "Error when trying to watch %s. "
-                    "Try again with a new refresh-token", username)
+                self.log.warning("Error when trying to watch %s. Try again with a new refresh-token", username)
 
-        if has_access:
-            self.log.info("Fetching premium folder data")
-        else:
-            self.log.warning("Unable to access premium content (type: %s)",
-                             folder["type"])
+            if has_access:
+                self.log.info("Fetching premium folder data")
+            else:
+                self.log.warning("Unable to access premium content (type: %s)", folder["type"])
 
-        cache = self._premium_cache
-        for dev in self.api.gallery(
-                username, folder["gallery_id"], public=False):
-            cache[dev["deviationid"]] = dev if has_access else None
-
+            cache = self._premium_cache
+            for dev in self.api.gallery(username, folder["gallery_id"], public=False):
+                cache[dev["deviationid"]] = dev if has_access else None
         return cache[deviation["deviationid"]]
 
     def _unwatch_premium(self):
@@ -555,16 +550,17 @@ class DeviantartAvatarExtractor(DeviantartExtractor):
             return ()
 
         user = profile["user"]
+        profile = self.api.user_profile(name)
+        if not profile:
+            return ()
+
+        user = profile["user"]
         icon = user["usericon"]
         index = icon.rpartition("?")[2]
 
         formats = self.config("formats")
         if not formats:
-            url = icon.replace("/avatars/", "/avatars-big/", 1)
-            return (self._make_deviation(url, user, index, ""),)
-
-        if isinstance(formats, str):
-            formats = formats.replace(" ", "").split(",")
+            return
 
         results = []
         for fmt in formats:
@@ -1418,16 +1414,16 @@ class DeviantartOAuthAPI():
                             "instructions to be able to access them.")
 
                 # "statusid" cannot be used instead
+                            "Run 'gallery-dl oauth:deviantart' and follow the "
+                            "instructions to be able to access them.")
+
+                # Check if results exist and if "deviationid" is in the first result
                 if results and "deviationid" in results[0]:
                     if self.metadata:
                         self._metadata(results)
                     if self.folders:
                         self._folders(results)
-                else:  # attempt to fix "deleted" deviations
-                    for dev in self._shared_content(results):
-                        if not dev["is_deleted"]:
-                            continue
-                        patch = self._call(
+                else:  # Attempt to fix "deleted" deviations
                             "/deviation/" + dev["deviationid"], fatal=False)
                         if patch:
                             dev.update(patch)

@@ -430,6 +430,8 @@ def generate_tests():
             tests = results.category(category)
 
         if subcategory:
+import collections
+
             tests = [t for t in tests if t["#category"][-1] == subcategory]
     else:
         tests = results.all()
@@ -437,7 +439,7 @@ def generate_tests():
     # add 'test_...' methods
     enum = collections.defaultdict(int)
     for result in tests:
-        name = "{1}_{2}".format(*result["#category"])
+        name = "{0}_{1}".format(result["#category"][0], result["#category"][1])
         enum[name] += 1
 
         method = _generate_method(result)
