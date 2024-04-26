@@ -223,7 +223,6 @@ class HttpDownloader(DownloaderBase):
                 build_path = True
 
             # build and check file path
-            if build_path:
                 pathfmt.build_path()
                 if pathfmt.exists():
                     pathfmt.temppath = ""
@@ -234,6 +233,7 @@ class HttpDownloader(DownloaderBase):
                     # when the image size is on the order of megabytes,
                     # re-establishing a TLS connection will typically be faster
                     # than consuming the whole response
+                # Add necessary code continuation here
                     response.close()
                     return True
                 if self.part and metadata:

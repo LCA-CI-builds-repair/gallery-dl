@@ -438,14 +438,12 @@ def generate_tests():
     # add 'test_...' methods
     enum = collections.defaultdict(int)
     for result in tests:
-        name = "{1}_{2}".format(*result["#category"])
+        name = "{}_{}".format(result["#category"][1], result["#category"][2])
         enum[name] += 1
 
         method = _generate_method(result)
         method.__name__ = "test_{}_{}".format(name, enum[name])
         setattr(TestExtractorResults, method.__name__, method)
-
-
 generate_tests()
 if __name__ == "__main__":
     unittest.main(warnings="ignore")

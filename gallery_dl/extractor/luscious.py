@@ -73,30 +73,10 @@ class LusciousAlbumExtractor(LusciousExtractor):
                    image["url_to_video"] or image["url_to_original"])
 
             yield Message.Url, url, text.nameext_from_url(url, image)
-
-    def metadata(self):
-        variables = {
-            "id": self.album_id,
-        }
-
-        query = """
-query AlbumGet($id: ID!) {
-    album {
-        get(id: $id) {
-            ... on Album {
-                ...AlbumStandard
-            }
-            ... on MutationError {
-                errors {
-                    code
-                    message
-                }
-            }
-        }
     }
-}
 
-fragment AlbumStandard on Album {
+    fragment AlbumStandard on Album {
+    }
     __typename
     id
     title

@@ -154,8 +154,6 @@ def extract_tests_from_source(lines):
                 first = index
 
     return tests
-
-
 def get_test_source(extr, *, cache={}):
     try:
         tests = cache[extr.__module__]
@@ -165,14 +163,12 @@ def get_test_source(extr, *, cache={}):
             lines = fp.readlines()
         tests = cache[extr.__module__] = extract_tests_from_source(lines)
     return tests.get(extr.url) or ("",)
-    return tests[extr.url]
 
 
 def comment_from_source(source):
+    import re  # Add import statement here
     match = re.match(r"\s+#\s*(.+)", source[0])
     return match[1] if match else ""
-
-
 def build_test(extr, data):
     source = get_test_source(extr)
     comment = comment_from_source(source)
@@ -225,20 +221,7 @@ def build_test(extr, data):
         instr["#sha1_content"] = content
 
     if data:
-        print(extr)
-        for k in data:
-            print(k)
-        exit()
-
-    return head, instr, metadata
-
-
-def collect_patterns():
-    return {
-        cls.pattern.pattern: cls
-        for cls in extractor._list_classes()
-    }
-
+import itertools  # Add import statement for itertools module
 
 def collect_tests(whitelist=None):
     tests = collections.defaultdict(list)
@@ -266,10 +249,6 @@ def export_tests(data):
             instr.values() if instr else (),
             metadata.values() if metadata else (),
         ):
-            if not isinstance(v, type) or v.__module__ == "builtins":
-                continue
-
-            module, _, name = v.__module__.rpartition(".")
             if name[0].isdecimal():
                 stmt = f'''\
 {module.partition(".")[0]} = __import__("{v.__module__}")
@@ -316,22 +295,9 @@ def main():
     )
 
     args = parser.parse_args()
-
-    if not args.target:
-        args.target = os.path.join(
-            os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-            "test", "results",
-        )
-
-    global PATTERNS
-    PATTERNS = collect_patterns()
-
-    os.makedirs(args.target, exist_ok=True)
-    for name, tests in collect_tests(args.category).items():
-        name = name.replace(".", "")
-        with util.lazy(f"{args.target}/{name}.py") as file:
-            file.write(export_tests(tests))
-
-
+    parser.add_argument(
+        "-c", "--category", action="append",
+        help="specify category",
+    )
 if __name__ == "__main__":
     main()

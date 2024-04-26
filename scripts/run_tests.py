@@ -30,6 +30,10 @@ else:
 
 
 suite = unittest.TestSuite()
+import unittest
+import sys
+
+suite = unittest.TestSuite()
 
 for test in TESTS:
     try:
@@ -41,6 +45,10 @@ for test in TESTS:
         suite.addTests(tests)
 
 if __name__ == "__main__":
+    if 'suite' not in locals():
+        print("No tests to run.")
+        sys.exit(1)
+        
     result = unittest.TextTestRunner(verbosity=2).run(suite)
     if result.errors or result.failures:
         sys.exit(1)

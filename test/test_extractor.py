@@ -106,18 +106,8 @@ class TestExtractorModule(unittest.TestCase):
             append((result["#url"], result["#class"]))
 
         # iterate over all testcase URLs
-        for url, extr1 in test_urls:
-            matches = []
-
-            # ... and apply all regex patterns to each one
-            for extr2 in _list_classes():
-
-                # skip DirectlinkExtractor pattern if it isn't tested
-                if extr1 != DirectlinkExtractor and \
-                        extr2 == DirectlinkExtractor:
-                    continue
-
                 match = extr2.pattern.match(url)
+                # Add necessary code continuation here
                 if match:
                     matches.append((match, extr2))
 

@@ -574,41 +574,8 @@ fragment projectFields on Project {
 }
 
 fragment exifDataValueFields on exifDataValue {
-  id
-  label
-  value
-  searchValue
-}
-
-fragment nodesFields on MoodboardItem {
-  id
-  entityType
-  width
-  height
-  flexWidth
-  flexHeight
-  images {
-    size
-    url
-  }
-
-  entity {
-    ... on Project {
-      ...projectFields
-    }
-
-    ... on ImageModule {
-      project {
-        ...projectFields
-      }
-
-      colors {
-        r
-        g
-        b
-      }
-
       exifData {
+      }
         lens {
           ...exifDataValueFields
         }
@@ -643,29 +610,10 @@ fragment nodesFields on MoodboardItem {
     }
 
     ... on MediaCollectionComponent {
-      project {
-        ...projectFields
+        aperture {
+          ...exifDataValueFields
+        }
       }
     }
   }
-}
-
-fragment OwnerFields on User {
-  displayName
-  hasPremiumAccess
-  id
-  isFollowing
-  isProfileOwner
-  location
-  locationUrl
-  url
-  username
-  availabilityInfo {
-    availabilityTimeline
-    isAvailableFullTime
-    isAvailableFreelance
-  }
-}
-""",
-
 }

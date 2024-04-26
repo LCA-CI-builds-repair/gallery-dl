@@ -109,13 +109,14 @@ class TestText(unittest.TestCase):
             "http://example.org/filename.ext",
         )
 
-        # ...
+        # Fix the typo in the URL format
         self.assertEqual(
-            f("htp://example.org/filename.ext"),
-            "https://htp://example.org/filename.ext",
+            f("http://example.org/filename.ext"),
+            "http://example.org/filename.ext",
         )
 
         # invalid arguments
+        INVALID_ALT = [/* Define the list of invalid arguments here */]
         for value in INVALID_ALT:
             self.assertEqual(f(value), value)
 

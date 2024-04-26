@@ -94,6 +94,7 @@ class RedgifsUserExtractor(RedgifsExtractor):
     example = "https://www.redgifs.com/users/USER"
 
     def __init__(self, match):
+        match = match if match else None
         RedgifsExtractor.__init__(self, match)
         self.query = match.group(2)
 
@@ -103,8 +104,6 @@ class RedgifsUserExtractor(RedgifsExtractor):
     def gifs(self):
         order = text.parse_query(self.query).get("order")
         return self.api.user(self.key, order or "new")
-
-
 class RedgifsCollectionExtractor(RedgifsExtractor):
     """Extractor for an individual user collection"""
     subcategory = "collection"
@@ -151,14 +150,14 @@ class RedgifsNichesExtractor(RedgifsExtractor):
     example = "https://www.redgifs.com/niches/NAME"
 
     def __init__(self, match):
+    def __init__(self, match):
+        match = match if match else None
         RedgifsExtractor.__init__(self, match)
         self.query = match.group(2)
 
     def gifs(self):
         order = text.parse_query(self.query).get("order")
         return self.api.niches(self.key, order or "new")
-
-
 class RedgifsSearchExtractor(RedgifsExtractor):
     """Extractor for redgifs search results"""
     subcategory = "search"
