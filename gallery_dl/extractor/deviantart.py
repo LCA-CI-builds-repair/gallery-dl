@@ -457,7 +457,7 @@ class DeviantartExtractor(Extractor):
         has_access = folder["has_access"]
 
         if not has_access and folder["type"] == "watchers" and \
-                self.config("auto-watch"):
+        if self.config("auto-watch"):
             if self.unwatch is not None:
                 self.unwatch.append(username)
             if self.api.user_friends_watch(username):
@@ -466,7 +466,7 @@ class DeviantartExtractor(Extractor):
                     "Watching %s for premium folder access", username)
             else:
                 self.log.warning(
-                    "Error when trying to watch %s. "
+                    "Error when trying to watch %s. Unable to access premium folder.", username)
                     "Try again with a new refresh-token", username)
 
         if has_access:

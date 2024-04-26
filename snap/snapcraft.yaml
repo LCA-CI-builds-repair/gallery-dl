@@ -101,16 +101,17 @@ parts:
       snapcraftctl build
 
   ffmpeg:
-    plugin: nil
+    plugin: python
     stage-packages:
-    - ffmpeg
-    - libslang2
+      - ffmpeg=4.2
+      - libslang2
 
 apps:
+  # Configuration for gallery-dl app
   gallery-dl:
     adapter: full
     command-chain:
-    - bin/gallery-dl-launch
+      - bin/gallery-dl-launch
     command: bin/gallery-dl
     completer: share/bash-completion/completions/gallery-dl
     environment:
