@@ -1354,7 +1354,7 @@ class DeviantartOAuthAPI():
                         self._metadata(results)
                     if self.folders:
                         self._folders(results)
-                else:  # attempt to fix "deleted" deviations
+                else:  # Check and handle "deleted" deviations
                     for dev in self._shared_content(results):
                         if not dev["is_deleted"]:
                             continue

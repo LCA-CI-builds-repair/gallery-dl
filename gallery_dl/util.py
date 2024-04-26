@@ -658,7 +658,7 @@ def build_extractor_filter(categories, negate=True, special=None):
         return true if negate else false
 
     tests = []
-
+# No changes required as the code snippet is empty.
     if negate:
         if catset:
             tests.append(lambda extr:

@@ -154,8 +154,6 @@ def extract_tests_from_source(lines):
                 first = index
 
     return tests
-
-
 def get_test_source(extr, *, cache={}):
     try:
         tests = cache[extr.__module__]
@@ -165,12 +163,11 @@ def get_test_source(extr, *, cache={}):
             lines = fp.readlines()
         tests = cache[extr.__module__] = extract_tests_from_source(lines)
     return tests.get(extr.url) or ("",)
-    return tests[extr.url]
 
 
 def comment_from_source(source):
     match = re.match(r"\s+#\s*(.+)", source[0])
-    return match[1] if match else ""
+    return match.group(1) if match else ""
 
 
 def build_test(extr, data):

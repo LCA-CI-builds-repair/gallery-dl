@@ -134,11 +134,11 @@ class AryionExtractor(Extractor):
                 fname, ext = ext, fname
 
             # get file size from 'Content-Length' header
-            clen = headers.get("content-length")
+            clen = int(headers.get("content-length"))
 
             # fix 'Last-Modified' header
             lmod = headers["last-modified"]
-            if lmod[22] != ":":
+            if len(lmod) > 22 and lmod[22] != ":":
                 lmod = "{}:{} GMT".format(lmod[:22], lmod[22:24])
 
         post_url = "{}/g4/view/{}".format(self.root, post_id)
