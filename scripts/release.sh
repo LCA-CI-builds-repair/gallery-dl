@@ -141,26 +141,7 @@ OLDVERSION="${LASTTAG#v}"
 PYVERSION="$(python -c "import gallery_dl as g; print(g.__version__)")"
 
 if [[ "$1" ]]; then
-    NEWVERSION="$1"
-else
-    NEWVERSION="${PYVERSION%-dev}"
-fi
-
 if [[ ! $NEWVERSION =~ [0-9]+\.[0-9]+\.[0-9]+(-[a-z]+(\.[0-9]+)?)?$ ]]; then
     echo "invalid version: $NEWVERSION"
     exit 2
 fi
-
-
-prompt
-supportedsites
-cleanup
-update
-changelog
-build-python
-build-linux
-build-windows
-sign
-upload-pypi
-upload-git
-update-dev
