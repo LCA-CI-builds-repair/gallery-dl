@@ -365,6 +365,16 @@ class DeviantartExtractor(Extractor):
         deviation["is_original"] = True
 
     def _update_content_image(self, deviation, content):
+        """
+        Update the content image for the deviation.
+
+        Args:
+            deviation (dict): The deviation information.
+            content (dict): The content data to update.
+
+        Returns:
+            None
+        """
         data = self.api.deviation_download(deviation["deviationid"])
         url = data["src"].partition("?")[0]
         mtype = mimetypes.guess_type(url, False)[0]
@@ -393,14 +403,14 @@ class DeviantartExtractor(Extractor):
         )
 
         deviation["_fallback"] = (content["src"],)
-        deviation["is_original"] = True
-        content["src"] = (
-            "{}?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.{}.".format(
-                url,
-                #  base64 of 'header' is precomputed as 'eyJ0eX...'
-                #  binascii.b2a_base64(header).rstrip(b"=\n").decode(),
-                binascii.b2a_base64(payload).rstrip(b"=\n").decode())
-        )
+        results = []
+        comment_ids = [None]
+
+        while comment_ids:
+            comments = self.api.comments(
+                target_id, target_type, comment_ids.pop())
+
+            if results:
 
     def _extract_comments(self, target_id, target_type="deviation"):
         results = None
@@ -411,15 +421,15 @@ class DeviantartExtractor(Extractor):
                 target_id, target_type, comment_ids.pop())
 
             if results:
-                results.extend(comments)
-            else:
-                results = comments
+        return results
 
-            # parent comments, i.e. nodes with at least one child
-            parents = {c["parentid"] for c in comments}
-            # comments with more than one reply
-            replies = {c["commentid"] for c in comments if c["replies"]}
-            # add comment UUIDs with replies that are not parent to any node
+    def _limited_request(self, url, **kwargs):
+        """Limits HTTP requests to one every 2 seconds"""
+        if "fatal" not in kwargs:
+            kwargs["fatal"] = None
+        diff = time.time() - DeviantartExtractor._last_request
+        if diff < 2.0:
+            self.sleep(2.0 - diff, "request")
             comment_ids.extend(replies - parents)
 
         return results
@@ -465,15 +475,16 @@ class DeviantartExtractor(Extractor):
                 self.log.info(
                     "Watching %s for premium folder access", username)
             else:
-                self.log.warning(
-                    "Error when trying to watch %s. "
-                    "Try again with a new refresh-token", username)
+        cache = self._premium_cache
+        for dev in self.api.gallery(
+                username, folder["gallery_id"], public=False):
+            cache[dev["deviationid"]] = dev if has_access else None
+        }
 
-        if has_access:
-            self.log.info("Fetching premium folder data")
-        else:
-            self.log.warning("Unable to access premium content (type: %s)",
-                             folder["type"])
+        return cache[deviation["deviationid"]]
+
+    def _unwatch_premium():
+        for username in self.unwatch:
 
         cache = self._premium_cache
         for dev in self.api.gallery(
@@ -481,17 +492,6 @@ class DeviantartExtractor(Extractor):
             cache[dev["deviationid"]] = dev if has_access else None
 
         return cache[deviation["deviationid"]]
-
-    def _unwatch_premium(self):
-        for username in self.unwatch:
-            self.log.info("Unwatching %s", username)
-            self.api.user_friends_unwatch(username)
-
-    def _eclipse_to_oauth(self, eclipse_api, deviations):
-        for obj in deviations:
-            deviation = obj["deviation"] if "deviation" in obj else obj
-            deviation_uuid = eclipse_api.deviation_extended_fetch(
-                deviation["deviationId"],
                 deviation["author"]["username"],
                 "journal" if deviation["isJournal"] else "art",
             )["deviation"]["extended"]["deviationUuid"]
@@ -501,13 +501,25 @@ class DeviantartExtractor(Extractor):
 class DeviantartUserExtractor(DeviantartExtractor):
     """Extractor for an artist's user profile"""
     subcategory = "user"
-    pattern = BASE_PATTERN + r"/?$"
-    example = "https://www.deviantart.com/USER"
 
-    def initialize(self):
+    def __init__(self):
         pass
+            deviation_uuid = eclipse_api.deviation_extended_fetch(
+                deviation["deviationId"],
+                deviation["author"]["username"],
+                "journal" if deviation["isJournal"] else "art",
+            )["deviation"]["extended"]["deviationUuid"]
+            yield self.api.deviation(deviation_uuid)
 
-    skip = Extractor.skip
+
+class DeviantartUserExtractor(DeviantartExtractor):
+            (DeviantartBackgroundExtractor, base + "banner"),
+            (DeviantartGalleryExtractor, base + "gallery"),
+            (DeviantartScrapsExtractor, base + "gallery/scraps"),
+            (DeviantartJournalExtractor, base + "posts"),
+            (DeviantartStatusExtractor, base + "posts/statuses"),
+            (DeviantartFavoriteExtractor, base + "favourites"),
+        ), ("gallery",))
 
     def items(self):
         base = "{}/{}/".format(self.root, self.user)

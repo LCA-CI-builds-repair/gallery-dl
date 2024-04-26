@@ -189,7 +189,7 @@ class MastodonAPI():
 
         try:
             return self.account_lookup(username)["id"]
-        except Exception:
+        except AccountLookupError:
             # fall back to account search
             pass
 

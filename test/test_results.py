@@ -119,7 +119,8 @@ class TestExtractorResults(unittest.TestCase):
             self.assertEqual(
                 result["#sha1_url"],
                 tjob.url_hash.hexdigest(),
-                msg="#sha1_url")
+                msg="Expected URL hash value does not match #sha1_url"
+            )
 
         if "#sha1_content" in result:
             expected = result["#sha1_content"]

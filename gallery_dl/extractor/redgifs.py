@@ -94,6 +94,7 @@ class RedgifsUserExtractor(RedgifsExtractor):
     example = "https://www.redgifs.com/users/USER"
 
     def __init__(self, match):
+    def __init__(self, match):
         RedgifsExtractor.__init__(self, match)
         self.query = match.group(2)
 

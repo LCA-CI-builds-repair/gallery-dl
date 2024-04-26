@@ -228,7 +228,6 @@ def build_test(extr, data):
         print(extr)
         for k in data:
             print(k)
-        exit()
 
     return head, instr, metadata
 

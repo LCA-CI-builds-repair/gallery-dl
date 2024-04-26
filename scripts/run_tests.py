@@ -30,6 +30,7 @@ else:
 
 
 suite = unittest.TestSuite()
+suite = unittest.TestSuite()
 
 for test in TESTS:
     try:
