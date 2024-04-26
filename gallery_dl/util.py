@@ -658,7 +658,17 @@ def build_extractor_filter(categories, negate=True, special=None):
         return true if negate else false
 
     tests = []
+import requests
+import os
 
+def download_image(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        with open(os.path.basename(url), 'wb') as file:
+            file.write(response.content)
+            print("Image downloaded successfully.")
+    else:
+        print("Failed to download image.")
     if negate:
         if catset:
             tests.append(lambda extr:
