@@ -826,20 +826,20 @@ class DataJob(Job):
             extractor.sleep(sleep(), "extractor")
 
         # collect data
-        try:
-            for msg in extractor:
-                self.dispatch(msg)
-        except exception.StopExtraction:
-            pass
-        except Exception as exc:
-            self.data.append((exc.__class__.__name__, str(exc)))
-        except BaseException:
-            pass
+try:
+    for msg in extractor:
+        self.dispatch(msg)
+except exception.StopExtraction:
+    pass
+except Exception as exc:
+    self.data.append((exc.__class__.__name__, str(exc)))
+except BaseException:
+    pass
 
-        # convert numbers to string
-        if config.get(("output",), "num-to-str", False):
-            for msg in self.data:
-                util.transform_dict(msg[-1], util.number_to_string)
+# convert numbers to string
+if config.get(("output",), "num-to-str", False):
+    for msg in self.data:
+        util.transform_dict(msg[-1], util.number_to_string)
 
         # dump to 'file'
         try:

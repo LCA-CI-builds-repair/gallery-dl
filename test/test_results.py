@@ -431,19 +431,22 @@ def generate_tests():
             tests = results.category(category)
 
         if subcategory:
-            tests = [t for t in tests if t["#category"][-1] == subcategory]
-    else:
-        tests = results.all()
+import collections
 
-    # add 'test_...' methods
-    enum = collections.defaultdict(int)
-    for result in tests:
-        name = "{1}_{2}".format(*result["#category"])
-        enum[name] += 1
+if subcategory:
+    tests = [t for t in tests if t["#category"][-1] == subcategory]
+else:
+    tests = results.all()
 
-        method = _generate_method(result)
-        method.__name__ = "test_{}_{}".format(name, enum[name])
-        setattr(TestExtractorResults, method.__name__, method)
+# add 'test_...' methods
+enum = collections.defaultdict(int)
+for result in tests:
+    name = "{1}_{2}".format(*result["#category"])
+    enum[name] += 1
+
+    method = _generate_method(result)
+    method.__name__ = "test_{}_{}".format(name, enum[name])
+    setattr(TestExtractorResults, method.__name__, method)
 
 
 generate_tests()

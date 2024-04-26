@@ -244,16 +244,14 @@ def collect_tests(whitelist=None):
     tests = collections.defaultdict(list)
 
     for cls in extractor._list_classes():
-        for url, data in cls._get_tests():
+for url, data in cls._get_tests():
+    extr = cls.from_url(url)
+    if whitelist and extr.category not in whitelist:
+        continue
+    test = build_test(extr, data)
+    tests[extr.category].append(test)
 
-            extr = cls.from_url(url)
-            if whitelist and extr.category not in whitelist:
-                continue
-            test = build_test(extr, data)
-            tests[extr.category].append(test)
-
-    return tests
-
+return tests
 
 def export_tests(data):
     imports = {}
