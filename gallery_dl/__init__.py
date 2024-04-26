@@ -381,9 +381,8 @@ class InputManager():
 
         gconf = []
         lconf = []
-        indicies = []
-        strip_comment = None
-        append = self.urls.append
+        indices = []
+        append_url = self.urls.append
 
         for n, line in enumerate(lines):
             line = line.strip()
