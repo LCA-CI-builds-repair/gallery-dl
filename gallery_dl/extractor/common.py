@@ -256,8 +256,9 @@ class Extractor():
                 self.log.warning("netrc: No authentication info")
 
         return username, password
-
     def _init(self):
+        # Add initialization logic here
+        pass
         pass
 
     def _init_options(self):

@@ -419,31 +419,31 @@ def generate_tests():
         return test
 
     # enable selective testing for direct calls
-    if __name__ == "__main__" and len(sys.argv) > 1:
-        category, _, subcategory = sys.argv[1].partition(":")
-        del sys.argv[1:]
+import sys
 
-        if category.startswith("+"):
-            basecategory = category[1:].lower()
-            tests = [t for t in results.all()
-                     if t["#category"][0].lower() == basecategory]
-        else:
-            tests = results.category(category)
+if __name__ == "__main__" and len(sys.argv) > 1:
+    category, _, subcategory = sys.argv[1].partition(":")
+    del sys.argv[1:]
+
+    if category.startswith("+"):
+        basecategory = category[1:].lower()
+        tests = [t for t in results.all()
+                 if t["#category"][0].lower() == basecategory]
+    else:
+        tests = results.category(category)
 
         if subcategory:
-            tests = [t for t in tests if t["#category"][-1] == subcategory]
-    else:
-        tests = results.all()
+tests = results.all()
 
-    # add 'test_...' methods
-    enum = collections.defaultdict(int)
-    for result in tests:
-        name = "{1}_{2}".format(*result["#category"])
-        enum[name] += 1
+# add 'test_...' methods
+enum = collections.defaultdict(int)
+for result in tests:
+    name = "{}_{}".format(result["#category"][0], result["#category"][1])
+    enum[name] += 1
 
-        method = _generate_method(result)
-        method.__name__ = "test_{}_{}".format(name, enum[name])
-        setattr(TestExtractorResults, method.__name__, method)
+    method = _generate_method(result)
+    method.__name__ = "test_{}_{}".format(name, enum[name])
+    setattr(TestExtractorResults, method.__name__, method)
 
 
 generate_tests()

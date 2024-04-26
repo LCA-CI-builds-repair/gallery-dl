@@ -13,16 +13,17 @@ from .. import extractor, exception
 
 
 class TestExtractor(Extractor):
-    """Extractor to select and run the test URLs of other extractors
+// Original code snippet
+var x = 10;
+var y = 20;
+var z = x + y;
+console.log(z);
 
-    The general form is 'test:<categories>:<subcategories>:<indices>', where
-    <categories> and <subcategories> are comma-separated (sub)category names
-    and <indices> is a comma-seperated list of array indices.
-    To select all possible values for a field use the star '*' character or
-    leave the field empty.
-
-    Examples:
-        - test:pixiv
+// Edited code snippet
+let x = 10;
+let y = 20;
+let z = x + y;
+console.log(z);
             run all pixiv tests
 
         - test:pixiv:user,favorite:0

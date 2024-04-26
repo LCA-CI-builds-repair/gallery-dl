@@ -422,6 +422,10 @@ class DeviantartExtractor(Extractor):
             comment_ids.extend(replies - parents)
 
         return results
+import time
+
+class DeviantartExtractor:
+    _last_request = 0
 
     def _limited_request(self, url, **kwargs):
         """Limits HTTP requests to one every 2 seconds"""
@@ -442,6 +446,7 @@ class DeviantartExtractor(Extractor):
         try:
             return self._premium_cache[deviation["deviationid"]]
         except KeyError:
+            self._premium_cache = {}  # Initialize if not already
             pass
 
         if not self.api.refresh_token_key:
@@ -1348,16 +1353,15 @@ class DeviantartOAuthAPI():
                             "Run 'gallery-dl oauth:deviantart' and follow the "
                             "instructions to be able to access them.")
 
-                # "statusid" cannot be used instead
-                if results and "deviationid" in results[0]:
-                    if self.metadata:
-                        self._metadata(results)
-                    if self.folders:
-                        self._folders(results)
-                else:  # attempt to fix "deleted" deviations
-                    for dev in self._shared_content(results):
-                        if not dev["is_deleted"]:
-                            continue
+# "statusid" cannot be used instead
+else:  # attempt to fix "deleted" deviations
+    for dev in self._shared_content(results):
+        if not dev["is_deleted"]:
+            # Add appropriate handling logic here
+            continue
+        patch = self._call("/deviation/" + dev["deviationid"], fatal=False)
+        if patch is not None:
+            dev.update(patch)
                         patch = self._call(
                             "/deviation/" + dev["deviationid"], fatal=False)
                         if patch:

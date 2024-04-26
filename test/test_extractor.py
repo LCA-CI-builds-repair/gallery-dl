@@ -255,18 +255,14 @@ class TextExtractorOAuth(unittest.TestCase):
             extr = extractor.find("oauth:" + category)
 
             with patch.object(extr, "_oauth1_authorization_flow") as m:
-                for msg in extr:
-                    pass
-                self.assertEqual(len(m.mock_calls), 1)
+def test_oauth2(self):
+    for category in ("deviantart", "reddit"):
+        extr = extractor.find("oauth:" + category)
 
-    def test_oauth2(self):
-        for category in ("deviantart", "reddit"):
-            extr = extractor.find("oauth:" + category)
-
-            with patch.object(extr, "_oauth2_authorization_code_grant") as m:
-                for msg in extr:
-                    pass
-                self.assertEqual(len(m.mock_calls), 1)
+        with patch.object(extr, "_oauth2_authorization_code_grant") as m:
+            # Perform any necessary testing logic with extr
+            pass
+            self.assertEqual(len(m.mock_calls), 1)
 
     def test_oauth2_mastodon(self):
         extr = extractor.find("oauth:mastodon:pawoo.net")

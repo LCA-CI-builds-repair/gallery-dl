@@ -134,15 +134,16 @@ class AryionExtractor(Extractor):
                 fname, ext = ext, fname
 
             # get file size from 'Content-Length' header
-            clen = headers.get("content-length")
+clen = headers.get("content-length")
 
-            # fix 'Last-Modified' header
-            lmod = headers["last-modified"]
-            if lmod[22] != ":":
-                lmod = "{}:{} GMT".format(lmod[:22], lmod[22:24])
+# fix 'Last-Modified' header if it exists
+lmod = headers.get("last-modified")
+if lmod:
+    if len(lmod) > 22 and lmod[22] != ":":
+        lmod = "{}:{} GMT".format(lmod[:22], lmod[22:24])
 
-        post_url = "{}/g4/view/{}".format(self.root, post_id)
-        extr = text.extract_from(self.request(post_url).text)
+post_url = "{}/g4/view/{}".format(self.root, post_id)
+extr = text.extract_from(self.request(post_url).text)
 
         title, _, artist = text.unescape(extr(
             "<title>g4 :: ", "<")).rpartition(" by ")

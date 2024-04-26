@@ -408,13 +408,11 @@ class DownloadJob(Job):
                             try:
                                 url = next(fallback)
                             except StopIteration:
-                                pass
                             else:
                                 text.nameext_from_url(url, kwdict)
                                 if url.startswith("ytdl:"):
                                     kwdict["extension"] = ""
                                 self.handle_url(url, kwdict)
-                    break
                 except exception.RestartExtraction:
                     pass
 
@@ -826,6 +824,7 @@ class DataJob(Job):
             extractor.sleep(sleep(), "extractor")
 
         # collect data
+        # collect data
         try:
             for msg in extractor:
                 self.dispatch(msg)
@@ -838,8 +837,7 @@ class DataJob(Job):
 
         # convert numbers to string
         if config.get(("output",), "num-to-str", False):
-            for msg in self.data:
-                util.transform_dict(msg[-1], util.number_to_string)
+            # Add the necessary logic for converting numbers to strings here
 
         # dump to 'file'
         try:

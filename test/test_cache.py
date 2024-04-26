@@ -18,13 +18,16 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from gallery_dl import config, util  # noqa E402
 
 dbpath = tempfile.mkstemp()[1]
-config.set(("cache",), "file", dbpath)
+import unittest
+import util
 from gallery_dl import cache  # noqa E402
+
+config.set(("cache",), "file", dbpath)
 cache._init()
 
 
-#  def tearDownModule():
-#      util.remove_file(dbpath)
+def tearDownModule():
+    util.remove_file(dbpath)
 
 
 class TestCache(unittest.TestCase):

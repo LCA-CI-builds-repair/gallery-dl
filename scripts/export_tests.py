@@ -244,16 +244,19 @@ def collect_tests(whitelist=None):
     tests = collections.defaultdict(list)
 
     for cls in extractor._list_classes():
-        for url, data in cls._get_tests():
+tests = {}
 
-            extr = cls.from_url(url)
-            if whitelist and extr.category not in whitelist:
-                continue
-            test = build_test(extr, data)
-            tests[extr.category].append(test)
+for url, data in cls._get_tests():
 
-    return tests
+    extr = cls.from_url(url)
+    if whitelist and extr.category not in whitelist:
+        continue
+    test = build_test(extr, data)
+    if extr.category not in tests:
+        tests[extr.category] = []
+    tests[extr.category].append(test)
 
+return tests
 
 def export_tests(data):
     imports = {}
@@ -316,21 +319,23 @@ def main():
     )
 
     args = parser.parse_args()
+import os
 
-    if not args.target:
-        args.target = os.path.join(
-            os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-            "test", "results",
-        )
+target_dir = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "test", "results"
+)
 
-    global PATTERNS
-    PATTERNS = collect_patterns()
+global PATTERNS
+PATTERNS = collect_patterns()
 
-    os.makedirs(args.target, exist_ok=True)
-    for name, tests in collect_tests(args.category).items():
-        name = name.replace(".", "")
-        with util.lazy(f"{args.target}/{name}.py") as file:
-            file.write(export_tests(tests))
+os.makedirs(args.target, exist_ok=True)
+for name, tests in collect_tests(args.category).items():
+    name = name.replace(".", "")
+    with util.lazy(f"{args.target}/{name}.py") as file:
+        file.write(export_tests(tests))
+
+if __name__ == "__main__":
 
 
 if __name__ == "__main__":

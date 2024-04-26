@@ -74,16 +74,19 @@ class ZipPP(PostProcessor):
             self.write(pathfmt, zfile)
 
     def write_extra(self, pathfmt, zfile, files):
-        for path in map(util.expand_path, files):
-            if not os.path.isabs(path):
-                path = os.path.join(pathfmt.realdirectory, path)
-            try:
-                zfile.write(path, os.path.basename(path))
-            except OSError as exc:
-                self.log.warning(
-                    "Unable to write %s to %s", path, zfile.filename)
-                self.log.debug("%s: %s", exc, exc.__class__.__name__)
-                pass
+import os
+import util
+
+for path in map(util.expand_path, files):
+    if not os.path.isabs(path):
+        path = os.path.join(self.realdirectory, path)
+    try:
+        zfile.write(path, os.path.basename(path))
+    except OSError as exc:
+self.log.warning(
+    "Unable to write %s to %s", path, zfile.filename)
+self.log.debug("%s: %s", exc, exc.__class__.__name__)
+# Add appropriate error handling or logging here
             else:
                 if self.delete:
                     util.remove_file(path)

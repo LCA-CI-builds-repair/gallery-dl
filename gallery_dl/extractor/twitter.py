@@ -361,12 +361,16 @@ class TwitterExtractor(Extractor):
             return {}
 
         try:
+        try:
             return self._user_cache[uid]
         except KeyError:
             pass
 
         if "legacy" in user:
             user = user["legacy"]
+        elif "screen_name" not in user:
+            # Handle the case where "screen_name" is missing in the user dictionary
+            return None
         elif "statuses_count" not in user and self.syndication == "extended":
             # try to fetch extended user data
             user = self.api.user_by_screen_name(user["screen_name"])["legacy"]

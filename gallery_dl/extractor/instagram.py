@@ -407,9 +407,11 @@ class InstagramUserExtractor(InstagramExtractor):
     example = "https://www.instagram.com/USER/"
 
     def initialize(self):
+        # Add initialization logic here
         pass
 
     def finalize(self):
+        # Add finalization logic here
         pass
 
     def items(self):

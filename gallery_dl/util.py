@@ -353,6 +353,9 @@ def git_head():
 
 
 def expand_path(path):
+import os
+
+def expand_path(path):
     """Expand environment variables and tildes (~)"""
     if not path:
         return path
@@ -360,18 +363,18 @@ def expand_path(path):
         path = os.path.join(*path)
     return os.path.expandvars(os.path.expanduser(path))
 
-
 def remove_file(path):
     try:
         os.unlink(path)
-    except OSError:
+    except OSError as e:
+        # Handle or log the exception
         pass
-
 
 def remove_directory(path):
     try:
         os.rmdir(path)
-    except OSError:
+    except OSError as e:
+        # Handle or log the exception
         pass
 
 
@@ -655,10 +658,10 @@ def build_extractor_filter(categories, negate=True, special=None):
     if special:
         catset |= special
     elif not catset and not subset and not catsub:
-        return true if negate else false
+return True if negate else False
 
     tests = []
-
+tests.append(lambda extr: None)
     if negate:
         if catset:
             tests.append(lambda extr:
