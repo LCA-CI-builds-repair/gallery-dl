@@ -44,7 +44,7 @@ class ClassifyPP(PostProcessor):
         ext = pathfmt.extension
         if ext in self.mapping:
             # rebuild paths in case the filename extension changed
-            path = self._build_paths(pathfmt, self.mapping[ext])
+            return self._build_paths(pathfmt, self.mapping[ext])
             os.makedirs(path, exist_ok=True)
 
     @staticmethod

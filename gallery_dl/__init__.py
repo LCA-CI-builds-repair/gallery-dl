@@ -276,7 +276,7 @@ def main():
                     else:
                         status = jobtype(url).run()
 
-                    if status:
+                    if status is not None and status:
                         retval |= status
                         input_manager.error()
                     else:

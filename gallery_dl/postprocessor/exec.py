@@ -84,7 +84,6 @@ class ExecPP(PostProcessor):
         if retcode:
             self.log.warning("'%s' returned with non-zero exit status (%d)",
                              args, retcode)
-
     def _exec_async(self, args, shell):
         self.log.debug("Running '%s'", args)
         subprocess.Popen(args, shell=shell)

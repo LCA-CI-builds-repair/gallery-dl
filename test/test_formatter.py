@@ -257,10 +257,11 @@ class TestFormatter(unittest.TestCase):
         self._run_test("{l:Sr}", "['c', 'b', 'a']")
 
         self._run_test(
-            "{a:S}", "[' ', 'E', 'L', 'L', 'O', 'd', 'h', 'l', 'o', 'r', 'w']")
+        self._run_test(
+            "{a:S}", "[' ', 'E', 'L', 'L', 'O', 'd', 'h', 'l', 'o', 'r', 'w']",  # Expected output missing
         self._run_test(
             "{a:S-asc}",  # starts with 'S', contains 'a'
-            "[' ', 'E', 'L', 'L', 'O', 'd', 'h', 'l', 'o', 'r', 'w']")
+            "[' ', 'E', 'L', 'L', 'O', 'd', 'h', 'l', 'o', 'r', 'w']",  # Expected output missing
         self._run_test(
             "{a:Sort-reverse}",  # starts with 'S', contains 'r'
             "['w', 'r', 'o', 'l', 'h', 'd', 'O', 'L', 'L', 'E', ' ']")

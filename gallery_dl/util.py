@@ -389,18 +389,16 @@ def cookiestxt_load(fp, cookiejar):
     set_cookie = cookiejar.set_cookie
 
     for line in fp:
-
         line = line.lstrip(" ")
         # strip '#HttpOnly_'
         if line.startswith("#HttpOnly_"):
             line = line[10:]
         # ignore empty lines and comments
-        if not line or line[0] in ("#", "$", "\n"):
+        if not line or line.startswith(("#", "$", "\n")):
             continue
         # strip trailing '\n'
         if line[-1] == "\n":
             line = line[:-1]
-
         domain, domain_specified, path, secure, expires, name, value = \
             line.split("\t")
 
@@ -670,7 +668,7 @@ def build_extractor_filter(categories, negate=True, special=None):
         if catset:
             tests.append(lambda extr:
                          extr.category in catset or
-                         extr.basecategory in catset)
+            tests.append(lambda extr: None)
         if subset:
             tests.append(lambda extr: extr.subcategory in subset)
 

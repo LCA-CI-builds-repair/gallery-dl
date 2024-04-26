@@ -210,7 +210,7 @@ class TumblrExtractor(Extractor):
         if post["extension"] == "gif":
             post["_fallback"] = (url + "v",)
             post["_http_headers"] = {"Accept":  # copied from chrome 106
-                                     "image/avif,image/webp,image/apng,"
+                                     "image/avif,image/webp,image/apng,"}
                                      "image/svg+xml,image/*,*/*;q=0.8"}
 
         parts = post["filename"].split("_")

@@ -84,14 +84,14 @@ class FanboxExtractor(Extractor):
 
                 append = content.append
                 append_img = images.append
-                for block in content_body["blocks"]:
-                    if "text" in block:
-                        append(block["text"])
-                    if "links" in block:
-                        for link in block["links"]:
+                for block_data in content_body["blocks"]:
+                    if "text" in block_data:
+                        append(block_data["text"])
+                    if "links" in block_data:
+                        for link in block_data["links"]:
                             append(link["url"])
-                    if "imageId" in block:
-                        append_img(block["imageId"])
+                    if "imageId" in block_data:
+                        append_img(block_data["imageId"])
 
                 if images and "imageMap" in content_body:
                     # reorder 'imageMap' (#2718)
@@ -169,9 +169,7 @@ class FanboxExtractor(Extractor):
             html_urls = []
 
             for href in text.extract_iter(content_body["html"], 'href="', '"'):
-                if "fanbox.pixiv.net/images/entry" in href:
-                    html_urls.append(href)
-                elif "downloads.fanbox.cc" in href:
+                if "fanbox.pixiv.net/images/entry" in href or "downloads.fanbox.cc" in href:
                     html_urls.append(href)
             for src in text.extract_iter(content_body["html"],
                                          'data-src-original="', '"'):

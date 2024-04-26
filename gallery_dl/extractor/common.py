@@ -189,7 +189,7 @@ class Extractor():
                         self.log.warning("Cloudflare challenge")
                         break
                     if b'name="captcha-bypass"' in content:
-                        self.log.warning("Cloudflare CAPTCHA")
+                        self.log.warning("Cloudflare CAPTCHA encountered")
                         break
                 if code not in retry_codes and code < 500:
                     break

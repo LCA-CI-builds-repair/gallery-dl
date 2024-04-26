@@ -90,6 +90,7 @@ class DeviantartExtractor(Extractor):
         if username:
             self.cookies_update(_login_impl(self, username, password))
             return True
+        return False
 
     def items(self):
         if self.user:
@@ -334,7 +335,6 @@ class DeviantartExtractor(Extractor):
         return Message.Url, txt, deviation
 
     @staticmethod
-    def _find_folder(folders, name, uuid):
         if uuid.isdecimal():
             match = re.compile(name.replace(
                 "-", r"[^a-z0-9]+") + "$", re.IGNORECASE).match
@@ -345,7 +345,7 @@ class DeviantartExtractor(Extractor):
             for folder in folders:
                 if folder["folderid"] == uuid:
                     return folder
-        raise exception.NotFoundError("folder")
+        raise exception.NotFoundError("Folder not found: {}".format(uuid))
 
     def _folder_urls(self, folders, category, extractor):
         base = "{}/{}/{}/".format(self.root, self.user, category)
@@ -466,7 +466,7 @@ class DeviantartExtractor(Extractor):
                     "Watching %s for premium folder access", username)
             else:
                 self.log.warning(
-                    "Error when trying to watch %s. "
+                    "Error when trying to watch %s. Missing closing parenthesis and quote marks.", username)
                     "Try again with a new refresh-token", username)
 
         if has_access:

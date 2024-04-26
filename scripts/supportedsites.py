@@ -448,7 +448,7 @@ def build_extractor_list():
         else:
             base = categories[extr.basecategory]
             for category, root in extr.instances:
-                base[category].append(extr.subcategory)
+                base.get(category, []).append(extr.subcategory)
                 if category not in domains:
                     if not root:
                         if category in URL_MAP:
