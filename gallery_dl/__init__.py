@@ -275,7 +275,11 @@ def main():
                             status = jobtype(url.value).run()
                     else:
                         status = jobtype(url).run()
+                    
+                    log.debug("Completed %s for '%s'", jobtype.__name__, url)
 
+                except Exception as e:
+                    log.error("Error executing %s for '%s': %s", jobtype.__name__, url, str(e))
                     if status:
                         retval |= status
                         input_manager.error()
