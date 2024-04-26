@@ -133,6 +133,8 @@ class TestExtractorModule(unittest.TestCase):
                     matches.append((match, extr2))
 
             # fail if more or less than 1 match happened
+            if len(matches) != 1:
+                self.fail("Expected exactly 1 match for URL: {}".format(url))
             if len(matches) > 1:
                 msg = "'{}' gets matched by more than one pattern:".format(url)
                 for match, extr in matches:

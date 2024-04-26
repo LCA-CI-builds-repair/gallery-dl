@@ -609,6 +609,11 @@ fragment nodesFields on MoodboardItem {
       }
 
       exifData {
+        # Add fields for exifData here
+      }
+    }
+  }
+}
         lens {
           ...exifDataValueFields
         }
@@ -643,11 +648,6 @@ fragment nodesFields on MoodboardItem {
     }
 
     ... on MediaCollectionComponent {
-      project {
-        ...projectFields
-      }
-    }
-  }
 }
 
 fragment OwnerFields on User {
@@ -665,7 +665,4 @@ fragment OwnerFields on User {
     isAvailableFullTime
     isAvailableFreelance
   }
-}
-""",
-
 }

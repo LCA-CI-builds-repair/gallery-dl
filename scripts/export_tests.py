@@ -154,8 +154,6 @@ def extract_tests_from_source(lines):
                 first = index
 
     return tests
-
-
 def get_test_source(extr, *, cache={}):
     try:
         tests = cache[extr.__module__]
@@ -164,15 +162,11 @@ def get_test_source(extr, *, cache={}):
         with open(path) as fp:
             lines = fp.readlines()
         tests = cache[extr.__module__] = extract_tests_from_source(lines)
-    return tests.get(extr.url) or ("",)
-    return tests[extr.url]
-
+    return tests.get(extr.url, ("",))
 
 def comment_from_source(source):
     match = re.match(r"\s+#\s*(.+)", source[0])
     return match[1] if match else ""
-
-
 def build_test(extr, data):
     source = get_test_source(extr)
     comment = comment_from_source(source)
@@ -225,6 +219,12 @@ def build_test(extr, data):
         instr["#sha1_content"] = content
 
     if data:
+    if (content := data.pop("content", None)):
+        if isinstance(content, tuple):
+            content = list(content)
+        instr["#sha1_content"] = content
+
+    if data:
         print(extr)
         for k in data:
             print(k)
@@ -263,13 +263,7 @@ def export_tests(data):
 
         for v in itertools.chain(
             head.values(),
-            instr.values() if instr else (),
-            metadata.values() if metadata else (),
-        ):
-            if not isinstance(v, type) or v.__module__ == "builtins":
-                continue
-
-            module, _, name = v.__module__.rpartition(".")
+            instr.values() if instr else ()):
             if name[0].isdecimal():
                 stmt = f'''\
 {module.partition(".")[0]} = __import__("{v.__module__}")

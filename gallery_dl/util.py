@@ -658,8 +658,8 @@ def build_extractor_filter(categories, negate=True, special=None):
         return true if negate else false
 
     tests = []
-
     if negate:
+        # Add appropriate code or action to handle the condition when negate is True
         if catset:
             tests.append(lambda extr:
                          extr.category not in catset and

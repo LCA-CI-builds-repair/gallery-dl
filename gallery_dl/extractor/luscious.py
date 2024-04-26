@@ -73,7 +73,6 @@ class LusciousAlbumExtractor(LusciousExtractor):
                    image["url_to_video"] or image["url_to_original"])
 
             yield Message.Url, url, text.nameext_from_url(url, image)
-
     def metadata(self):
         variables = {
             "id": self.album_id,

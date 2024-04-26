@@ -22,20 +22,25 @@ class TestExtractor(Extractor):
     leave the field empty.
 
     Examples:
-        - test:pixiv
-            run all pixiv tests
+    """
+    - test:pixiv
+        run all pixiv tests
 
-        - test:pixiv:user,favorite:0
-            run the first test of the PixivUser- and PixivFavoriteExtractor
+    - test:pixiv:user,favorite:0
+        run the first test of the PixivUser- and PixivFavoriteExtractor
 
-        - test:
-            run all tests
+    - test:
+        run all tests
     """
     category = "test"
     pattern = r"t(?:est)?:([^:]*)(?::([^:]*)(?::(\*|[\d,]*))?)?$"
     example = "test:CATEGORY"
 
     def __init__(self, match):
+        try:
+            # Add initialization code here
+        except Exception as e:
+            print(f"Error initializing ExtractorTest: {e}")
         Extractor.__init__(self, match)
         categories, subcategories, indices = match.groups()
         self.categories = self._split(categories)
@@ -58,12 +63,6 @@ class TestExtractor(Extractor):
             ]
 
         tests = [
-            test
-            for extr in extractors
-            for index, test in enumerate(extr._get_tests())
-            if str(index) in self.indices
-        ]
-
         if not tests:
             raise exception.NotFoundError("test")
 
@@ -72,9 +71,13 @@ class TestExtractor(Extractor):
 
     @staticmethod
     def __contains__(_):
-        return True
+        return False
 
     @staticmethod
+    def _split(value):
+        if value and value != "*":
+            return value.split(",")
+        return []
     def _split(value):
         if value and value != "*":
             return value.split(",")

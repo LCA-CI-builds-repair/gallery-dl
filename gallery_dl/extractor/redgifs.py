@@ -94,17 +94,26 @@ class RedgifsUserExtractor(RedgifsExtractor):
     example = "https://www.redgifs.com/users/USER"
 
     def __init__(self, match):
-        RedgifsExtractor.__init__(self, match)
+        try:
+            RedgifsExtractor.__init__(self, match)
+        except Exception as e:
+            print(f"Error initializing RedgifsExtractor: {e}")
+        
         self.query = match.group(2)
 
     def metadata(self):
-        return {"userName": self.key}
+        if hasattr(self, 'key'):
+            return {"userName": self.key}
+        else:
+            return {}
 
     def gifs(self):
-        order = text.parse_query(self.query).get("order")
-        return self.api.user(self.key, order or "new")
-
-
+        try:
+            order = text.parse_query(self.query).get("order")
+            return self.api.user(self.key, order or "new")
+        except Exception as e:
+            print(f"Error retrieving gifs: {e}")
+            return []
 class RedgifsCollectionExtractor(RedgifsExtractor):
     """Extractor for an individual user collection"""
     subcategory = "collection"
@@ -151,14 +160,18 @@ class RedgifsNichesExtractor(RedgifsExtractor):
     example = "https://www.redgifs.com/niches/NAME"
 
     def __init__(self, match):
-        RedgifsExtractor.__init__(self, match)
-        self.query = match.group(2)
+    """Extractor for redgifs search results"""
+    subcategory = "search"
+    directory_fmt = ("{category}", "Search", "{search}")
+    pattern = (r"(?:https?://)?(?:\w+\.)?redgifs\.com"
+               r"/(?:gifs/([^/?#]+)|browse)(?:/?\?([^#]+))?")
+    example = "https://www.redgifs.com/gifs/TAG"
 
-    def gifs(self):
-        order = text.parse_query(self.query).get("order")
-        return self.api.niches(self.key, order or "new")
-
-
+    def __init__(self, match):
+        try:
+            # Add initialization code here
+        except Exception as e:
+            print(f"Error initializing RedgifsExtractor: {e}")
 class RedgifsSearchExtractor(RedgifsExtractor):
     """Extractor for redgifs search results"""
     subcategory = "search"

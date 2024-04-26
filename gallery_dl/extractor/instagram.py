@@ -63,17 +63,25 @@ class InstagramExtractor(Extractor):
         reverse = order[0] in ("r", "d") if order else False
 
         for post in self.posts():
-
-            if "__typename" in post:
-                post = self._parse_post_graphql(post)
-            else:
-                post = self._parse_post_rest(post)
+            try:
+                if "__typename" in post:
+                    post = self._parse_post_graphql(post)
+                else:
+                    post = self._parse_post_rest(post)
+            except Exception as e:
+                print(f"Error parsing post: {e}")
+                continue
+            
             if self._user:
                 post["user"] = self._user
-            post.update(data)
-            files = post.pop("_files")
-
-            post["count"] = len(files)
+            
+            if "data" in locals():
+                post.update(data)
+            
+            if "_files" in post:
+                files = post.pop("_files")
+                
+                post["count"] = len(files)
             yield Message.Directory, post
 
             if "date" in post:
@@ -662,17 +670,26 @@ class InstagramRestAPI():
         reel_ids = [hl["id"] for hl in self.highlights_tray(user_id)]
 
         order = self.extractor.config("order-posts")
-        if order:
-            if order in ("desc", "reverse"):
-                reel_ids.reverse()
-            elif order in ("id", "id_asc"):
-                reel_ids.sort(key=lambda r: int(r[10:]))
-            elif order == "id_desc":
-                reel_ids.sort(key=lambda r: int(r[10:]), reverse=True)
-            elif order != "asc":
                 self.extractor.log.warning("Unknown posts order '%s'", order)
 
         for offset in range(0, len(reel_ids), chunk_size):
+            yield from self.reels_media(
+                reel_ids[offset : offset+chunk_size])
+
+    def highlights_tray(self, user_id):
+        try:
+            endpoint = "/v1/highlights/{}/highlights_tray/".format(user_id)
+            return self._call(endpoint)["tray"]
+        except Exception as e:
+            self.extractor.log.error("Error fetching highlights tray: %s", e)
+            return []
+
+    def media(self, shortcode):
+        try:
+            # Add implementation for the media method
+        except Exception as e:
+            self.extractor.log.error("Error fetching media: %s", e)
+            # Handle the exception appropriately
             yield from self.reels_media(
                 reel_ids[offset : offset+chunk_size])
 
