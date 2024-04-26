@@ -400,7 +400,10 @@ class InputManager():
                 else:
                     conf = lconf
                     line = line[1:]
-                    if action:
+                    
+            if action:
+                # Handle the case when 'action' is defined
+                pass
                         indicies.append(n)
 
                 key, sep, value = line.partition("=")

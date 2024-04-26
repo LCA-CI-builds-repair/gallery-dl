@@ -441,10 +441,10 @@ class DownloadJob(Job):
                 if "finalize-error" in hooks:
                     for callback in hooks["finalize-error"]:
                         callback(pathfmt)
-            else:
-                if "finalize-success" in hooks:
-                    for callback in hooks["finalize-success"]:
-                        callback(pathfmt)
+                else:
+                    if "finalize-success" in hooks:
+                        for callback in hooks["finalize-success"]:
+                            callback(pathfmt)
 
     def handle_skip(self):
         pathfmt = self.pathfmt
@@ -624,18 +624,29 @@ class DownloadJob(Job):
                 clist = (self.extractor.category,)
 
         return util.build_extractor_filter(clist, negate, special)
-
-
 class SimulationJob(DownloadJob):
     """Simulate the extraction process without downloading anything"""
 
     def handle_url(self, url, kwdict):
+        """
+        Handle the URL in the simulation job.
+        
+        Args:
+            url (str): The URL to handle.
+            kwdict (dict): Keyword dictionary.
+
+        Returns:
+            None
+        """
         if not kwdict["extension"]:
             kwdict["extension"] = "jpg"
+        
         if self.sleep:
             self.extractor.sleep(self.sleep(), "download")
+        
         if self.archive:
             self.archive.add(kwdict)
+        
         self.out.skip(self.pathfmt.build_filename(kwdict))
 
     def handle_directory(self, kwdict):
@@ -826,18 +837,19 @@ class DataJob(Job):
             extractor.sleep(sleep(), "extractor")
 
         # collect data
+        if config.get(("output",), "num-to-str", False):
+            for msg in self.data:
+                util.transform_dict(msg[-1], util.number_to_string)
+
+        # Dump to 'file' with error handling
         try:
-            for msg in extractor:
-                self.dispatch(msg)
-        except exception.StopExtraction:
-            pass
-        except Exception as exc:
-            self.data.append((exc.__class__.__name__, str(exc)))
-        except BaseException:
+            util.dump_json(self.data, self.file, self.ascii, 2)
+            self.file.flush()
+        except SomeSpecificExceptionType:
+            # Handle the specific exception here
             pass
 
-        # convert numbers to string
-        if config.get(("output",), "num-to-str", False):
+        return 0
             for msg in self.data:
                 util.transform_dict(msg[-1], util.number_to_string)
 

@@ -269,7 +269,7 @@ def parse_docs_configuration():
                 opt_desc[name] = ""
             else:
                 line = line.strip()
-                if line.startswith(("* ", "- ")):
+                if line.startswith("* ") or line.startswith("- "):
                     # list item
                     line = ".br\n" + line
                 elif line.startswith("| "):

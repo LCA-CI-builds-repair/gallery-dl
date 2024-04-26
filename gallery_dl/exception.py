@@ -57,7 +57,7 @@ class HttpError(ExtractionError):
     def __init__(self, message, response=None):
         ExtractionError.__init__(self, message)
         self.response = response
-        self.status = response.status_code if response else 0
+        self.status = response.status_code if response is not None else 0
 
 
 class NotFoundError(ExtractionError):
@@ -125,9 +125,9 @@ class StopExtraction(GalleryDLException):
 
 class TerminateExtraction(GalleryDLException):
     """Terminate data extraction"""
-    code = 0
+    code = 2
 
 
 class RestartExtraction(GalleryDLException):
     """Restart data extraction"""
-    code = 0
+    code = 3

@@ -140,20 +140,20 @@ def extract_tests_from_source(lines):
             first = 0
 
         elif (m := match_url(line)):
-            offset = index
-            while not m[2]:
-                offset += 1
-                next = lines[offset]
-                line = line[:-2] + next[next.index('"')+1:]
-                m = match_url(line)
-            url = m[1]
-            if m[2] in (",)", "),"):
-                tests[url] = lines[index-1:index+1]
-                first = 0
-            else:
-                first = index
+    offset = index
+    while not m[2]:
+        offset += 1
+        next = lines[offset]
+        line = line[:-2] + next[next.index('"')+1:]
+        m = match_url(line)
+    url = m[1]
+    if m[2] in (",", ")"):
+        tests[url] = lines[index-1:index+1]
+        first = 0
+    else:
+        first = index
 
-    return tests
+return tests
 
 
 def get_test_source(extr, *, cache={}):

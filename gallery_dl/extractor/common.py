@@ -171,9 +171,9 @@ class Extractor():
                 code = response.status_code
                 if self._write_pages:
                     self._dump_response(response)
-                if 200 <= code < 400 or fatal is None and \
-                        (400 <= code < 500) or not fatal and \
-                        (400 <= code < 429 or 431 <= code < 500):
+                if (200 <= code < 400 or 
+                    (fatal is None and 400 <= code < 500) or 
+                    (not fatal and (400 <= code < 429 or 431 <= code < 500))):
                     if encoding:
                         response.encoding = encoding
                     return response
@@ -190,6 +190,8 @@ class Extractor():
                         break
                     if b'name="captcha-bypass"' in content:
                         self.log.warning("Cloudflare CAPTCHA")
+                        # Add handling for Cloudflare CAPTCHA here
+                        # For example, try to bypass the CAPTCHA or log the event
                         break
                 if code not in retry_codes and code < 500:
                     break
@@ -686,9 +688,6 @@ class MangaExtractor(Extractor):
         """Login and set necessary cookies"""
 
     def chapters(self, page):
-        """Return a list of all (chapter-url, metadata)-tuples"""
-
-
 class AsynchronousMixin():
     """Run info extraction in a separate thread"""
 
@@ -701,6 +700,11 @@ class AsynchronousMixin():
             args=(messages,),
             daemon=True,
         )
+
+        # Add synchronization mechanisms here if needed
+        # For example, consider using locks or semaphores
+
+        thread.start()
 
         thread.start()
         while True:

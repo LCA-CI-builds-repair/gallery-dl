@@ -30,12 +30,13 @@ else:
 
 
 suite = unittest.TestSuite()
+suite = unittest.TestSuite()
 
 for test in TESTS:
     try:
         module = __import__(test)
-    except ImportError:
-        print("unable to import", test)
+    except ImportError as e:
+        print("Unable to import", test, "Error:", e)
     else:
         tests = unittest.defaultTestLoader.loadTestsFromModule(module)
         suite.addTests(tests)

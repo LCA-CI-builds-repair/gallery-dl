@@ -113,8 +113,7 @@ class DeviantartExtractor(Extractor):
                 continue
 
             if deviation["is_deleted"]:
-                # prevent crashing in case the deviation really is
-                # deleted
+                # Prevent crashing in case the deviation really is deleted
                 self.log.debug(
                     "Skipping %s (deleted)", deviation["deviationid"])
                 continue
@@ -290,7 +289,6 @@ class DeviantartExtractor(Extractor):
                     catlist,
                     itertools.accumulate(catlist, lambda t, c: t + "/" + c)
                 )
-            )
             username = deviation["author"]["username"]
             urlname = deviation.get("username") or username.lower()
             header = HEADER_TEMPLATE.format(
@@ -1393,15 +1391,14 @@ class DeviantartOAuthAPI():
                             "instructions to be able to access them.")
 
                 # "statusid" cannot be used instead
+                # "statusid" cannot be used instead
                 if results and "deviationid" in results[0]:
                     if self.metadata:
                         self._metadata(results)
                     if self.folders:
                         self._folders(results)
-                else:  # attempt to fix "deleted" deviations
+                else:  # Attempt to fix "deleted" deviations
                     for dev in self._shared_content(results):
-                        if not dev["is_deleted"]:
-                            continue
                         patch = self._call(
                             "/deviation/" + dev["deviationid"], fatal=False)
                         if patch:
@@ -1731,16 +1728,13 @@ css/v6loggedin_lc.css?3001430805">
     <style>{css}</style>
     <link rel="stylesheet" href="https://st.deviantart.net/\
 roses/cssmin/core.css?1488405371919" >
-    <link rel="stylesheet" href="https://st.deviantart.net/\
-roses/cssmin/peeky.css?1487067424177" >
-    <link rel="stylesheet" href="https://st.deviantart.net/\
-roses/cssmin/desktop.css?1491362542749" >
+    <style>{css}</style>
+    <link rel="stylesheet" href="https://st.deviantart.net/roses/cssmin/core.css?1488405371919">
+    <link rel="stylesheet" href="https://st.deviantart.net/roses/cssmin/peeky.css?1487067424177">
+    <link rel="stylesheet" href="https://st.deviantart.net/roses/cssmin/desktop.css?1491362542749">
 </head>
 <body id="deviantART-v7" class="bubble no-apps loggedout w960 deviantart">
     <div id="output">
-    <div class="dev-page-container bubbleview">
-    <div class="dev-page-view view-mode-normal">
-    <div class="dev-view-main-content">
     <div class="dev-view-deviation">
     {shadow}
     <div class="journal-wrapper tt-a">

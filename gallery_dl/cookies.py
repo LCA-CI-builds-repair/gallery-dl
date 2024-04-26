@@ -674,6 +674,7 @@ def _get_gnome_keyring_password(browser_keyring_name):
     try:
         import secretstorage
     except ImportError:
+        # Handle the case when 'secretstorage' Python package is not available
         _log_error("'secretstorage' Python package not available")
         return b""
 
