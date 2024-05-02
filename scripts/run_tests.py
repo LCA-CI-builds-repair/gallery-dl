@@ -43,4 +43,6 @@ for test in TESTS:
 if __name__ == "__main__":
     result = unittest.TextTestRunner(verbosity=2).run(suite)
     if result.errors or result.failures:
+        # Handle errors and failures appropriately
+        pass
         sys.exit(1)

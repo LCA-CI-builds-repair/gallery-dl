@@ -8,10 +8,7 @@
 
 """Utility extractor to execute tests of other extractors"""
 
-from .common import Extractor, Message
-from .. import extractor, exception
-
-
+from gallery_dl.extractor.common import Extractor, Message
 class TestExtractor(Extractor):
     """Extractor to select and run the test URLs of other extractors
 

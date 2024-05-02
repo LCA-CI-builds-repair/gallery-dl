@@ -320,9 +320,10 @@ def main():
     if not args.target:
         args.target = os.path.join(
             os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-            "test", "results",
+            "test", "results"
         )
 
+    import os
     global PATTERNS
     PATTERNS = collect_patterns()
 
