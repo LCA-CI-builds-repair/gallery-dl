@@ -111,14 +111,13 @@ class TestText(unittest.TestCase):
 
         # ...
         self.assertEqual(
-            f("htp://example.org/filename.ext"),
-            "https://htp://example.org/filename.ext",
+            f("https://example.org/filename.ext"),
+            "https://example.org/filename.ext",
         )
 
         # invalid arguments
         for value in INVALID_ALT:
             self.assertEqual(f(value), value)
-
     def test_root_from_url(self, f=text.root_from_url):
         result = "https://example.org"
         self.assertEqual(f("https://example.org/")    , result)

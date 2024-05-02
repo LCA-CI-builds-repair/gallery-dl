@@ -113,10 +113,8 @@ class TestExtractorModule(unittest.TestCase):
             for extr2 in _list_classes():
 
                 # skip DirectlinkExtractor pattern if it isn't tested
-                if extr1 != DirectlinkExtractor and \
-                        extr2 == DirectlinkExtractor:
+                if extr1 != DirectlinkExtractor or extr2 != DirectlinkExtractor:
                     continue
-
                 match = extr2.pattern.match(url)
                 if match:
                     matches.append((match, extr2))

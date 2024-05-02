@@ -413,6 +413,18 @@ fragment OwnerFields on User {
     isAvailableFullTime
     isAvailableFreelance
   }
+    isFollowing
+    isProfileOwner
+    location
+    locationUrl
+    url
+    username
+    availabilityInfo {
+      availabilityTimeline
+      isAvailableFullTime
+      isAvailableFreelance
+    }
+  }
 }
 """,
 
@@ -665,7 +677,4 @@ fragment OwnerFields on User {
     isAvailableFullTime
     isAvailableFreelance
   }
-}
-""",
-
 }
