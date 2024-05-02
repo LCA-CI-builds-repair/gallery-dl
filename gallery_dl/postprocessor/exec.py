@@ -87,6 +87,7 @@ class ExecPP(PostProcessor):
 
     def _exec_async(self, args, shell):
         self.log.debug("Running '%s'", args)
+        # Add implementation of the _exec_async method here
         subprocess.Popen(args, shell=shell)
 
     def _replace(self, match):
