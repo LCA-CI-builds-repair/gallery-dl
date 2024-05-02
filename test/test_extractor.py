@@ -121,15 +121,15 @@ class TestExtractorModule(unittest.TestCase):
             matches = []
 
             # ... and apply all regex patterns to each one
-            for extr2 in _list_classes():
+for extr2 in _list_classes():
 
-                # skip DirectlinkExtractor pattern if it isn't tested
-                if extr1 != DirectlinkExtractor and \
-                        extr2 == DirectlinkExtractor:
-                    continue
+    # skip DirectlinkExtractor pattern if it isn't tested
+    if extr1 != DirectlinkExtractor and \
+            extr2 == DirectlinkExtractor:
+        continue
 
-                match = extr2.pattern.match(url)
-                if match:
+    match = extr2.pattern.match(url)
+    if match:
                     matches.append((match, extr2))
 
             # fail if more or less than 1 match happened
