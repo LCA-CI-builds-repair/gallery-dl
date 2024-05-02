@@ -173,7 +173,7 @@ class SteamgriddbGridsExtractor(SteamgriddbAssetsExtractor):
     example = "https://www.steamgriddb.com/game/1234/grids"
     valid_dimensions = ("460x215", "920x430", "600x900", "342x482", "660x930",
                         "512x512", "1024x1024")
-    valid_styles = ("alternate", "blurred", "no_logo", "material", "white_logo")
+    valid_styles = ("alternate", "blurred", "no_logo", "material", "white_logo", "custom")
     valid_file_types = ("png", "jpeg", "jpg", "webp")
 
 
