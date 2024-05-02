@@ -1,7 +1,4 @@
-#!/bin/bash
-set -e
-
-prompt() {
+<Complete the prompt() function and add the remaining script content here>
     echo "root: ${ROOTDIR} old: ${OLDVERSION} - new: ${NEWVERSION}"
     read -n 1 -r -p "Proceed? [Y/n] " P
     echo
