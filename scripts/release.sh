@@ -150,8 +150,6 @@ if [[ ! $NEWVERSION =~ [0-9]+\.[0-9]+\.[0-9]+(-[a-z]+(\.[0-9]+)?)?$ ]]; then
     echo "invalid version: $NEWVERSION"
     exit 2
 fi
-
-
 prompt
 supportedsites
 cleanup
