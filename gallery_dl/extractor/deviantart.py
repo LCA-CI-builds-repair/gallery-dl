@@ -283,24 +283,24 @@ class DeviantartExtractor(Extractor):
         else:
             needle = '<div usr class="gr">'
             catlist = deviation["category_path"].split("/")
-            categories = " / ".join(
-                ('<span class="crumb"><a href="{}/{}/"><span>{}</span></a>'
-                 '</span>').format(self.root, cpath, cat.capitalize())
-                for cat, cpath in zip(
-                    catlist,
-                    itertools.accumulate(catlist, lambda t, c: t + "/" + c)
-                )
+        categories = " / ".join(
+            ('<span class="crumb"><a href="{}/{}/"><span>{}</span></a>'
+             '</span>').format(self.root, cpath, cat.capitalize())
+            for cat, cpath in zip(
+                catlist,
+                itertools.accumulate(catlist, lambda t, c: t + "/" + c)
             )
-            username = deviation["author"]["username"]
-            urlname = deviation.get("username") or username.lower()
-            header = HEADER_TEMPLATE.format(
-                title=title,
-                url=url,
-                userurl="{}/{}/".format(self.root, urlname),
-                username=username,
-                date=deviation["date"],
-                categories=categories,
-            )
+        )
+        username = deviation["author"]["username"]
+        urlname = deviation.get("username") or username.lower()
+        header = HEADER_TEMPLATE.format(
+            title=title,
+            url=url,
+            userurl="{}/{}/".format(self.root, urlname),
+            username=username,
+            date=deviation["date"],
+            categories=categories,
+        )
 
         if needle in html:
             html = html.replace(needle, header, 1)
