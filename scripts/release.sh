@@ -131,7 +131,7 @@ upload-pypi() {
 }
 
 
-ROOTDIR="$(realpath "$(dirname "$0")/..")/"
+ROOTDIR="$(realpath "$(dirname "$0")/..")"
 README="README.rst"
 CHANGELOG="CHANGELOG.md"
 SUPPORTEDSITES="./docs/supportedsites.md"

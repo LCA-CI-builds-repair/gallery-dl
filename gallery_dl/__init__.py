@@ -381,7 +381,7 @@ class InputManager():
 
         gconf = []
         lconf = []
-        indicies = []
+        indices = []
         strip_comment = None
         append = self.urls.append
 
@@ -395,10 +395,10 @@ class InputManager():
             elif line[0] == "-":
                 # config spec
                 if len(line) >= 2 and line[1] == "G":
-                    conf = gconf
+                    config = gconf
                     line = line[2:]
                 else:
-                    conf = lconf
+                    config = lconf
                     line = line[1:]
                     if action:
                         indicies.append(n)
@@ -425,6 +425,7 @@ class InputManager():
                 if " #" in line or "\t#" in line:
                     if strip_comment is None:
                         import re
+                        # Regex pattern to strip comments from the line
                         strip_comment = re.compile(r"\s+#.*").sub
                     line = strip_comment("", line)
                 if gconf or lconf:

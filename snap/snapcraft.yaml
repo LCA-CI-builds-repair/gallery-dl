@@ -1,4 +1,4 @@
-%YAML 1.1
+%YAML 1.2
 ---
 # Snapcraft Recipe for gallery-dl
 # ------------------------------
@@ -32,12 +32,12 @@ plugs:
 
   # Storage access
   home:
-  removable-media: # Non-A/C
+  removable-media: # Non A/C
 
   # Network access
   network:
 
-  # For network service for recieving OAuth callback tokens
+  # For network service for receiving OAuth callback tokens
   network-bind:
 
   # Configuration access

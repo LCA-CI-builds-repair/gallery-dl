@@ -643,9 +643,8 @@ def _get_kwallet_password(browser_keyring_name):
         )
 
         if proc.returncode != 0:
-            _log_error("kwallet-query failed with return code {}. "
-                       "Please consult the kwallet-query man page "
-                       "for details".format(proc.returncode))
+            _log_error(f"kwallet-query failed with return code {proc.returncode}. "
+                       "Please consult the kwallet-query man page for details")
             return b""
 
         if stdout.lower().startswith(b"failed to read"):
