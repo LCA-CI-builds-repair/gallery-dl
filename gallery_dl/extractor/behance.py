@@ -607,7 +607,9 @@ fragment nodesFields on MoodboardItem {
         g
         b
       }
-
+    }
+  }
+}
       exifData {
         lens {
           ...exifDataValueFields

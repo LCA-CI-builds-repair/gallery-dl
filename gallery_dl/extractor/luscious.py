@@ -95,7 +95,6 @@ query AlbumGet($id: ID!) {
         }
     }
 }
-
 fragment AlbumStandard on Album {
     __typename
     id
