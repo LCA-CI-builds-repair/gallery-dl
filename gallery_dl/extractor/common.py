@@ -167,14 +167,8 @@ class Extractor():
                 msg = exc
             except (requests.exceptions.RequestException) as exc:
                 raise exception.HttpError(exc)
-            else:
-                code = response.status_code
-                if self._write_pages:
-                    self._dump_response(response)
-                if 200 <= code < 400 or fatal is None and \
-                        (400 <= code < 500) or not fatal and \
-                        (400 <= code < 429 or 431 <= code < 500):
                     if encoding:
+                }
                         response.encoding = encoding
                     return response
                 if notfound and code == 404:
@@ -191,14 +185,12 @@ class Extractor():
                     if b'name="captcha-bypass"' in content:
                         self.log.warning("Cloudflare CAPTCHA")
                         break
+                    if b'name="captcha-bypass"' in content:
+                        self.log.warning("Cloudflare CAPTCHA")
+                        break
+                }
                 if code not in retry_codes and code < 500:
                     break
-
-            finally:
-                Extractor.request_timestamp = time.time()
-
-            self.log.debug("%s (%s/%s)", msg, tries, retries+1)
-            if tries > retries:
                 break
             self.sleep(
                 max(tries, self._interval()) if self._interval else tries,

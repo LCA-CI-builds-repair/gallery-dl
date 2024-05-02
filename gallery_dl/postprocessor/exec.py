@@ -71,14 +71,11 @@ class ExecPP(PostProcessor):
         if archive and archive.check(pathfmt.kwdict):
             return
 
-        self.pathfmt = pathfmt
-        args = self._sub(self._replace, self.args)
         self._exec(args, True)
 
         if archive:
             archive.add(pathfmt.kwdict)
-
-    def _exec(self, args, shell):
+    }
         self.log.debug("Running '%s'", args)
         retcode = subprocess.Popen(args, shell=shell).wait()
         if retcode:

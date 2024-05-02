@@ -373,12 +373,8 @@ class InputManager():
                 self.files = {path: lines}
 
             if action == "c":
-                action = self._action_comment
-            elif action == "d":
-                action = self._action_delete
             else:
                 action = None
-
         gconf = []
         lconf = []
         indicies = []
@@ -393,14 +389,10 @@ class InputManager():
                 continue
 
             elif line[0] == "-":
-                # config spec
                 if len(line) >= 2 and line[1] == "G":
                     conf = gconf
                     line = line[2:]
-                else:
-                    conf = lconf
-                    line = line[1:]
-                    if action:
+            }
                         indicies.append(n)
 
                 key, sep, value = line.partition("=")

@@ -30,12 +30,6 @@ Exception
 
 
 class GalleryDLException(Exception):
-    """Base class for GalleryDL exceptions"""
-    default = None
-    msgfmt = None
-    code = 1
-
-    def __init__(self, message=None, fmt=True):
         if not message:
             message = self.default
         elif isinstance(message, Exception):
