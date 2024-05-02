@@ -429,13 +429,12 @@ def generate_tests():
                      if t["#category"][0].lower() == basecategory]
         else:
             tests = results.category(category)
+if subcategory:
+    tests = [t for t in tests if t["#category"][-1] == subcategory]
+else:
+    tests = results.all()
 
-        if subcategory:
-            tests = [t for t in tests if t["#category"][-1] == subcategory]
-    else:
-        tests = results.all()
-
-    # add 'test_...' methods
+# add 'test_...' methods
     enum = collections.defaultdict(int)
     for result in tests:
         name = "{1}_{2}".format(*result["#category"])
@@ -444,7 +443,9 @@ def generate_tests():
         method = _generate_method(result)
         method.__name__ = "test_{}_{}".format(name, enum[name])
         setattr(TestExtractorResults, method.__name__, method)
+import unittest
 
+setattr(TestExtractorResults, method.__name__, method)
 
 generate_tests()
 if __name__ == "__main__":

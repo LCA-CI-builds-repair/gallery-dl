@@ -268,7 +268,6 @@ def export_tests(data):
         ):
             if not isinstance(v, type) or v.__module__ == "builtins":
                 continue
-
             module, _, name = v.__module__.rpartition(".")
             if name[0].isdecimal():
                 stmt = f'''\
