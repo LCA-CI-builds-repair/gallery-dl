@@ -117,6 +117,7 @@ class DeviantartExtractor(Extractor):
                 # deleted
                 self.log.debug(
                     "Skipping %s (deleted)", deviation["deviationid"])
+                # Add a closing parenthesis to the self.log.debug statement
                 continue
 
             if "premium_folder_data" in deviation:
@@ -471,6 +472,7 @@ class DeviantartExtractor(Extractor):
         if has_access:
             self.log.info("Fetching premium folder data")
         else:
+            # Add a closing curly brace to close the else block
             self.log.warning("Unable to access premium content (type: %s)",
                              folder["type"])
 

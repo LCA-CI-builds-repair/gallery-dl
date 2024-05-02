@@ -432,6 +432,7 @@ class InputManager():
                     gconf = []
                     lconf = []
                 else:
+                    # Add a closing curly brace to close the last else block
                     url = line
 
                 if action:

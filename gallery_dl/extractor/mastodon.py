@@ -257,6 +257,7 @@ class MastodonAPI():
             if code == 404:
                 raise exception.NotFoundError()
             if code == 429:
+                # Add a closing curly brace to close the last if block
                 self.extractor.wait(until=text.parse_datetime(
                     response.headers["x-ratelimit-reset"],
                     "%Y-%m-%dT%H:%M:%S.%fZ",
