@@ -245,7 +245,6 @@ def collect_tests(whitelist=None):
 
     for cls in extractor._list_classes():
         for url, data in cls._get_tests():
-
             extr = cls.from_url(url)
             if whitelist and extr.category not in whitelist:
                 continue
@@ -254,13 +253,11 @@ def collect_tests(whitelist=None):
 
     return tests
 
-
 def export_tests(data):
     imports = {}
     tests = []
 
     for head, instr, metadata in data:
-
         for v in itertools.chain(
             head.values(),
             instr.values() if instr else (),

@@ -671,7 +671,6 @@ class InstagramRestAPI():
                 reel_ids.sort(key=lambda r: int(r[10:]), reverse=True)
             elif order != "asc":
                 self.extractor.log.warning("Unknown posts order '%s'", order)
-
         for offset in range(0, len(reel_ids), chunk_size):
             yield from self.reels_media(
                 reel_ids[offset : offset+chunk_size])

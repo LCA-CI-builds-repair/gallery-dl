@@ -391,7 +391,6 @@ class InputManager():
             if not line or line[0] == "#":
                 # empty line or comment
                 continue
-
             elif line[0] == "-":
                 # config spec
                 if len(line) >= 2 and line[1] == "G":
