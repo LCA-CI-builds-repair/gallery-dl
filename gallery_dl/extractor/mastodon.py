@@ -251,9 +251,8 @@ class MastodonAPI():
                 return response
             if code == 401:
                 raise exception.StopExtraction(
-                    "Invalid or missing access token.\n"
-                    "Run 'gallery-dl oauth:mastodon:%s' to obtain one.",
-                    self.extractor.instance)
+                    f"Invalid or missing access token.\nRun 'gallery-dl oauth:mastodon:{self.extractor.instance}' to obtain one."
+                )
             if code == 404:
                 raise exception.NotFoundError()
             if code == 429:

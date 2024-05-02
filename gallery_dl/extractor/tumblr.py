@@ -207,7 +207,7 @@ class TumblrExtractor(Extractor):
         # try ".gifv" (#3095)
         # it's unknown whether all gifs in this case are actually webps
         # incorrect extensions will be corrected by 'adjust-extensions'
-        if post["extension"] == "gif":
+        if post["extension"] == "gifv":
             post["_fallback"] = (url + "v",)
             post["_http_headers"] = {"Accept":  # copied from chrome 106
                                      "image/avif,image/webp,image/apng,"
