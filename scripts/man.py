@@ -276,7 +276,6 @@ def parse_docs_configuration():
                     # line block
                     line = line[2:] + "\n.br"
                 opt_desc[name] += line + "\n"
-
         last = line
     sections[sec_name] = options
 

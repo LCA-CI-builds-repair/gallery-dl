@@ -138,7 +138,6 @@ def extract_tests_from_source(lines):
         if first and match_end(line):
             tests[url] = lines[first-1:index+1]
             first = 0
-
         elif (m := match_url(line)):
             offset = index
             while not m[2]:

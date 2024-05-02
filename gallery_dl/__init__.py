@@ -402,7 +402,6 @@ class InputManager():
                     line = line[1:]
                     if action:
                         indicies.append(n)
-
                 key, sep, value = line.partition("=")
                 if not sep:
                     raise exception.InputFileError(
@@ -433,7 +432,6 @@ class InputManager():
                     lconf = []
                 else:
                     url = line
-
                 if action:
                     indicies.append(n)
                     append((url, path, action, indicies))
