@@ -153,20 +153,7 @@ def extract_tests_from_source(lines):
             else:
                 first = index
 
-    return tests
-
-
-def get_test_source(extr, *, cache={}):
-    try:
-        tests = cache[extr.__module__]
-    except KeyError:
-        path = sys.modules[extr.__module__].__file__
-        with open(path) as fp:
-            lines = fp.readlines()
-        tests = cache[extr.__module__] = extract_tests_from_source(lines)
     return tests.get(extr.url) or ("",)
-    return tests[extr.url]
-
 
 def comment_from_source(source):
     match = re.match(r"\s+#\s*(.+)", source[0])

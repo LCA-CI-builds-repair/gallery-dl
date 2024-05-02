@@ -130,7 +130,6 @@ upload-pypi() {
     twine upload gallery_dl-${NEWVERSION}*
 }
 
-
 ROOTDIR="$(realpath "$(dirname "$0")/..")/"
 README="README.rst"
 CHANGELOG="CHANGELOG.md"
@@ -150,8 +149,6 @@ if [[ ! $NEWVERSION =~ [0-9]+\.[0-9]+\.[0-9]+(-[a-z]+(\.[0-9]+)?)?$ ]]; then
     echo "invalid version: $NEWVERSION"
     exit 2
 fi
-
-
 prompt
 supportedsites
 cleanup
