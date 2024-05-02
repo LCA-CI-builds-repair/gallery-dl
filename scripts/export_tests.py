@@ -260,7 +260,6 @@ def export_tests(data):
     tests = []
 
     for head, instr, metadata in data:
-
         for v in itertools.chain(
             head.values(),
             instr.values() if instr else (),

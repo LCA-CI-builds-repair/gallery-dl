@@ -429,7 +429,6 @@ def generate_tests():
                      if t["#category"][0].lower() == basecategory]
         else:
             tests = results.category(category)
-
         if subcategory:
             tests = [t for t in tests if t["#category"][-1] == subcategory]
     else:
