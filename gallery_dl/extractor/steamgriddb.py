@@ -114,10 +114,11 @@ class SteamgriddbAssetsExtractor(SteamgriddbExtractor):
             "file-types", "file type", self.valid_file_types)
         json["mime"] = [FILE_EXT_TO_MIME[i] for i in file_types]
 
-        if self.game_id:
+        if self.game_id is not None:
             json["game_id"] = [self.game_id]
-        else:
+        elif self.collection_id is not None:
             json["collection_id"] = self.collection_id
+        # else: both game_id and collection_id are None, which is not allowed
 
         while True:
             json["page"] = page
