@@ -276,3 +276,4 @@ def _get_classes(module):
 
 _cache = []
 _module_iter = _modules_internal()
+initialize_all()
