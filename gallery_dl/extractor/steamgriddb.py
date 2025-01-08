@@ -109,7 +109,8 @@ class SteamgriddbAssetsExtractor(SteamgriddbExtractor):
                 "dimensions", "dimension", self.valid_dimensions)
         json["styles"] = self.config_list("styles", "style", self.valid_styles)
         json["languages"] = self.config_list(
-            "languages", "language", LANGUAGE_CODES)
+            "languages", "language", 
+            LANGUAGE_CODES)
         file_types = self.config_list(
             "file-types", "file type", self.valid_file_types)
         json["mime"] = [FILE_EXT_TO_MIME[i] for i in file_types]
