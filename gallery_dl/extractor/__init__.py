@@ -242,7 +242,25 @@ def _list_classes():
     yield from _cache
 
     for module in _module_iter:
-        yield from add_module(module)
+        yield from _safe_add_module(module)
+def _safe_add_module(module):
+    """Safely add modules, skipping invalid or incomplete classes."""
+    try:
+        classes = add_module(module)
+        return (cls for cls in classes if _validate_extractor(cls))
+    except Exception as exc:
+        print(f"Failed to add module {module}: {exc}")
+        return []
+def _validate_extractor(cls):
+    """Validate if the class can be safely initialized."""
+    try:
+        instance = cls()  # Attempt to create an instance
+        if callable(getattr(instance, "initialize", None)):
+            instance.initialize()  # Call initialize to validate it exists
+        return True
+    except Exception as exc:
+        print(f"Extractor validation failed for {cls}: {exc}")
+        return False
 
     globals()["_list_classes"] = lambda : _cache
 
