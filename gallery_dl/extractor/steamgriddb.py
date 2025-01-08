@@ -84,7 +84,7 @@ class SteamgriddbAssetsExtractor(SteamgriddbExtractor):
         self.page = int(match.group(3) or 1)
 
     def assets(self):
-        limit = 48
+        
         page = min(self.page - 1, 0)
 
         sort = self.config("sort", "score_desc")
