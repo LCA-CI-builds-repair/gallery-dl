@@ -152,8 +152,8 @@ class HatenaBlogHomeExtractor(HatenaBlogEntriesExtractor):
 
 
 class HatenaBlogArchiveExtractor(HatenaBlogEntriesExtractor):
-    """Extractor for a blog's archive page"""
-    subcategory = "archive"
+    """Extractor for HatenaBlog archive pages"""
+    subcategory = "Archive"
     pattern = BASE_PATTERN + r"(/archive(?:/\d+(?:/\d+(?:/\d+)?)?" + \
         r"|/category/[^?#]+)?)" + QUERY_RE
     example = "https://BLOG.hatenablog.com/archive/2024"
