@@ -239,7 +239,11 @@ def extractors():
 
 def _list_classes():
     """Yield available extractor classes"""
-    yield from _cache
+    if _cache:
+        yield from _cache
+    else:
+        for module in _module_iter:
+            yield from add_module(module)
 
     for module in _module_iter:
         yield from add_module(module)
