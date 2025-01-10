@@ -56,7 +56,7 @@ class HatenaBlogExtractor(Extractor):
         data = {
             "domain": self.domain,
             "date": date,
-            "entry": entry,
+            "entry": text.nameext_from_url(entry_link)[0],
             "title": title,
             "count": len(images),
         }
