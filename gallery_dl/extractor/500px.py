@@ -77,9 +77,9 @@ class _500pxExtractor(Extractor):
                 result.append(photos[pid])
             elif "images" in fallbacks[pid]:
                 result.append(fallbacks[pid])
-            else:
+            else: 
                 self.log.warning("Unable to fetch photo %s", pid)
-        
+
         return result
 
     def _request_api(self, url, params):
