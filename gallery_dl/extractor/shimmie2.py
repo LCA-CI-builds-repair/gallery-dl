@@ -223,9 +223,9 @@ class Shimmie2TagExtractor(Shimmie2Extractor):
                     break
 
                 tags, dimensions, size, ext = extr(
-                                                   "title=\"", "\"").split(" // ")
+                    "title=\"", "\"").split(" // ")
                 width, _, height = dimensions.partition("x")
-                md5 = extr("/_thumbs/", "/")
+                md5 = extr("/_thumbs/", "/") 
 
                 yield {
                     "file_url": file_url_fmt(
