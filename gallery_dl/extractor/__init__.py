@@ -202,9 +202,15 @@ modules = [
 
 def find(url):
     """Find a suitable extractor for the given URL"""
+    if not url:
+        return None
+        
     for cls in _list_classes():
-        match = cls.pattern.match(url)
-        if match:
+        try:
+            match = cls.pattern.match(url)
+            if match:
+                return cls(match)
+        except (TypeError, AttributeError):
             return cls(match)
     return None
 
@@ -212,6 +218,8 @@ def find(url):
 def add(cls):
     """Add 'cls' to the list of available extractors"""
     cls.pattern = re.compile(cls.pattern)
+    if not hasattr(cls, 'initialize'):
+        cls.initialize = lambda self: None
     _cache.append(cls)
     return cls
 
@@ -220,6 +228,8 @@ def add_module(module):
     """Add all extractors in 'module' to the list of available extractors"""
     classes = _get_classes(module)
     for cls in classes:
+        if not hasattr(cls, 'initialize'):
+            cls.initialize = lambda self: None
         cls.pattern = re.compile(cls.pattern)
     _cache.extend(classes)
     return classes
