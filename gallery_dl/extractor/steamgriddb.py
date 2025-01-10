@@ -41,6 +41,7 @@ FILE_EXT_TO_MIME = {
 
 class SteamgriddbExtractor(Extractor):
     """Base class for SteamGridDB"""
+    # line too long (80 > 79 characters)
     category = "steamgriddb"
     directory_fmt = ("{category}", "{subcategory}", "{game[id]}")
     filename_fmt = "{game[id]}_{id}_{num:>02}.{extension}"
