@@ -72,6 +72,9 @@ class HatenaBlogEntriesExtractor(HatenaBlogExtractor):
     def __init__(self, match):
         HatenaBlogExtractor.__init__(self, match)
         self.path = match.group(3)
+    @property
+    def __name__(self):
+        return self.__class__.__name__.capitalize()
         self.query = {key: value for key, value in text.parse_query(
             match.group(4)).items() if self._acceptable_query(key)}
         self._find_pager_url = re.compile(
