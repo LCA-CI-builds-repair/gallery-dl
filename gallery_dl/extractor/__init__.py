@@ -267,11 +267,12 @@ def _modules_path(path, files):
 
 def _get_classes(module):
     """Return a list of all extractor classes in a module"""
-    return [
+    classes = [
         cls for cls in module.__dict__.values() if (
             hasattr(cls, "pattern") and cls.__module__ == module.__name__
         )
     ]
+    return [cls for cls in classes if cls is not None]
 
 
 _cache = []
