@@ -146,7 +146,7 @@ class Shimmie2TagExtractor(Shimmie2Extractor):
                 width, _, height = dimensions.partition("x")
                 md5 = extr("/_thumbs/", "/")
 
-                yield {
+                post = {
                     "file_url": file_url_fmt(
                         self.root, md5, pid, text.quote(tags),
                         mime.rpartition("/")[2] if mime else "jpg"),
@@ -181,7 +181,7 @@ class Shimmie2TagExtractor(Shimmie2Extractor):
                 width, _, height = dimensions.partition("x")
 
                 yield {
-                    "file_url": file_url_fmt(pid),
+                    "file_url": file_url_fmt(self.root, pid),
                     "id": pid,
                     "md5": "",
                     "tags": tags,
