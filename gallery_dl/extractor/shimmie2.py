@@ -223,8 +223,8 @@ class Shimmie2TagExtractor(Shimmie2Extractor):
                     break
 
                 tags, dimensions, size, ext = extr(
-                                                   "title=\"", "\"").split(" // ")
-                width, _, height = dimensions.partition("x")
+                    "title=\"", "\"").split(" // ")
+                width, _, height = dimensions.split("x")
                 md5 = extr("/_thumbs/", "/")
 
                 yield {
