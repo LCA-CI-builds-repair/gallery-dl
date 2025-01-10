@@ -202,9 +202,12 @@ class SteamgriddbIconsExtractor(SteamgriddbAssetsExtractor):
     asset_type = "icon"
     pattern = BASE_PATTERN + r"/(game|collection)/(\d+)/icons(?:/(\d+))?"
     example = "https://www.steamgriddb.com/game/1234/icons"
-    valid_dimensions = ["{0}x{0}".format(i) for i in (8, 10, 14, 16, 20, 24,
-                        28, 32, 35, 40, 48, 54, 56, 57, 60, 64, 72, 76, 80, 90,
-                        96, 100, 114, 120, 128, 144, 150, 152, 160, 180, 192,
-                        194, 256, 310, 512, 768, 1024)]
+    valid_dimensions = (
+        ["{0}x{0}".format(i) for i in (
+            8, 10, 14, 16, 20, 24, 28, 32, 35, 40, 48, 54, 56, 57, 60,
+            64, 72, 76, 80, 90, 96, 100, 114, 120, 128, 144, 150, 152,
+            160, 180, 192, 194, 256, 310, 512, 768, 1024
+        )]
+    )
     valid_styles = ("official", "custom")
     valid_file_types = ("png", "ico")
