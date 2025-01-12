@@ -187,11 +187,11 @@ modules = [
     "moebooru",
     "foolfuuka",
     "foolslide",
-    "mastodon",
     "shopify",
     "lolisafe",
     "imagehosts",
     "directlink",
+    "mastodon",
     "recursive",
     "oauth",
     "test",
@@ -219,6 +219,8 @@ def add(cls):
 def add_module(module):
     """Add all extractors in 'module' to the list of available extractors"""
     classes = _get_classes(module)
+    if not classes:
+        return []
     for cls in classes:
         cls.pattern = re.compile(cls.pattern)
     _cache.extend(classes)
