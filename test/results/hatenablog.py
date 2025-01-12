@@ -76,7 +76,7 @@ __tests__ = (
                   "%83%AB%E3%83%95%E3%82%B8%E3%82%A7%E3%83%AB%E3%83%8D%E3%82"
                   "%A4%E3%83%AB"),
     "#category": ("", "hatenablog", "archive"),
-    "#class"   : hatenablog.HatenaBlogArchiveExtractor,
+    "#class"   : hatenablog.HatenaArchiveExtractor,
     "#range"   : "1-30",
     "#count"   : 30,
 },
@@ -84,7 +84,7 @@ __tests__ = (
 {
     "#url"     : "https://moko0908.hatenablog.jp/archive/2023",
     "#category": ("", "hatenablog", "archive"),
-    "#class"   : hatenablog.HatenaBlogArchiveExtractor,
+    "#class"   : hatenablog.HatenaArchiveExtractor,
     "#count"   : 13,
 },
 
