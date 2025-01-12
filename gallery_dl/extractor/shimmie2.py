@@ -222,8 +222,8 @@ class Shimmie2TagExtractor(Shimmie2Extractor):
                 if not pid:
                     break
 
-                tags, dimensions, size, ext = extr(
-                                                   "title=\"", "\"").split(" // ")
+                title = extr("title=\"", "\"")
+                tags, dimensions, size, ext = title.split(" // ")
                 width, _, height = dimensions.partition("x")
                 md5 = extr("/_thumbs/", "/")
 
