@@ -203,14 +203,21 @@ modules = [
 def find(url):
     """Find a suitable extractor for the given URL"""
     for cls in _list_classes():
-        match = cls.pattern.match(url)
-        if match:
-            return cls(match)
+        try:
+            match = cls.pattern.match(url)
+            if match:
+                extractor = cls(match)
+                if hasattr(extractor, 'initialize'):
+                    return extractor
+        except Exception:
+            continue
     return None
 
 
 def add(cls):
     """Add 'cls' to the list of available extractors"""
+    if not hasattr(cls, 'pattern'):
+        raise ValueError(f"Extractor '{cls.__name__}' has no pattern attribute")
     cls.pattern = re.compile(cls.pattern)
     _cache.append(cls)
     return cls
@@ -219,7 +226,11 @@ def add(cls):
 def add_module(module):
     """Add all extractors in 'module' to the list of available extractors"""
     classes = _get_classes(module)
+    if not classes:
+        return []
     for cls in classes:
+        if not hasattr(cls, 'pattern'):
+            continue
         cls.pattern = re.compile(cls.pattern)
     _cache.extend(classes)
     return classes
