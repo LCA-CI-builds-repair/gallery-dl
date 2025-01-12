@@ -240,6 +240,8 @@ def extractors():
 def _list_classes():
     """Yield available extractor classes"""
     yield from _cache
+    if not _module_iter:
+        return
 
     for module in _module_iter:
         yield from add_module(module)
