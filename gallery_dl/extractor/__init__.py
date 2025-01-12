@@ -239,19 +239,28 @@ def extractors():
 
 def _list_classes():
     """Yield available extractor classes"""
-    yield from _cache
+    if not _cache:
+        # Initialize cache on first call
+        for module in _module_iter():
+            _cache.extend(add_module(module))
 
-    for module in _module_iter:
-        yield from add_module(module)
+    return _cache
 
-    globals()["_list_classes"] = lambda : _cache
-
+def _module_iter():
+    """Iterate over all extractor modules"""
+    return _modules_internal()
 
 def _modules_internal():
     globals_ = globals()
     for module_name in modules:
-        yield __import__(module_name, globals_, None, (), 1)
-
+        try:
+            yield __import__(
+                "gallery_dl.extractor." + module_name,
+                globals_, None, (), 0
+            )
+        except ImportError:
+            # Skip modules that fail to import
+            continue
 
 def _modules_path(path, files):
     sys.path.insert(0, path)
@@ -275,4 +284,3 @@ def _get_classes(module):
 
 
 _cache = []
-_module_iter = _modules_internal()
