@@ -76,7 +76,7 @@ __tests__ = (
                   "%83%AB%E3%83%95%E3%82%B8%E3%82%A7%E3%83%AB%E3%83%8D%E3%82"
                   "%A4%E3%83%AB"),
     "#category": ("", "hatenablog", "archive"),
-    "#class"   : hatenablog.HatenaBlogArchiveExtractor,
+    "#class"   : hatenablog.HatenaArchiveBlogExtractor,
     "#range"   : "1-30",
     "#count"   : 30,
 },
@@ -84,21 +84,21 @@ __tests__ = (
 {
     "#url"     : "https://moko0908.hatenablog.jp/archive/2023",
     "#category": ("", "hatenablog", "archive"),
-    "#class"   : hatenablog.HatenaBlogArchiveExtractor,
+    "#class"   : hatenablog.HatenaArchiveBlogExtractor,
     "#count"   : 13,
 },
 
 {
     "#url"     : "https://p-shirokuma.hatenadiary.com/archive/2023/01",
     "#category": ("", "hatenablog", "archive"),
-    "#class"   : hatenablog.HatenaBlogArchiveExtractor,
+    "#class"   : hatenablog.HatenaArchiveBlogExtractor,
     "#count"   : 5,
 },
 
 {
     "#url"     : "https://urakatahero.hateblo.jp/archive",
     "#category": ("", "hatenablog", "archive"),
-    "#class"   : hatenablog.HatenaBlogArchiveExtractor,
+    "#class"   : hatenablog.HatenaArchiveBlogExtractor,
     "#range"   : "1-30",
     "#count"   : 30,
 },
@@ -106,7 +106,7 @@ __tests__ = (
 {
     "#url"     : "hatenablog:https://blog.hyouhon.com/archive/2024/01/01",
     "#category": ("", "hatenablog", "archive"),
-    "#class"   : hatenablog.HatenaBlogArchiveExtractor,
+    "#class"   : hatenablog.HatenaArchiveBlogExtractor,
 },
 
 {
