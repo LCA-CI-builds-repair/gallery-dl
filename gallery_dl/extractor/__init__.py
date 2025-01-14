@@ -202,6 +202,10 @@ modules = [
 
 def find(url):
     """Find a suitable extractor for the given URL"""
+    if not _cache:
+        # Ensure all extractors are loaded and initialized
+        list(_list_classes())
+
     for cls in _list_classes():
         match = cls.pattern.match(url)
         if match:
@@ -242,7 +246,9 @@ def _list_classes():
     yield from _cache
 
     for module in _module_iter:
-        yield from add_module(module)
+        for cls in add_module(module):
+            cls.pattern = re.compile(cls.pattern)
+            yield cls
 
     globals()["_list_classes"] = lambda : _cache
 
