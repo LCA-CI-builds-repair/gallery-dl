@@ -151,7 +151,7 @@ class HatenaBlogHomeExtractor(HatenaBlogEntriesExtractor):
     example = "https://BLOG.hatenablog.com"
 
 
-class HatenaBlogArchiveExtractor(HatenaBlogEntriesExtractor):
+class HatenaBlogArchivesExtractor(HatenaBlogEntriesExtractor):
     """Extractor for a blog's archive page"""
     subcategory = "archive"
     pattern = BASE_PATTERN + r"(/archive(?:/\d+(?:/\d+(?:/\d+)?)?" + \
