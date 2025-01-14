@@ -203,6 +203,8 @@ modules = [
 def find(url):
     """Find a suitable extractor for the given URL"""
     for cls in _list_classes():
+        if cls is None:
+            continue
         match = cls.pattern.match(url)
         if match:
             return cls(match)
@@ -228,7 +230,10 @@ def add_module(module):
 def extractors():
     """Yield all available extractor classes"""
     return sorted(
-        _list_classes(),
+        (
+            cls for cls in _list_classes()
+            if cls is not None
+        ),
         key=lambda x: x.__name__
     )
 
@@ -239,12 +244,16 @@ def extractors():
 
 def _list_classes():
     """Yield available extractor classes"""
-    yield from _cache
+    for cls in _cache:
+        yield cls
 
     for module in _module_iter:
-        yield from add_module(module)
+        for cls in add_module(module):
+            yield cls
 
-    globals()["_list_classes"] = lambda : _cache
+    def _list_classes_cached():
+        return (cls for cls in _cache if cls is not None)
+    globals()["_list_classes"] = _list_classes_cached
 
 
 def _modules_internal():
