@@ -202,11 +202,14 @@ modules = [
 
 def find(url):
     """Find a suitable extractor for the given URL"""
+    if not url:
+        return None
+
     for cls in _list_classes():
         match = cls.pattern.match(url)
         if match:
             return cls(match)
-    return None
+    raise ValueError("No suitable extractor found for '{}'".format(url))
 
 
 def add(cls):
@@ -240,11 +243,12 @@ def extractors():
 def _list_classes():
     """Yield available extractor classes"""
     yield from _cache
+    
+    if not _cache:
+        for module in _module_iter:
+            yield from add_module(module)
 
-    for module in _module_iter:
-        yield from add_module(module)
-
-    globals()["_list_classes"] = lambda : _cache
+        globals()["_list_classes"] = lambda: _cache
 
 
 def _modules_internal():
