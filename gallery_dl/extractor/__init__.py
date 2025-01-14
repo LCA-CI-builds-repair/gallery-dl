@@ -203,6 +203,8 @@ modules = [
 def find(url):
     """Find a suitable extractor for the given URL"""
     for cls in _list_classes():
+        if not hasattr(cls, 'pattern'):  # Skip classes without patterns
+            continue
         match = cls.pattern.match(url)
         if match:
             return cls(match)
@@ -237,13 +239,16 @@ def extractors():
 # internals
 
 
+_cache = []
+_module_iter = None  # Will be initialized below
+
 def _list_classes():
     """Yield available extractor classes"""
+    global _module_iter
     yield from _cache
-
-    for module in _module_iter:
-        yield from add_module(module)
-
+    if _module_iter:
+        for module in _module_iter:
+            yield from add_module(module)
     globals()["_list_classes"] = lambda : _cache
 
 
@@ -273,6 +278,5 @@ def _get_classes(module):
         )
     ]
 
-
-_cache = []
+# Initialize module iterator
 _module_iter = _modules_internal()
