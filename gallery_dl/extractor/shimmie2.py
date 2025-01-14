@@ -263,9 +263,9 @@ class Shimmie2PostExtractor(Shimmie2Extractor):
             "id"      : self.post_id,
             "tags"    : extr(": ", "<").partition(" - ")[0].rstrip(")"),
             "md5"     : extr("/_thumbs/", "/"),
-            "file_url": self.root + (
-                extr("id='main_image' src='", "'") or
-                extr("<source src='", "'")).lstrip("."),
+            "file_url": self.root + (extr("id='main_image' src='", "'")
+                                     or extr("<source src='", "'")
+                                     ).lstrip("."),
             "width"   : extr("data-width=", " ").strip("\"'"),
             "height"  : extr("data-height=", ">").partition(
                 " ")[0].strip("\"'"),
