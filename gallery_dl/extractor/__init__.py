@@ -206,6 +206,11 @@ def find(url):
         match = cls.pattern.match(url)
         if match:
             return cls(match)
+    
+    # Log a warning if no suitable extractor is found
+    # to help with debugging and troubleshooting
+    print(f"Warning: No suitable extractor found for URL: {url}")
+    
     return None
 
 
@@ -244,6 +249,10 @@ def _list_classes():
     for module in _module_iter:
         yield from add_module(module)
 
+    # Log the number of available extractor classes
+    # to help with debugging and troubleshooting
+    print(f"Info: {len(_cache)} extractor classes available")
+    
     globals()["_list_classes"] = lambda : _cache
 
 
