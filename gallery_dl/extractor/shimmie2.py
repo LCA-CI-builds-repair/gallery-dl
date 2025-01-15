@@ -18,7 +18,7 @@ class Shimmie2Extractor(BaseExtractor):
     filename_fmt = "{category}_{id}{md5:?_//}.{extension}"
     archive_fmt = "{id}"
 
-    def _init(self):
+    def init(self):
         try:
             instance = INSTANCES[self.category]
         except KeyError:
