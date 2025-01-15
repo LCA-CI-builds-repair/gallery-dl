@@ -63,7 +63,8 @@ class SteamgriddbExtractor(Extractor):
             asset["count"] = len(urls)
             yield Message.Directory, asset
             for asset["num"], url in enumerate(urls, 1):
-                yield Message.Url, url, text.nameext_from_url(url, asset)
+                yield Message.Url, url, text.nameext_from_url(
+                    url, asset)
 
     def _call(self, endpoint: str, **kwargs):
         data = self.request(self.root + endpoint, **kwargs).json()
