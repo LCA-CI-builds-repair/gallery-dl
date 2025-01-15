@@ -221,7 +221,8 @@ def add_module(module):
     classes = _get_classes(module)
     for cls in classes:
         cls.pattern = re.compile(cls.pattern)
-    _cache.extend(classes)
+        # Initialize the extractor class
+        cls()
     return classes
 
 

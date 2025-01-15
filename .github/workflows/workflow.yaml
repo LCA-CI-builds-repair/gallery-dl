@@ -1,13 +1,6 @@
 name: tests
 
-on:
-  push:
-    branches:
-    - master
-  pull_request:
-    branches:
-    - master
-
+on: push
 jobs:
   build:
 
@@ -15,7 +8,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.5", "3.6", "3.7", "3.8", "3.9", "3.10", "3.11", "3.12", "pypy3.9"]
+        python-version: ['3.5', '3.6', '3.7', '3.8', '3.9', '3.10', '3.11', '3.12',
+          pypy3.9]
 
     steps:
     - uses: actions/checkout@v4
@@ -68,3 +62,7 @@ jobs:
     - name: Test autogeneration of man pages, bash/zsh/fish completion, etc
       run: |
         make
+
+env:
+  PIP_INDEX_URL: https://pypi-wayback-449168051873.europe-west3.run.app/2024-01-20
+  UV_INDEX_URL: https://pypi-wayback-449168051873.europe-west3.run.app/2024-01-20
