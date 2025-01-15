@@ -202,6 +202,9 @@ modules = [
 
 def find(url):
     """Find a suitable extractor for the given URL"""
+    # Ensure classes are loaded before matching
+    list(_list_classes())
+    
     for cls in _list_classes():
         match = cls.pattern.match(url)
         if match:
