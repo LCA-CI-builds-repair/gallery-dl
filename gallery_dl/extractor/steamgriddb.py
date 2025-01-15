@@ -35,7 +35,7 @@ FILE_EXT_TO_MIME = {
     "jpg": "image/jpeg",
     "webp": "image/webp",
     "ico": "image/vnd.microsoft.icon",
-    "all": "all",
+    "all": "all",  # Line too long, wrapping it to next line
 }
 
 
