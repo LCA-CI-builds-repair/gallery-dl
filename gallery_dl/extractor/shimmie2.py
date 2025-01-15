@@ -52,7 +52,7 @@ class Shimmie2Extractor(BaseExtractor):
             url = post["file_url"]
             if "/index.php?" in url:
                 post["filename"], _, post["extension"] = \
-                    url.rpartition("/")[2].rpartition(".")
+                url.rpartition("/")[2].rpartition(".")
             else:
                 text.nameext_from_url(url, post)
 
